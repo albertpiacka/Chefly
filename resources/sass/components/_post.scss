@@ -1,0 +1,25 @@
+%postStyles {
+    padding: 1em;
+    border-radius: 1em;
+    position: relative;
+    top: 1em;
+    background: var(--bg-article);
+    box-shadow: 5em 2em 10em 5em var(--color-shadow);
+    transition: 1s transform ease;
+    &:hover {
+        transform: scale(1.1);
+    }
+    p {
+        color: $color-article-muted;
+    }
+    svg {
+        color: $color-article-muted;
+    }
+    a {
+        color: $color-article-muted;
+    }
+}
+
+.post {
+    @extend %postStyles;
+}
