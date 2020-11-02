@@ -13,10 +13,13 @@
 //Components
 @import 
     'components/toggle-button',
+    'components/post',
     'components/header',
     'components/form';
 
 //Pages
-@import 'pages/home';
+@import 
+    'pages/chefly',
+    'pages/posts';
 
 
