@@ -3,19 +3,9 @@
 // -----------------------------------------------------------------------------
 .navbar {
     margin-top: 2em;
-    .home-title {
+    .home-title, .menu-link {
         color: var(--color-headings);
-        transition: .3s all ease;
-        &:hover {
-            text-decoration: none;
-            color: var(--color-hover);
-        }
-    }
-    
-    .menu-link {
-        color: var(--color-headings);
-        padding: 0 .2em;
-        transition: .3s all ease;
+        transition: .1s all ease;
         &:hover {
             text-decoration: none;
             border-bottom: solid var(--color-hover);
@@ -23,8 +13,16 @@
             color: var(--color-hover);
         }
     }
+
+    .menu-link {
+        padding: 0 .2em;
+    }
 }
 
 .title-primary {
-    padding-top: 7em;
+    h1 {
+        padding: 1em 0;
+    }
 }
+
+
