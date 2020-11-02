@@ -11,26 +11,9 @@ class PagesController extends Controller
 {
     public function home()
     {
-        return view('master', [
+        return view('index', [
             'title' => 'Chefly',
             'posts' => Post::all()
         ]);
-    }
-
-    public function about()
-    {
-        return view('about', [
-            'title' => 'We suck a lot!'
-        ]);
-    }
-
-    public function contact()
-    {
-        return 'contact page';
-    }
-
-    public function dudes()
-    {
-        return 'dudes page';
     }
 }
