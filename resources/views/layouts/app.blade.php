@@ -21,7 +21,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="{{$class}}">
     <div id="app">
         <div class="toggle-container">
             <input type="checkbox" id="switch" name="theme" /><label for="switch">Toggle</label>
@@ -39,7 +39,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li>
+                            <a class="menu-link" href="/posts">Posts</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -85,13 +87,19 @@
                 </div>
             </div>
         </nav>
-        
-        <div class="container">
+
+        <div class="container p-2">
             <div class="title-primary">
-                <h1 class="headings-primary-dark display-1 font-weight-bold">Nadpis</h1>
+                @if ($title ?? '')
+                    @if ($title == 'Profile')
+                        <h1 class="headings-primary-dark display-1 font-weight-bold">{{Auth::user()->name}}</h1>
+                    @else 
+                        <h1 class="headings-primary-dark display-1 font-weight-bold">{{$title}}</h1>
+                    @endif 
+                @endif
             </div>
         </div>
-
+        
         <main class="py-4">
             @yield('content')
         </main>
