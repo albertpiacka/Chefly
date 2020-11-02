@@ -13,13 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'HomeController@index')->name('home');
 
 Route::get('/', 'PagesController@home');
-Route::get('/about', 'PagesController@about');
-Route::get('/contact', 'PagesController@contact');
-Route::get('/dudes', 'PagesController@dudes');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('posts', 'PostController');
+Route::resource('users', 'UserController');
