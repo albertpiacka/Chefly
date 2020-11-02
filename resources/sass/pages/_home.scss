@@ -1,0 +1,63 @@
+// -----------------------------------------------------------------------------
+// This file contains specific styles for main home page
+// -----------------------------------------------------------------------------
+
+.posts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1em;
+    margin: auto;
+   .post {
+        padding: 1em;
+        border-radius: 1em;
+        position: relative;
+        top: 1em;
+        background: var(--bg-article);
+        transition: 1s transform ease;
+        &:hover {
+            transform: scale(1.1);
+        }
+        &:nth-of-type(2){
+            top: 0;
+            left: -2em;
+            box-shadow: 5em 2em 10em 5em var(--color-shadow);
+        }
+        p {
+            color: $color-article-muted;
+        }
+        svg {
+            color: $color-article-muted;
+        }
+    }
+    @media (max-width: 800px){
+        grid-template-columns: 1fr;
+        grid-row-gap: 1em;
+        .post {
+            top: 0;
+            &:nth-of-type(2){
+                left: 0;
+            }
+        }
+    }
+}
+
+.about-wrapper {
+    text-align: center;
+
+    h2 {
+        font-size: 5em;
+        padding: 2em 0;
+    }
+
+    blockquote {
+        margin: 6em auto;
+        padding: 12em 0;
+        h2 {
+            font-size: 3em;
+            padding: 0;
+        }
+        h3 {
+            font-size: 2em;
+        }
+    }
+}

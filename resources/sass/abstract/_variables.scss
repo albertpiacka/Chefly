@@ -1,0 +1,53 @@
+// -----------------------------------------------------------------------------
+// This file contains variables
+// -----------------------------------------------------------------------------
+
+html {
+    --bg: #fff;
+    --bg-article: #4d4949;
+
+    --color-article: rgb(255, 255, 255);
+    --color-headings: #000;
+    --color-text: #000;
+    --color-shadow: #fff;
+    --color-hover: rgb(230, 149, 0);
+
+    --color-button-bg: #000;
+    --color-button-switch: #fff;
+}
+
+html[data-theme='dark'] {
+    --bg: #333333;
+    --bg-article-darken: #3d3b3b;
+
+    --color-article: rgb(255, 255, 255);
+    --color-headings: #fff;
+    --color-text: #fff;
+    --color-shadow: #000;
+    --color-hover: rgb(230, 149, 0);
+
+    --color-button-bg: #fff;
+    --color-button-switch: #000;
+}
+
+$color-article-muted: rgb(216, 214, 214);
+
+//Use this classes to distinguish color of headings and text. You might want some text light in dark mode and vice versa
+
+.headings-primary-dark {
+    color: var(--color-headings);
+}
+
+.headings-primary-light {
+    color: var(--color-article);
+}
+
+.text-primary-dark {
+    color: var(--color-text);
+}
+
+.text-primary-light {
+    color: var(--color-article)
+}
+
+

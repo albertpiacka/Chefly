@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------------
+// This file contains general styles
+// -----------------------------------------------------------------------------
+
+body {
+    background: var(--bg);
+    color: var(--color-text);
+}
+
+button:focus {
+    outline: none;
+    border: none;
+}

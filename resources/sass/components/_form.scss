@@ -1,0 +1,19 @@
+.my-form {
+    width: 70%;
+    margin: 1em auto;
+    transform: translateY(5em);
+    background: var(--bg-article);
+    color: var(--color-article);
+    padding: 1em;
+    border-radius: 1em;
+    .form-header {
+        padding: 1em 0;
+    }
+    button[type="submit"]{
+        color: var(--color-article);
+        background: var(--color-hover);
+    }
+    .form-link {
+        color: var(--color-article);
+    }
+}
