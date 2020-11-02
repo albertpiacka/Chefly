@@ -11012,26 +11012,53 @@ html.transition *:after {
   transition-delay: 0 !important;
 }
 
+.Posts .posts .post,
+.Chefly .posts .post,
+.post {
+  padding: 1em;
+  border-radius: 1em;
+  position: relative;
+  top: 1em;
+  background: var(--bg-article);
+  box-shadow: 5em 2em 10em 5em var(--color-shadow);
+  transition: 1s transform ease;
+}
+
+.Posts .posts .post:hover,
+.Chefly .posts .post:hover,
+.post:hover {
+  transform: scale(1.1);
+}
+
+.Posts .posts .post p,
+.Chefly .posts .post p,
+.post p {
+  color: #d8d6d6;
+}
+
+.Posts .posts .post svg,
+.Chefly .posts .post svg,
+.post svg {
+  color: #d8d6d6;
+}
+
+.Posts .posts .post a,
+.Chefly .posts .post a,
+.post a {
+  color: #d8d6d6;
+}
+
 .navbar {
   margin-top: 2em;
 }
 
-.navbar .home-title {
-  color: var(--color-headings);
-  transition: 0.3s all ease;
-}
-
-.navbar .home-title:hover {
-  text-decoration: none;
-  color: var(--color-hover);
-}
-
+.navbar .home-title,
 .navbar .menu-link {
   color: var(--color-headings);
-  padding: 0 0.2em;
-  transition: 0.3s all ease;
+  transition: 0.1s all ease;
 }
 
+.navbar .home-title:hover,
 .navbar .menu-link:hover {
   text-decoration: none;
   border-bottom: solid var(--color-hover);
@@ -11039,8 +11066,12 @@ html.transition *:after {
   color: var(--color-hover);
 }
 
-.title-primary {
-  padding-top: 7em;
+.navbar .menu-link {
+  padding: 0 0.2em;
+}
+
+.title-primary h1 {
+  padding: 1em 0;
 }
 
 .my-form {
@@ -11066,75 +11097,65 @@ html.transition *:after {
   color: var(--color-article);
 }
 
-.posts {
+.Chefly .posts {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 1em;
-  margin: auto;
+  margin: 2em auto;
 }
 
-.posts .post {
-  padding: 1em;
-  border-radius: 1em;
-  position: relative;
-  top: 1em;
-  background: var(--bg-article);
-  transition: 1s transform ease;
-}
-
-.posts .post:hover {
-  transform: scale(1.1);
-}
-
-.posts .post:nth-of-type(2) {
+.Chefly .posts .post:nth-of-type(2) {
   top: 0;
   left: -2em;
   box-shadow: 5em 2em 10em 5em var(--color-shadow);
 }
 
-.posts .post p {
-  color: #d8d6d6;
-}
-
-.posts .post svg {
-  color: #d8d6d6;
-}
-
 @media (max-width: 800px) {
-  .posts {
+  .Chefly .posts {
     grid-template-columns: 1fr;
     grid-row-gap: 1em;
   }
 
-  .posts .post {
+  .Chefly .posts .post {
     top: 0;
   }
 
-  .posts .post:nth-of-type(2) {
+  .Chefly .posts .post:nth-of-type(2) {
     left: 0;
   }
 }
 
-.about-wrapper {
+.Chefly .about-wrapper {
   text-align: center;
 }
 
-.about-wrapper h2 {
+.Chefly .about-wrapper h2 {
   font-size: 5em;
   padding: 2em 0;
 }
 
-.about-wrapper blockquote {
+.Chefly .about-wrapper blockquote {
   margin: 6em auto;
   padding: 12em 0;
 }
 
-.about-wrapper blockquote h2 {
+.Chefly .about-wrapper blockquote h2 {
   font-size: 3em;
   padding: 0;
 }
 
-.about-wrapper blockquote h3 {
+.Chefly .about-wrapper blockquote h3 {
   font-size: 2em;
+}
+
+.Chefly .about-wrapper blockquote footer {
+  font-weight: 100;
+}
+
+.Posts .posts {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2em;
+  margin: auto;
 }
 
