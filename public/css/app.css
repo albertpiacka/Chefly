@@ -10910,7 +10910,6 @@ html {
   --color-headings: #000;
   --color-text: #000;
   --color-shadow: #fff;
-  --color-hover: rgb(230, 149, 0);
   --color-button-bg: #000;
   --color-button-switch: #fff;
 }
@@ -10922,7 +10921,6 @@ html[data-theme=dark] {
   --color-headings: #fff;
   --color-text: #fff;
   --color-shadow: #000;
-  --color-hover: rgb(230, 149, 0);
   --color-button-bg: #fff;
   --color-button-switch: #000;
 }
@@ -10951,6 +10949,35 @@ body {
 button:focus {
   outline: none;
   border: none;
+}
+
+.button-primary-dark,
+.button-primary-light,
+.button-primary {
+  padding: 0.5em;
+  border-radius: 2em;
+  transition: 0.3s all ease;
+  border: none;
+  outline: none;
+}
+
+.button-primary-dark:hover,
+.button-primary-light:hover,
+.button-primary:hover {
+  background: #e69500;
+  border: 2px dotted #805300;
+}
+
+.button-primary-light {
+  background: #fff;
+}
+
+.button-primary-dark {
+  background: #000;
+}
+
+.button-primary {
+  background: var(--color-headings);
 }
 
 .toggle-container {
@@ -11018,34 +11045,67 @@ html.transition *:after {
   padding: 1em;
   border-radius: 1em;
   position: relative;
+  transform-style: preserve-3d;
   top: 1em;
   background: var(--bg-article);
   box-shadow: 5em 2em 10em 5em var(--color-shadow);
   transition: 1s transform ease;
 }
 
-.Posts .posts .post:hover,
-.Chefly .posts .post:hover,
-.post:hover {
-  transform: scale(1.1);
-}
-
 .Posts .posts .post p,
 .Chefly .posts .post p,
-.post p {
+.post p,
+.Posts .posts .post svg,
+.Chefly .posts .post svg,
+.post svg,
+.Posts .posts .post a,
+.Chefly .posts .post a,
+.post a,
+.Posts .posts .post .time,
+.Chefly .posts .post .time,
+.post .time {
   color: #d8d6d6;
 }
 
 .Posts .posts .post svg,
 .Chefly .posts .post svg,
 .post svg {
-  color: #d8d6d6;
+  margin: 0.2em 0;
 }
 
-.Posts .posts .post a,
-.Chefly .posts .post a,
-.post a {
-  color: #d8d6d6;
+.Posts .posts .post .time,
+.Chefly .posts .post .time,
+.post .time {
+  margin: auto 0;
+}
+
+.Posts .posts .post .author-info,
+.Chefly .posts .post .author-info,
+.post .author-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 1em auto;
+}
+
+.post .author-info .time {
+  text-align: right;
+}
+
+.post .comments .comment {
+  border: 1px solid #d8d6d6;
+  border-radius: 2em;
+  padding: 1em;
+  margin: 0.5em auto;
+}
+
+.Posts .posts .post .add-comment textarea,
+.Chefly .posts .post .add-comment textarea,
+.post .add-comment textarea {
+  border-radius: 2em;
+}
+
+.post .add-comment input[type=submit] {
+  margin: 0.5em 0;
 }
 
 .navbar {
@@ -11061,9 +11121,9 @@ html.transition *:after {
 .navbar .home-title:hover,
 .navbar .menu-link:hover {
   text-decoration: none;
-  border-bottom: solid var(--color-hover);
+  border-bottom: solid #e69500;
   border-width: thick;
-  color: var(--color-hover);
+  color: #e69500;
 }
 
 .navbar .menu-link {
@@ -11097,6 +11157,38 @@ html.transition *:after {
   color: var(--color-article);
 }
 
+.Post .animation-container {
+  padding: 3em;
+}
+
+.Post .posts {
+  perspective: 1000px;
+}
+
+.Post .post {
+  margin: auto;
+}
+
+.Post .post svg,
+.Post .post h2,
+.Post .post h3,
+.Post .post p {
+  transition: all 0.75s ease-out;
+}
+
+.Post .post p {
+  text-indent: 4em;
+  text-align: justify;
+}
+
+.Post .post .comment {
+  transition: 0.5s all ease;
+}
+
+.Post .post .comment:hover {
+  transform: translateZ(20px);
+}
+
 .Chefly .posts {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -11104,10 +11196,18 @@ html.transition *:after {
   margin: 2em auto;
 }
 
+.Chefly .posts .post {
+  transform-style: preserve-3d;
+}
+
 .Chefly .posts .post:nth-of-type(2) {
   top: 0;
   left: -2em;
   box-shadow: 5em 2em 10em 5em var(--color-shadow);
+}
+
+.Chefly .posts .post:hover {
+  transform: scale(1.1);
 }
 
 @media (max-width: 800px) {
