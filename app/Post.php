@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
      * Get author of blog post
      */
     public function user()
@@ -19,7 +27,7 @@ class Post extends Model
      */
     public function comments()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment')->latest();
     }
 
 }
