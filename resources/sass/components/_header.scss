@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file contains specific styles for main home page
+// This file contains styles for header, navbar and user controls
 // -----------------------------------------------------------------------------
 .navbar {
     margin-top: 2em;
@@ -8,9 +8,9 @@
         transition: .1s all ease;
         &:hover {
             text-decoration: none;
-            border-bottom: solid var(--color-hover);
+            border-bottom: solid $color-hover;
             border-width: thick;
-            color: var(--color-hover);
+            color: $color-hover;
         }
     }
 
