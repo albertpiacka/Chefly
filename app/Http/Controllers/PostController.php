@@ -18,8 +18,7 @@ class PostController extends Controller
     {
         return view('posts.posts', [
             'title' => 'Posts',
-            'posts' => Post::all(),
-            'comments' => Comment::all()
+            'posts' => Post::with('comments', 'user')->latest()->get()
         ]);
     }
 
@@ -52,6 +51,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $post->load('comments', 'comments.user');
+        
         return view('posts.show', [
             'title' => $post->title,
             'post' => $post
