@@ -12,13 +12,15 @@
 
 //Components
 @import 
+    'components/buttons',
     'components/toggle-button',
     'components/post',
     'components/header',
     'components/form';
 
 //Pages
-@import 
+@import
+    'pages/post',
     'pages/chefly',
     'pages/posts';
 
