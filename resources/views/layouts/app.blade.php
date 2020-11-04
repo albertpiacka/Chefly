@@ -69,7 +69,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <a href="/home" class="dropdown-item text-muted menu-link">
+                                    <a href="{{route('login')}}" class="dropdown-item text-muted menu-link">
                                         Profile
                                     </a>
 
@@ -99,6 +99,8 @@
                 @endif
             </div>
         </div>
+
+        <flash-message text="{{$flash ?? ''}}"></flash-message>
         
         <main class="py-4">
             @yield('content')
