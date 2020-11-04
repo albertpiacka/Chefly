@@ -12,9 +12,30 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/**
+ * Routes for authentication
+ */
 Auth::routes();
-Route::get('/profile', 'HomeController@index')->name('home');
+Route::get('/profile', 'HomeController@index')->name('profile');
 
+/**
+ * Routes for pages
+ */
 Route::get('/', 'PagesController@home');
+
+/**
+ * Routes for posts
+ */
 Route::resource('posts', 'PostController');
+
+/**
+ * Routes for users
+ */
 Route::resource('users', 'UserController');
+
+/**
+ * Routes for comments
+ */
+Route::resource('comments', 'CommentController')->only([
+    'store', 'update', 'destroy'
+]);
