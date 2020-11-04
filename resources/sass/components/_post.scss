@@ -2,21 +2,49 @@
     padding: 1em;
     border-radius: 1em;
     position: relative;
+    transform-style: preserve-3d;
     top: 1em;
     background: var(--bg-article);
     box-shadow: 5em 2em 10em 5em var(--color-shadow);
     transition: 1s transform ease;
-    &:hover {
-        transform: scale(1.1);
-    }
-    p {
+    p, svg, a, .time {
         color: $color-article-muted;
     }
+
     svg {
-        color: $color-article-muted;
+        margin: .2em 0;
     }
-    a {
-        color: $color-article-muted;
+
+    .time {
+        margin: auto 0;
+    }
+
+    .author-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 1em auto;
+        .time {
+            text-align: right;
+        }
+    }
+
+    .comments {
+        .comment {
+            border: 1px solid $color-article-muted;
+            border-radius: 2em;
+            padding: 1em;
+            margin: .5em auto;
+        }
+    }
+
+    .add-comment {
+        textarea {
+            border-radius: 2em;
+        }
+
+        input[type="submit"]{
+            margin: .5em 0;
+        }
     }
 }
 
