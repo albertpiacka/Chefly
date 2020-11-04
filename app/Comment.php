@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+
+    /**
+     * Data which can be stored in database
+     */
+    protected $fillable = [
+        'text', 'post_id'
+    ];
+
     /**
      * Get author of comment
      */
