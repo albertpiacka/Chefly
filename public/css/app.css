@@ -10909,7 +10909,7 @@ html {
   --color-article: rgb(255, 255, 255);
   --color-headings: #000;
   --color-text: #000;
-  --color-shadow: #fff;
+  --color-shadow: #b5aeae;
   --color-button-bg: #000;
   --color-button-switch: #fff;
 }
@@ -11091,23 +11091,6 @@ html.transition *:after {
   text-align: right;
 }
 
-.post .comments .comment {
-  border: 1px solid #d8d6d6;
-  border-radius: 2em;
-  padding: 1em;
-  margin: 0.5em auto;
-}
-
-.Posts .posts .post .add-comment textarea,
-.Chefly .posts .post .add-comment textarea,
-.post .add-comment textarea {
-  border-radius: 2em;
-}
-
-.post .add-comment input[type=submit] {
-  margin: 0.5em 0;
-}
-
 .navbar {
   margin-top: 2em;
 }
@@ -11157,36 +11140,47 @@ html.transition *:after {
   color: var(--color-article);
 }
 
-.Post .animation-container {
-  padding: 3em;
+.Post .comment-section {
+  margin: 2em auto;
+  padding: 1em;
+  border-radius: 1em;
+  background: var(--bg-article);
+  position: relative;
 }
 
-.Post .posts {
-  perspective: 1000px;
-}
-
-.Post .post {
-  margin: auto;
-}
-
-.Post .post svg,
-.Post .post h2,
-.Post .post h3,
-.Post .post p {
-  transition: all 0.75s ease-out;
-}
-
-.Post .post p {
-  text-indent: 4em;
-  text-align: justify;
-}
-
-.Post .post .comment {
+.Post .comment-section .comment {
+  border: 1px solid #d8d6d6;
+  border-radius: 2em;
+  width: 100%;
+  padding: 1em;
+  margin: 0.5em auto;
   transition: 0.5s all ease;
 }
 
-.Post .post .comment:hover {
+.Post .comment-section .comment p {
+  border-radius: 1em;
+}
+
+.Post .comment-section .comment small:hover,
+.Post .comment-section .comment svg:hover,
+.Post .comment-section .comment strong:hover {
+  cursor: pointer;
+}
+
+.Post .comment-section .comment small {
+  color: #d8d6d6;
+}
+
+.Post .comment-section .comment:hover {
   transform: translateZ(20px);
+}
+
+.Post .comment-section .add-comment textarea {
+  border-radius: 2em;
+}
+
+.Post .comment-section .add-comment input[type=submit] {
+  margin: 0.5em 0;
 }
 
 .Chefly .posts {
@@ -11257,5 +11251,19 @@ html.transition *:after {
   grid-template-columns: 1fr;
   grid-row-gap: 2em;
   margin: auto;
+  perspective: 1000px;
+}
+
+.Posts .posts .post {
+  margin: auto;
+}
+
+.Posts .posts .post * {
+  transition: all 0.75s ease-out;
+}
+
+.Posts .posts .post p {
+  text-indent: 4em;
+  text-align: justify;
 }
 
