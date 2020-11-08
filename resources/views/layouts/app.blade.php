@@ -92,7 +92,7 @@
             <div class="title-primary">
                 @if ($title ?? '')
                     @if ($title == 'Profile')
-                        <h1 class="headings-primary-dark display-1 font-weight-bold">{{Auth::user()->name}}</h1>
+                        <h1 class="headings-primary-dark heading-animated display-1 font-weight-bold">{{Auth::user()->name}}</h1>
                     @else 
                         <h1 class="headings-primary-dark display-1 font-weight-bold">{{$title}}</h1>
                     @endif 
@@ -100,13 +100,18 @@
             </div>
         </div>
 
-        <flash-message text="{{$flash ?? ''}}"></flash-message>
+        <flash-message text="{{session('flash')}}"></flash-message>
         
         <main class="py-4">
             @yield('content')
         </main>
     </div>
 
+    @auth
+        <script>
+            window.user = @json(Auth::user())
+        </script>
+    @endauth
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
