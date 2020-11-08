@@ -36,6 +36,11 @@ Route::resource('users', 'UserController');
 /**
  * Routes for comments
  */
-Route::resource('comments', 'CommentController')->only([
-    'store', 'update', 'destroy'
-]);
+Route::resource('comments', 'CommentController');
+
+/**
+ * Admin
+ */
+Route::get('admin/{any?}', function () {
+    return view('layouts.admin');
+})->where('any', '.*');
