@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------------
+// This file contains specific styles for posts sub page
+// -----------------------------------------------------------------------------
+.Posts {
+    .posts {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row-gap: 2em;
+        margin: auto;
+        perspective: 1000px;
+        
+        .post {
+            @extend %postStyles;
+            margin: auto;
+            * {
+                transition: all 0.75s ease-out;
+            }
+            p {
+                text-indent: 4em;
+                text-align: justify;
+            }
+        }
+    }
+}
