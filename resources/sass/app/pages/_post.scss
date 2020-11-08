@@ -1,0 +1,49 @@
+// -----------------------------------------------------------------------------
+// This file contains specific styles for post sub page
+// -----------------------------------------------------------------------------
+.Post {  
+    
+    .comment-section {
+        margin: 2em auto;
+        padding: 1em;
+        border-radius: 1em;
+        background: var(--bg-article);
+        position: relative;
+        .comment {
+            border: 1px solid $color-article-muted;
+            border-radius: 2em;
+            width: 100%;
+            padding: 1em;
+            margin: .5em auto;
+            p {
+                border-radius: 1em;
+            }
+            
+            small, svg, strong {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+    
+            small {
+                color: $color-article-muted;
+            }
+
+            transition: .5s all ease;
+            &:hover {
+                transform: translateZ(20px);
+            }
+        }
+        
+    
+        .add-comment {
+            textarea {
+                border-radius: 2em;
+            }
+    
+            input[type="submit"]{
+                margin: .5em 0;
+            }
+        }
+    }
+}
