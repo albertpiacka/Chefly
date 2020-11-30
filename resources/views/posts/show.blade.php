@@ -7,7 +7,9 @@
         <div class="content">
             <div class="posts" data-aos="fade-up">
 
-                @include('posts.post')
+                <div class="animation-container">
+                    @include('posts.post')
+                </div>
                 <div class="comment-section">
                     @auth
                         @include('comments.create')

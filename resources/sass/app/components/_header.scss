@@ -14,6 +14,21 @@
         }
     }
 
+    .header-toggle-item {
+        color: var(--color-text);
+    }
+
+    .header-menu {
+        border-radius: 1em;
+        background: var(--bg-user);
+        .header-menu-item {
+            display: block;
+            text-align: center;
+            padding: .2em;
+            color: var(--color-text);
+        }
+    }
+
     .menu-link {
         padding: 0 .2em;
     }

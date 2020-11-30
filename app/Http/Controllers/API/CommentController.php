@@ -16,7 +16,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return Comment::with('user')->latest()->get();
+        return Comment::with('user', 'post')->latest()->get();
     }
 
     /**
@@ -52,7 +52,11 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+
+        $comment->text = $request->text;
+
+        $comment->save();
     }
 
     /**
@@ -63,6 +67,9 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+
+        $comment->delete();
     }
+
 }

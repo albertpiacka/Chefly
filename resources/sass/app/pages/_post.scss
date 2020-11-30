@@ -2,21 +2,36 @@
 // This file contains specific styles for post sub page
 // -----------------------------------------------------------------------------
 .Post {  
+
+    .animation-container {
+        perspective: 1000px;
+        .post {
+            .bi-heart-fill {
+                color: var(--color-article);
+            }
+            * {
+                transition: all 0.1s ease-in-out;
+            }
+        }
+    }
     
     .comment-section {
         margin: 2em auto;
         padding: 1em;
-        border-radius: 1em;
+        border-radius: 2em;
         background: var(--bg-article);
         position: relative;
+        perspective: 1000px;
         .comment {
             border: 1px solid $color-article-muted;
             border-radius: 2em;
             width: 100%;
             padding: 1em;
             margin: .5em auto;
+            transform-style: preserve-3d;
             p {
                 border-radius: 1em;
+                color: $color-article-muted;
             }
             
             small, svg, strong {
@@ -25,13 +40,14 @@
                 }
             }
     
-            small {
+            .time {
                 color: $color-article-muted;
             }
 
-            transition: .5s all ease;
+            transition: .5s all ease-in-out;
             &:hover {
                 transform: translateZ(20px);
+                z-index: 10000;
             }
         }
         

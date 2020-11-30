@@ -20,14 +20,7 @@
 
         methods: {
             printComment() {
-                axios
-                .get('/api/posts/' + this.postData.slug)           
-                .then(response => {
-                    this.comments = response.data.comments
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+                this.comments = this.postData.comments
             },
 
             prettyDate(date){

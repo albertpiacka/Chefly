@@ -26,15 +26,26 @@
                     post_id: this.postId,
                     user_id: this.userId,
                     text: this.text
-                });
-
-                this.$root.$emit('comment', {
-                        'text': this.text,
-                        'id': Math.floor(Math.random() * Math.floor(1000)),
+                })
+                .then(response => {
+                    this.$root.$emit('comment-message', response.data.message)
+                    
+                    this.$root.$emit('comment', {
+                        'text': response.data.comment.text,
+                        'id': response.data.comment.user_id,
                         'user': {
                             'name': this.userName
                         }
+                    });
                 });
+
+                // this.$root.$emit('comment', {
+                //         'text': this.text,
+                //         'id': Math.floor(Math.random() * Math.floor(1000)),
+                //         'user': {
+                //             'name': this.userName
+                //         }
+                // });
 
                 this.$refs.textArea.value = ''
             }

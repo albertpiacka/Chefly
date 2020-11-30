@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'type',
     ];
 
     /**
@@ -40,16 +40,58 @@ class User extends Authenticatable
     /**
      * Get posts of user
      */
-    public function user()
+    public function posts()
     {
         return $this->hasMany('App\Post');
     }
 
     /**
-     * Get author of blog post
+     * Get user's comments
      */
     public function comments()
     {
         return $this->hasMany('App\Comment');
     }
+
+    /**
+     * Get number of likes of this author
+     */
+    public function likes()
+    {
+        return $this->hasMany('App\Like')->latest();
+    }
+
+
+    /**
+     * Get number of likes of author's posts
+     */
+    public function postLikes()
+    {
+        return $this->hasManyThrough('App\Like', 'App\Post');
+    }
+
+    /**
+     * Get number of user's followers
+     */
+    public function followers()
+    {
+        return $this->hasMany('App\Follow');
+    }
+
+    /**
+     * Get user's conversations
+     */
+    public function conversations()
+    {
+        return $this->belongsToMany('App\Conversation')->with('users');
+    }
+
+    /**
+     * Get user's messages
+     */
+    public function messages()
+    {
+        return $this->hasMany('App\Message');
+    }
+    
 }

@@ -7,6 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- User type -->
+    @auth
+        <meta name="api-token" content="{{Auth::user()->api_token}}">
+        <meta name="user-name" content="{{Auth::user()->name}}">
+    @endauth
+    
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -23,8 +29,14 @@
 </head>
 <body>
     
-    <div id="admin">
-    </div>
+    @auth
+        @if (Auth::user()->type == 2 || Auth::user()->type == 1)
+            <div id="admin"></div>
+        @else
+            Seems like you are lost!
+            <a href="/">Go back</a>
+        @endif 
+    @endauth
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>

@@ -15,13 +15,12 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
-<body class="{{$class}}">
+<body class="{{$class ?? ''}}">
     <div id="app">
         <div class="toggle-container">
             <input type="checkbox" id="switch" name="theme" /><label for="switch">Toggle</label>
@@ -42,6 +41,10 @@
                         <li>
                             <a class="menu-link" href="/posts">Posts</a>
                         </li>
+
+                        <li>
+                            <a class="menu-link" href="/users">Users</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -49,33 +52,39 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="menu-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="menu-link login-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="menu-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="menu-link register-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="dropdown-toggle text-muted" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="dropdown-toggle header-toggle-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item text-muted menu-link" href="{{ route('logout') }}"
+                                <div class="dropdown-menu dropdown-menu-right header-menu" aria-labelledby="navbarDropdown">
+                                    <a class="header-menu-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <a href="{{route('login')}}" class="dropdown-item text-muted menu-link">
+                                    <a href="{{route('login')}}" class="header-menu-item">
                                         Profile
                                     </a>
 
-                                    <a href="/add-post" class="dropdown-item text-muted menu-link">
-                                        Post something
-                                    </a>
+                                    @if (Auth::user()->type == 1 || Auth::user()->type == 2)
+                                        <a href="/admin" class="header-menu-item">
+                                            Dashboard
+                                        </a>
+                                    @else 
+                                        <a href="/dashboard" class="header-menu-item">
+                                            Dashboard
+                                        </a>
+                                    @endif
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -91,27 +100,22 @@
         <div class="container p-2">
             <div class="title-primary">
                 @if ($title ?? '')
-                    @if ($title == 'Profile')
-                        <h1 class="headings-primary-dark heading-animated display-1 font-weight-bold">{{Auth::user()->name}}</h1>
-                    @else 
-                        <h1 class="headings-primary-dark display-1 font-weight-bold">{{$title}}</h1>
-                    @endif 
+                    <h1 class="headings-primary-dark display-1 font-weight-bold">{{$title}}</h1>
                 @endif
             </div>
         </div>
 
-        <flash-message text="{{session('flash')}}"></flash-message>
+        <flash-message></flash-message>
+        
+        @auth
+            <the-chat :user="{{Auth::user()}}" :conversations="{{Auth::user()->conversations}}"></the-chat>
+        @endauth
         
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-
-    @auth
-        <script>
-            window.user = @json(Auth::user())
-        </script>
-    @endauth
+    
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();

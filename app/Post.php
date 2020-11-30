@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     /**
+     * Data which can be stored in database
+     */
+    protected $fillable = [
+        'title',
+        'text',
+        'slug',
+        'user_id'
+    ];
+
+    /**
      * Get the route key for the model.
      */
     public function getRouteKeyName()
@@ -28,6 +38,14 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany('App\Comment')->latest();
+    }
+
+    /**
+     * Get number of likes on this post
+     */
+    public function likes()
+    {
+        return $this->hasMany('App\Like')->latest();
     }
 
 }

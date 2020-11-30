@@ -1,11 +1,17 @@
 
 require('../bootstrap');
-import anime from 'animejs/lib/anime.es.js'
 
 Vue.component('flash-message', require('./components/FlashMessage.vue').default);
 Vue.component('update-comment', require('./components/Comment.vue').default);
 Vue.component('create-comment', require('./components/CreateComment.vue').default);
 Vue.component('comments-all', require('./components/CommentsAll.vue').default);
+Vue.component('like-post', require('./components/LikePost.vue').default);
+Vue.component('follow-user', require('./components/FollowUser.vue').default);
+Vue.component('users-all', require('./components/UsersAll.vue').default);
+Vue.component('search-bar', require('./components/SearchBar.vue').default);
+Vue.component('edit-user', require('./components/EditUser.vue').default);
+Vue.component('the-chat', require('./components/TheChat.vue').default);
+Vue.component('open-chat', require('./components/OpenChat.vue').default);
 
 const app = new Vue({
     el: '#app'
@@ -60,49 +66,23 @@ changeTheme.run();
  * Neat 3D animation when you hover over article
  */
 
-// Movement Animation to happen
-const containers = document.querySelectorAll(".animation-container");
+const card = document.querySelector(".post");
+const container = document.querySelector(".animation-container");
 
-if(containers){
-    containers.forEach(container => {
-        //Moving Animation Event
-        container.addEventListener("mousemove", (e) => {
-            let xAxis = (window.innerWidth / 2 - e.pageX) / 5000;
-            let yAxis = (window.innerHeight - e.pageY) / 2500;
-            container.children[0].style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
-        //Animate In
-        container.addEventListener("mouseenter", (e) => {
-            container.children[0].style.transition = "none";
-            
-            let containerChildren = container.children[0].children;
-            let postBodyChildren = Array.from(containerChildren[0].children);
-            let postFooterChildren = Array.from(containerChildren[1].children);
-
-            postBodyChildren.forEach(child => {
-                child.style.transform = "translateZ(3px)"
-            });
-            
-            postFooterChildren.forEach(child => {
-                child.style.transform = "translateZ(3px)"
-            });
-        });
-        //Animate Out
-        container.addEventListener("mouseleave", (e) => {
-            container.children[0].style.transition = "all 0.5s ease";
-            container.children[0].style.transform = `rotateY(0deg) rotateX(0deg)`;
-
-            let containerChildren = container.children[0].children;
-            let postBodyChildren = Array.from(containerChildren[0].children);
-            let postFooterChildren = Array.from(containerChildren[1].children);
-
-            postBodyChildren.forEach(child => {
-                child.style.transform = "translateZ(0px)"
-            });
-            
-            postFooterChildren.forEach(child => {
-                child.style.transform = "translateZ(0px)"
-            });
-        });
-    });
+//Moving Animation Event
+if(container){
+    container.addEventListener("mousemove", (e) => {
+        let xAxis = (window.innerWidth / 2 - e.pageX) / 100;
+        let yAxis = (window.innerHeight - e.pageY) / 100;
+        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+      });
+      //Animate In
+      container.addEventListener("mouseenter", (e) => {
+        card.style.transition = "none";
+      });
+      //Animate Out
+      container.addEventListener("mouseleave", (e) => {
+        card.style.transition = "all 0.5s ease";
+        card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+      });       
 }

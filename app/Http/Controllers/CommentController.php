@@ -34,7 +34,12 @@ class CommentController extends Controller
             $request->all()
         );
 
-        return redirect('/posts/' . $comment->post->slug)->with('flash', 'Comment sucessfully added');
+        return response()->json([
+            'message' => 'Comment successfully added',
+            'comment' => $comment
+        ], 201);
+
+        // return redirect('/posts/' . $comment->post->slug)->with('flash', 'Comment sucessfully added');
     }
 
     /**

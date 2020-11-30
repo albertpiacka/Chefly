@@ -4,12 +4,13 @@
 
 .Chefly {
     .posts {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 1em;
+        
         margin: 2em auto;
        .post {
             @extend %postStyles;
+            height: auto;
+            max-height: 500px;
+            overflow: hidden;
             &:nth-of-type(2){
                 top: 0;
                 left: -2em;
@@ -17,8 +18,8 @@
             }
             &:hover {
                 transform: scale(1.1);
+                z-index: 2;
             }
-            transform-style: preserve-3d;
             
         }
         @media (max-width: 800px){

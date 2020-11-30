@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Post;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -51,7 +53,22 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $this->authorize('update', $user);
+
+        $request->validate([
+            'name' => "required",
+            'type' => "required",
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'type' => $request->type,
+        ]);
+
+        return response()->json([
+            'message' => 'User updated',
+            'user' => $user,
+        ], 200);
     }
 
     /**
@@ -62,6 +79,15 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $this->authorize('delete', $user);
+
+        $user->comments()->forceDelete();
+        $user->posts()->forceDelete();
+        $user->forceDelete();
+
+        return response()->json([
+            'message' => 'User deleted',
+            'post' => $user,
+        ]);
     }
 }

@@ -11,21 +11,31 @@
             
             <div class="posts" data-aos="fade-up">
                 <div class="post">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrows-fullscreen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"/>
-                    </svg>
-                    <h2 class="headings-primary-light text-left"><a href="/posts/{{$posts[0]->slug}}">{{$posts[0]->title}}</a></h2>
-                    <p style="padding: 1em; text-indent: 4em" class="text-justify">{{$posts[0]->text}}</p>
-                    <h4><a href="/users/{{$posts[0]->user->id}}">{{$posts[0]->user->name}}</a></h4>
+                    <div class="post-wrapper">
+                        <div class="post-body">
+                            <h2><a href="/posts/{{$posts[0]->slug}}">{{$posts[0]->title}}</a></h2>
+                            <div class="content">
+                                {!! nl2br($posts[0]->text) !!}
+                            </div>
+                        </div>
+                        <div class="author-info">
+                            <h3><a href="/users/{{$posts[0]->user->id}}">{{$posts[0]->user->name}}</a></h3>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="post">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrows-fullscreen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"/>
-                    </svg>
-                    <h2 class="headings-primary-light text-left"><a href="/posts/{{$posts[1]->slug}}">{{$posts[1]->title}}</a></h2>
-                    <p style="padding: 1em; text-indent: 4em" class="text-justify">{{$posts[1]->text}}</p>
-                    <h4><a href="/users/{{$posts[1]->user->id}}">{{$posts[1]->user->name}}</a></h4>
+                    <div class="post-wrapper">
+                        <div class="post-body">
+                            <h2><a href="/posts/{{$posts[1]->slug}}">{{$posts[1]->title}}</a></h2>
+                            <div class="content">
+                                {!! nl2br($posts[1]->text) !!}
+                            </div>
+                        </div>
+                        <div class="author-info">
+                            <h3><a href="/users/{{$posts[1]->user->id}}">{{$posts[1]->user->name}}</a></h3>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -33,7 +43,7 @@
 
                 <blockquote data-aos="zoom-in-up">
                     <h2 class="headings-primary-dark">What is this about anyway?</h2>
-                    <footer class="text-primary-dark">Chefly is a small project focused in the world of culinary and gastronomy. Main goal is to gather useful information and spread them to the world.  </footer>
+                    <footer class="text-primary-dark">Chefly is a small project focusing on the world of culinary and gastronomy. Main goal is to gather useful information and share them among people.</footer>
                  </blockquote>
 
                  <h2 data-aos="zoom-in-up" class="headings-primary-dark">Chefly lets you..</h3>
@@ -44,8 +54,8 @@
                  </blockquote>
 
                  <blockquote data-aos="zoom-in-up">
-                    <h3 class="headings-primary-dark">Discuss topics with anyone</h3>
-                    <footer class="text-primary-dark">You can see what people say about your newest post. Wheter they liked it or not.</footer>
+                    <h3 class="headings-primary-dark">Discuss hot topics with anyone</h3>
+                    <footer class="text-primary-dark">You can see what people have to say about your insight.</footer>
                  </blockquote>
 
                  <blockquote data-aos="zoom-in-up">

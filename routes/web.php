@@ -39,8 +39,28 @@ Route::resource('users', 'UserController');
 Route::resource('comments', 'CommentController');
 
 /**
+ * Routes for likes
+ */
+Route::resource('likes', 'LikeController');
+
+/**
+ * Routes for follows
+ */
+Route::resource('follows', 'FollowController');
+
+/**
+ * Routes for conversations
+ */
+Route::resource('conversations', 'ConversationController');
+
+/**
+ * Routes for messages
+ */
+Route::resource('messages', 'MessageController');
+
+/**
  * Admin
  */
 Route::get('admin/{any?}', function () {
     return view('layouts.admin');
-})->where('any', '.*');
+})->where('any', '.*')->middleware('auth');

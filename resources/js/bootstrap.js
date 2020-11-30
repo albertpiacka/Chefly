@@ -18,6 +18,12 @@ try {
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+let apiToken = document.head.querySelector('meta[name="api-token"]');
+
+if(apiToken){
+    window.axios.defaults.headers.common['Authorization'] = `Bearer ${apiToken.content}`;
+}
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

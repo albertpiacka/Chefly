@@ -6,6 +6,9 @@ html {
     --bg: #fff;
     --bg-article: #4d4949;
 
+    --bg-user: #fff;
+    --bg-follow-btn: #5374FF;
+
     --color-article: rgb(255, 255, 255);
     --color-headings: #000;
     --color-text: #000;
@@ -17,7 +20,10 @@ html {
 
 html[data-theme='dark'] {
     --bg: #333333;
-    --bg-article-darken: #3d3b3b;
+    --bg-article: #3d3b3b;
+
+    --bg-user: #262525;
+    --bg-follow-btn: #3857d1;
 
     --color-article: rgb(255, 255, 255);
     --color-headings: #fff;
