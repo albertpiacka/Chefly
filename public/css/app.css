@@ -10965,6 +10965,10 @@ button:focus {
   border: none;
 }
 
+.bi-chat-dots-fill {
+  color: var(--color-text);
+}
+
 .button-primary-dark,
 .button-primary-light,
 .button-primary {
@@ -11131,6 +11135,10 @@ html.transition *:after {
   color: #d8d6d6;
 }
 
+.unliked {
+  color: var(--color-article);
+}
+
 .navbar {
   margin-top: 2em;
 }
@@ -11198,10 +11206,6 @@ html.transition *:after {
 
 .Post .animation-container {
   perspective: 1000px;
-}
-
-.Post .animation-container .post .bi-heart-fill {
-  color: var(--color-article);
 }
 
 .Post .animation-container .post * {
@@ -11520,7 +11524,7 @@ html.transition *:after {
 }
 
 .Users .user:hover {
-  transform: translateZ(20px);
+  transform: translateZ(5px);
   z-index: 10000;
 }
 

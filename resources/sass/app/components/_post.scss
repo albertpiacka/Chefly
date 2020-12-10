@@ -48,3 +48,7 @@
 .post {
     @extend %postStyles;
 }
+
+.unliked {
+    color: var(--color-article);
+}
