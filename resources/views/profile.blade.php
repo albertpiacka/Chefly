@@ -18,7 +18,6 @@
                                         <h4
                                          :contenteditable="editing"
                                          @input="returnValue"
-                                         @blur="saveValue"
                                          ref="userName"
                                         >
                                            @{{name}}
@@ -35,7 +34,7 @@
                                     </div>
                                     <div class="user-buttons">
                                         <button class="edit-button">
-                                            <a @click.prevent="startEditing">@{{text}}</a>
+                                            <a @click.prevent="toggleEditing">@{{text}}</a>
                                         </button>
                                     </div>
                                 </div>
@@ -44,6 +43,7 @@
                                 </div>
                             </div>
                         </edit-user>
+
                         <div class="info-tags">
                             <div class="info-box">
                                 <small>Articles</small>
@@ -62,16 +62,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="user-work-box" 
-            data-aos="fade-up" 
-            data-aos-delay="300"
-        >
-            <div class="articles-boxed">
-
-                
             </div>
         </div>
     </div>
