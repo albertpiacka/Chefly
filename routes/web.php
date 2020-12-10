@@ -59,6 +59,13 @@ Route::resource('conversations', 'ConversationController');
 Route::resource('messages', 'MessageController');
 
 /**
+ * Routes for publishing articles for users
+ */
+Route::get('publish', function(){
+    return view('publish');
+});
+
+/**
  * Admin
  */
 Route::get('admin/{any?}', function () {
