@@ -6,9 +6,6 @@
     .animation-container {
         perspective: 1000px;
         .post {
-            .bi-heart-fill {
-                color: var(--color-article);
-            }
             * {
                 transition: all 0.1s ease-in-out;
             }
