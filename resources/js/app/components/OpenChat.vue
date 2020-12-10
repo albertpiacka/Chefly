@@ -6,16 +6,22 @@
 
 <script>
     export default {
-        props: ['user-data'],
+        props: ['user-data', 'user-conversations'],
         data() {
             return {
                 
             }
         },
 
+        mounted () {
+            this.$root.$on('new-conversation', data => {
+                this.userConversations.push(data)
+            })
+        },
+
         methods: {
             openChat() {
-                this.$root.$emit('open-chat', this.userData)
+                this.$root.$emit('open-chat', [this.userData, this.userConversations])
             }
         },
     }

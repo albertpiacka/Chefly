@@ -83,7 +83,7 @@ class User extends Authenticatable
      */
     public function conversations()
     {
-        return $this->belongsToMany('App\Conversation')->with('users');
+        return $this->belongsToMany('App\Conversation')->with('users', 'messages');
     }
 
     /**

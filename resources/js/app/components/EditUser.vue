@@ -16,13 +16,14 @@
         },
 
         methods: {
-            startEditing() {
+            toggleEditing() {
                 if(this.editing == false){
                     this.editing = true
-                    this.text = 'Editing'
+                    this.text = 'Save'
                 } else if(this.editing == true){
                     this.editing = false
                     this.text = 'Edit profile'
+                    this.saveValue()
                 }
             },
 
@@ -31,7 +32,16 @@
             },
 
             saveValue(){
-                this.name = this.newName
+                if(this.newName == ''){
+                    return
+                } else {
+                    this.name = this.newName
+                    axios.patch(`/users/${this.userData.id}`, {name: this.newName})
+                         .then(response => {
+                             console.log(response.data)
+                             this.$root.$emit('edit-message', 'Changes saved')
+                         })
+                }
             }
         },
     }

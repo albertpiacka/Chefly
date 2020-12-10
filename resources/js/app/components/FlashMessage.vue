@@ -25,6 +25,14 @@
                     this.hide()
                 }, 5000);
             })
+
+            this.$root.$on('edit-message', data => {
+                this.message = data
+                this.show()
+                setTimeout(() => {
+                    this.hide()
+                }, 5000);
+            })
         },
 
         methods: {

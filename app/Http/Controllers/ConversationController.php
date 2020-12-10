@@ -15,7 +15,7 @@ class ConversationController extends Controller
      */
     public function index()
     {
-        return Conversation::all()->load('users');
+        return Conversation::all()->load('users', 'messages');
     }
 
     /**
@@ -48,7 +48,7 @@ class ConversationController extends Controller
             $user_conversation->conversations()->save($conversation);
         }
 
-        return $request;
+        return $conversation->load('users', 'messages');
     }
 
     /**
@@ -59,7 +59,7 @@ class ConversationController extends Controller
      */
     public function show(Conversation $conversation)
     {
-        // 
+        return $conversation->load('users', 'messages');
     }
 
     /**
