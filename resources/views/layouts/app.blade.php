@@ -76,13 +76,13 @@
                                         Profile
                                     </a>
 
-                                    @if (Auth::user()->type == 1 || Auth::user()->type == 2)
+                                    @if (Auth::user()->type == 1)
                                         <a href="/admin" class="header-menu-item">
                                             Dashboard
                                         </a>
                                     @else 
-                                        <a href="/dashboard" class="header-menu-item">
-                                            Dashboard
+                                        <a href="/publish" class="header-menu-item">
+                                            Post something
                                         </a>
                                     @endif
 
@@ -115,7 +115,8 @@
             @yield('content')
         </main>
     </div>
-    
+
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
