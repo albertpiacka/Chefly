@@ -18,15 +18,7 @@
         },
 
         mounted () {
-            this.$root.$on('comment-message', data => {
-                this.message = data
-                this.show()
-                setTimeout(() => {
-                    this.hide()
-                }, 5000);
-            })
-
-            this.$root.$on('edit-message', data => {
+            this.$root.$on('flash', data => {
                 this.message = data
                 this.show()
                 setTimeout(() => {
@@ -36,7 +28,6 @@
         },
 
         methods: {
-
             show() {
                 this.visible = true;
 
@@ -60,6 +51,8 @@
         left: 1em;
         bottom: 1em;
         text-align: center;
+        z-index: 10000000;
+        border: 1px solid var(--color-panel);
         .alert-custom-text {
             color: var(--color-button-switch);
         }

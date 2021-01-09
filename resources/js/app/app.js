@@ -1,17 +1,33 @@
-
 require('../bootstrap');
 
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+
 Vue.component('flash-message', require('./components/FlashMessage.vue').default);
+
+Vue.component('quick-post', require('./components/QuickPost.vue').default);
+
+Vue.component('searching', require('./components/Searching.vue').default);
+Vue.component('searched-data', require('./components/SearchedData.vue').default);
+
+Vue.component('the-chat', require('./components/TheChat.vue').default);
+Vue.component('open-chat', require('./components/OpenChat.vue').default);
+
 Vue.component('update-comment', require('./components/Comment.vue').default);
 Vue.component('create-comment', require('./components/CreateComment.vue').default);
 Vue.component('comments-all', require('./components/CommentsAll.vue').default);
 Vue.component('like-post', require('./components/LikePost.vue').default);
+Vue.component('bookmark-post', require('./components/BookmarkPost.vue').default);
+
+Vue.component('user-panel', require('./components/UserPanel.vue').default);
+Vue.component('user-avatar', require('./components/UserAvatar.vue').default);
 Vue.component('follow-user', require('./components/FollowUser.vue').default);
+Vue.component('following-posts', require('./components/FollowingPosts.vue').default);
 Vue.component('users-all', require('./components/UsersAll.vue').default);
 Vue.component('search-bar', require('./components/SearchBar.vue').default);
 Vue.component('edit-user', require('./components/EditUser.vue').default);
-Vue.component('the-chat', require('./components/TheChat.vue').default);
-Vue.component('open-chat', require('./components/OpenChat.vue').default);
 
 const app = new Vue({
     el: '#app'
@@ -72,9 +88,8 @@ const container = document.querySelector(".animation-container");
 //Moving Animation Event
 if(container){
     container.addEventListener("mousemove", (e) => {
-        let xAxis = (window.innerWidth / 2 - e.pageX) / 100;
-        let yAxis = (window.innerHeight - e.pageY) / 100;
-        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        let xAxis = (window.innerWidth / 2 - e.pageX) / 400;
+        card.style.transform = `rotateY(${xAxis}deg)`;
       });
       //Animate In
       container.addEventListener("mouseenter", (e) => {
@@ -86,3 +101,4 @@ if(container){
         card.style.transform = `rotateY(0deg) rotateX(0deg)`;
       });       
 }
+

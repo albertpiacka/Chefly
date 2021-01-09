@@ -44,6 +44,11 @@ Route::resource('comments', 'CommentController');
 Route::resource('likes', 'LikeController');
 
 /**
+ * Routes for bookmarks
+ */
+Route::resource('bookmarks', 'BookmarkController');
+
+/**
  * Routes for follows
  */
 Route::resource('follows', 'FollowController');
@@ -57,13 +62,6 @@ Route::resource('conversations', 'ConversationController');
  * Routes for messages
  */
 Route::resource('messages', 'MessageController');
-
-/**
- * Routes for publishing articles for users
- */
-Route::get('publish', function(){
-    return view('publish');
-});
 
 /**
  * Admin

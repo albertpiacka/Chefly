@@ -27,7 +27,6 @@
                     <the-navigation/>
                     <template #footer="{ hide }">
                         <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
-                            <strong class="mr-auto">Logged in as: {{userName}}</strong>
                             <b-button size="sm" @click="hide(), logout()" >Log out</b-button>
                         </div>
                     </template>
@@ -42,11 +41,12 @@
 
             <b-modal id="bv-modal-example" hide-footer>
                 <template #modal-title>
-                    Are you sure you want to delete this?
+                    <div class="modal-heading">
+                        Are you sure you want to delete this?
+                    </div>
                 </template>
-                <div class="d-block text-center"></div>
-                <b-button class="mt-3" @click="$bvModal.hide('bv-modal-example'), deleteResource()">OK</b-button>
-                <b-button class="mt-3" @click="$bvModal.hide('bv-modal-example')">NOPE</b-button>
+                <b-button class="mt-3" @click="$bvModal.hide('bv-modal-example'), deleteResource()">Delete</b-button>
+                <b-button class="mt-3" @click="$bvModal.hide('bv-modal-example')">Cancel</b-button>
             </b-modal>
 
         </div>
@@ -55,27 +55,32 @@
 </template>
 
 <script>
+    import tableMixin from './mixins/tableMixin'
     import TheNavigation from './components/TheNavigation'
     import SearchForm from './components/SearchForm'
     
     export default {
+        mixins: [tableMixin],
         components: {
             TheNavigation,
             SearchForm,
-            userName: '',
-            deleteData: [
+        },
 
-            ]
+        data() {
+            return {
+                user: null,
+                deleteData: [
+
+                ]
+            }
         },
 
         mounted () {
+            this.returnUser()
+
             this.$root.$on('delete-data', data => {
                 this.deleteData = data
             })
-            
-            let userName = document.head.querySelector('meta[name="user-name"]');
-
-            this.userName = userName.content;
         },
 
         methods: {
@@ -133,6 +138,10 @@
                 margin-top: 10em;
             }
         }
+    }
+
+    .modal-heading {
+        color: #000;
     }
 
 </style>

@@ -28,4 +28,12 @@ class Like extends Model
     {
         return $this->belongsTo('App\Post');
     }
+
+    /**
+     * Get author of blog post
+     */
+    public function quickpost()
+    {
+        return $this->belongsTo('App\Quickpost');
+    }
 }

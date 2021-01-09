@@ -5,6 +5,7 @@
         props: ['post-data'],
         data() {
             return {
+                toggled: false,
                 comments: [
 
                 ]
@@ -13,8 +14,12 @@
 
         created () {
             this.printComment()
+            
             this.$root.$on('comment', message => {
-                this.comments.push(message)
+                let navbar = document.querySelector('.comment-collapse')
+                this.comments.unshift(message)
+                this.toggled = true
+                navbar.classList.add('show')
             })
         },
 
@@ -25,6 +30,14 @@
 
             prettyDate(date){
                 return momentJs(date).fromNow()
+            },
+
+            toggleComments(){
+                if(this.toggled == false){
+                    this.toggled = true
+                } else if(this.toggled == true){
+                    this.toggled = false
+                }
             }
         },
     }
@@ -40,5 +53,9 @@
     [contenteditable='true'] {
         border: 1px solid var(--color-article);
         outline: none;
+    }
+
+    .opened {
+        transform: rotate(180deg);
     }
 </style>

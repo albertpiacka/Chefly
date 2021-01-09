@@ -28,7 +28,7 @@
                     text: this.text
                 })
                 .then(response => {
-                    this.$root.$emit('comment-message', response.data.message)
+                    this.$root.$emit('flash', response.data.message)
                     
                     this.$root.$emit('comment', {
                         'text': response.data.comment.text,
@@ -38,14 +38,6 @@
                         }
                     });
                 });
-
-                // this.$root.$emit('comment', {
-                //         'text': this.text,
-                //         'id': Math.floor(Math.random() * Math.floor(1000)),
-                //         'user': {
-                //             'name': this.userName
-                //         }
-                // });
 
                 this.$refs.textArea.value = ''
             }

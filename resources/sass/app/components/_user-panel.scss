@@ -1,0 +1,42 @@
+.panel-wrapper{
+    .user-panel {
+        position: fixed;
+        bottom: 2em;
+        left: 1em;
+        background: var(--bg-panel);
+        padding: .5em;
+        border-radius: 1.5em;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row-gap: 1em;
+        z-index: 1000000;
+        .bi-bookmarks, .bi-pencil-square {
+            color: var(--color-panel);
+        }
+    }
+
+    .panel-content {
+        background: var(--bg-panel);
+        color: var(--color-panel);
+        border-radius: 1em;
+        padding: 1em;
+        position: fixed;
+        bottom: 2em;
+        left: 4em;
+        z-index: 1000000;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    .panel-bookmarked {
+        width: 20%;
+        min-width: 200px;
+        height: 50%;
+    }
+
+    .panel-newPost {
+        width: 70%;
+        min-width: 250px;
+        height: 70%;
+    }
+}

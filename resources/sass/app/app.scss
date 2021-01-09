@@ -3,6 +3,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
 
 //Abstract
 @import 'abstract/variables';
@@ -16,6 +17,8 @@
     'components/toggle-button',
     'components/post',
     'components/header',
+    'components/results',
+    'components/user-panel',
     'components/form';
 
 //Pages
@@ -23,6 +26,7 @@
     'pages/post',
     'pages/profile',
     'pages/chefly',
+    'pages/home',
     'pages/posts';
 
 

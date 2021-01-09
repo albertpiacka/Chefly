@@ -7,15 +7,19 @@ html {
     --bg-article: #4d4949;
 
     --bg-user: #fff;
+    --bg-user-quickpost: rgb(231, 231, 231);
     --bg-follow-btn: #5374FF;
 
     --color-article: rgb(255, 255, 255);
-    --color-headings: #000;
-    --color-text: #000;
-    --color-shadow: #b5aeae;
+    --color-headings: rgb(29, 28, 28);
+    --color-text: rgb(29, 28, 28);
+    --color-shadow: #b8b8b8;
 
     --color-button-bg: #000;
     --color-button-switch: #fff;
+
+    --bg-panel: rgb(63, 63, 63);
+    --color-panel: #fff;
 }
 
 html[data-theme='dark'] {
@@ -23,6 +27,7 @@ html[data-theme='dark'] {
     --bg-article: #3d3b3b;
 
     --bg-user: #262525;
+    --bg-user-quickpost:  #262525;
     --bg-follow-btn: #3857d1;
 
     --color-article: rgb(255, 255, 255);
@@ -32,6 +37,9 @@ html[data-theme='dark'] {
 
     --color-button-bg: #fff;
     --color-button-switch: #000;
+
+    --bg-panel: #fff;
+    --color-panel: #000;
 }
 
 $color-article-muted: rgb(216, 214, 214);

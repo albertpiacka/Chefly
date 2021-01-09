@@ -10,6 +10,11 @@ export default {
 
         shorten(text, len = 50){
             return _.truncate(text, len)
+        },
+
+        returnUser(){
+            const userInfo = JSON.parse(document.head.querySelector('meta[name="user-info"]').content)
+            this.user = userInfo
         }
     },
 

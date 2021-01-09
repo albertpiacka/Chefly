@@ -2,9 +2,16 @@
 // This file contains styles for header, navbar and user controls
 // -----------------------------------------------------------------------------
 .navbar {
-    margin-top: 2em;
+    margin: 2em 1em 0em 1em;
+    border-radius: 2em;
+    background: var(--bg-panel);
+    display: grid;
+    grid-template-columns: 1fr;
+    .header-link {
+        color: var(--color-panel); 
+    }
     .home-title, .menu-link {
-        color: var(--color-headings);
+        color: var(--color-panel);
         transition: .1s all ease;
         &:hover {
             text-decoration: none;
@@ -15,7 +22,7 @@
     }
 
     .header-toggle-item {
-        color: var(--color-text);
+        color: var(--color-panel);
     }
 
     .header-menu {
@@ -32,6 +39,16 @@
     .menu-link {
         padding: 0 .2em;
     }
+
+    .search-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .search-bar {
+            border-radius: 1em;
+        }
+    }
 }
 
 .title-primary {
@@ -39,5 +56,4 @@
         padding: 1em 0;
     }
 }
-
 

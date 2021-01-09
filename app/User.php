@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'type',
+        'name', 'email', 'password', 'type', 'about', 'image',
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
      */
     public function posts()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Post')->with('user', 'likes', 'comments');
     }
 
     /**
@@ -54,7 +54,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get number of likes of this author
+     * Get user's likes
      */
     public function likes()
     {
@@ -63,7 +63,7 @@ class User extends Authenticatable
 
 
     /**
-     * Get number of likes of author's posts
+     * Get likes of user's posts 
      */
     public function postLikes()
     {
@@ -71,11 +71,51 @@ class User extends Authenticatable
     }
 
     /**
-     * Get number of user's followers
+     * Get user's bookmarks
+     */
+    public function bookmarks()
+    {
+        return $this->hasMany('App\Bookmark')->latest()->with('post');
+    }
+
+    /**
+     * 
+     * Above is everything regarding posts
+     * Below is everything regarding quickposts
+     * 
+     * 
+     */
+
+    /**
+     * Get quickposts of user
+     */
+    public function quickposts()
+    {
+        return $this->hasMany('App\Quickpost')->with('user', 'likes', 'comments');
+    }
+
+    /**
+     * 
+     * Above is everything regarding quickposts
+     * Below is everything regarding following, messages and conversations
+     * 
+     * 
+     */
+
+    /**
+     * Get user's followers
      */
     public function followers()
     {
         return $this->hasMany('App\Follow');
+    }
+
+    /**
+     * Get users who is user following
+     */
+    public function following()
+    {
+        return $this->hasMany('App\Follow', 'follower_id')->with('user.posts', 'user.comments');
     }
 
     /**

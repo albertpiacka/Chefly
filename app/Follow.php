@@ -14,7 +14,7 @@ class Follow extends Model
     ];
 
     /**
-     * Get author of this like 
+     * Get follower
      */
     public function user()
     {

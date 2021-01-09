@@ -9,7 +9,6 @@
     outline: none;
     &:hover {
         background: $color-hover;
-        border: 1px dotted darken($color-hover, 20%);
     }
 }
 

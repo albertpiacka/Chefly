@@ -12,6 +12,12 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <!-- User type -->
+    @auth
+        <meta name="api-token" content="{{Auth::user()->api_token}}">
+        <meta name="user-name" content="{{Auth::user()->name}}">
+    @endauth
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -25,11 +31,16 @@
         <div class="toggle-container">
             <input type="checkbox" id="switch" name="theme" /><label for="switch">Toggle</label>
         </div>
-        <nav class="navbar navbar-expand-md navbar-light fixed-top">
+
+        <nav class="navbar navbar-expand-md navbar-light fixed-top" data-aos="fade-down" data-aos-delay="200">
             
             <div class="container">
-                <a class="navbar-brand home-title" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{-- {{ config('app.name', 'Laravel') }} --}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-house home-title" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                    </svg>
                 </a>
                 <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -39,11 +50,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li>
-                            <a class="menu-link" href="/posts">Posts</a>
+                            <a class="menu-link" href="/posts">Explore</a>
                         </li>
 
                         <li>
-                            <a class="menu-link" href="/users">Users</a>
+                            <a class="menu-link" href="/users">People</a>
                         </li>
                     </ul>
 
@@ -60,15 +71,29 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item search-item">
+                                <searching/>
+                            </li>
+
+                            <li class="nav-item">
+                                <user-avatar 
+                                    :user="{{Auth::user()}}" 
+                                    base-url="<?php echo url('/')?>"
+                                >
+                                </user-avatar>
+                            </li>
+
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="dropdown-toggle header-toggle-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <a id="navbarDropdown" class="dropdown-toggle header-toggle-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                                style="text-decoration: none"
+                                >
+                                    {{-- {{ Auth::user()->name }} --}}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right header-menu" aria-labelledby="navbarDropdown">
                                     <a class="header-menu-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -79,10 +104,6 @@
                                     @if (Auth::user()->type == 1)
                                         <a href="/admin" class="header-menu-item">
                                             Dashboard
-                                        </a>
-                                    @else 
-                                        <a href="/publish" class="header-menu-item">
-                                            Post something
                                         </a>
                                     @endif
 
@@ -95,12 +116,16 @@
                     </ul>
                 </div>
             </div>
+
+            <div>
+                <searched-data base-url="<?php echo url('/')?>"></searched-data>
+            </div>
         </nav>
 
         <div class="container p-2">
             <div class="title-primary">
                 @if ($title ?? '')
-                    <h1 class="headings-primary-dark display-1 font-weight-bold">{{$title}}</h1>
+                    <h1 class="headings-primary-dark display-3 font-weight-bold">{{$title}}</h1>
                 @endif
             </div>
         </div>
@@ -110,6 +135,14 @@
         @auth
             <the-chat :user="{{Auth::user()}}" :conversations="{{Auth::user()->conversations}}"></the-chat>
         @endauth
+
+        @auth
+            <user-panel 
+            :user="{{Auth::user()->load('bookmarks')}}" 
+            base-url="<?php echo url('/')?>"
+            :tags="{{$tags}}"
+            ></user-panel>
+        @endauth
         
         <main class="py-4">
             @yield('content')
@@ -117,6 +150,7 @@
     </div>
 
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();

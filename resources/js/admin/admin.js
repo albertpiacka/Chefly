@@ -12,6 +12,3 @@ const admin = new Vue({
     render: h => h(Admin),
 }).$mount('#admin');
 
-
-
-

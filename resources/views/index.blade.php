@@ -11,6 +11,11 @@
             
             <div class="posts" data-aos="fade-up">
                 <div class="post">
+                    @if ($posts[0]->image)
+                        <div class="post-header">
+                            <img src="<?php echo url('/')?>/{{$posts[0]->image}}" alt="#">
+                        </div>
+                    @endif
                     <div class="post-wrapper">
                         <div class="post-body">
                             <h2><a href="/posts/{{$posts[0]->slug}}">{{$posts[0]->title}}</a></h2>
@@ -25,6 +30,11 @@
                 </div>
 
                 <div class="post">
+                    @if ($posts[1]->image)
+                        <div class="post-header">
+                            <img src="<?php echo url('/')?>/{{$posts[1]->image}}" alt="#">
+                        </div>
+                    @endif
                     <div class="post-wrapper">
                         <div class="post-body">
                             <h2><a href="/posts/{{$posts[1]->slug}}">{{$posts[1]->title}}</a></h2>

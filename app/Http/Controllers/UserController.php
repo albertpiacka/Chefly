@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Tag;
 use App\Post;
 use App\Comment;
+use File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -18,7 +21,8 @@ class UserController extends Controller
     {
         return view('users.users', [
             'users' => User::all(),
-            'title' => 'Users'
+            'title' => 'Users',
+            'tags' => Tag::latest()->get(),
         ]);
     }
 
@@ -51,9 +55,19 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', [
-            'user' => $user,
-        ]);
+        if(Auth::user()){
+            if(Auth::user()->id == $user->id){
+                return redirect('/profile');
+            } else {
+                return view('users.show', [
+                    'user' => $user,
+                ]);
+            }
+        } else {
+            return view('users.show', [
+                'user' => $user,
+            ]);
+        }
     }
 
     /**
@@ -76,8 +90,44 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->name = $request->name;
-        $user->save();
+        // return $request;
+
+        if($request->file !== null){
+            $exploded = explode(',', $request->file);
+
+            $decoded = base64_decode($exploded[1]);
+
+            if(str_contains($exploded[0], 'jpeg'))
+                $extension = 'jpg';
+            else 
+                $extension = 'png';
+
+            $filename = str_random().'.'.$extension;
+
+            $user->update([
+                'name' => $request->name,
+                'about' => $request->about,
+                'image' => $filename,
+            ]);
+
+            $destinationPath = public_path();
+            File::delete($destinationPath."/$request->oldImg");
+
+            $filepath = public_path().'/'.$filename;
+
+            file_put_contents($filepath, $decoded);
+
+            return $filename;
+        } else {
+            $user->update([
+                'name' => $request->name,
+                'about' => $request->about,
+            ]);
+        }
+
+        
+
+        
     }
 
     /**

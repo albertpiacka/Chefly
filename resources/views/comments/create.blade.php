@@ -7,7 +7,7 @@
             <input ref="postId" type="hidden" name="post_id" value="{{$post->id}}">
             <input ref="userId" type="hidden" name="user_id" value="{{$post->user->id}}">
             <input ref="userName" type="hidden" name="user_name" value="{{Auth::user()->name}}">
-            <input type="submit" class="button-primary-light">
+            <input type="submit" class="button-primary-light" value="Post it">
         </form>
     </div>
 </create-comment>

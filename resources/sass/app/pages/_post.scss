@@ -6,6 +6,12 @@
     .animation-container {
         perspective: 1000px;
         .post {
+            @extend %postStyles;
+            .post-body-header {
+                h2 {
+                    font-size: 3em;
+                }
+            }
             * {
                 transition: all 0.1s ease-in-out;
             }

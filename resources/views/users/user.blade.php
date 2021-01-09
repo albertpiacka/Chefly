@@ -4,17 +4,21 @@
             <div class="top-box" data-aos="fade-down"></div>
 
             <div class="user-general-box" data-aos="fade-up">
-                <div class="user-header">
-                    <div class="user-avatar">
-                    </div>
-                    <div class="user-info">
-                        <div class="user-controls">
+                <div class="user-info">
+                    <div class="edit-wrapper">
+                        <div class="user-avatar">
+                            @if ($user->image)
+                                <img src="<?php echo url('/')?>/{{$user->image}}" class="img-fluid" alt="#">
+                            @else
+                                <img src="<?php echo url('/')?>/user-default.png" class="img-fluid" alt="#">
+                            @endif
+                        </div>
+    
+                        <div class="user-controls-wrapper">
                             <div class="user-name">
                                 <h4>{{$user->name}}</h4>
                                 <small>
-                                    @if ($user->type == 0)
-                                        Reader
-                                    @elseif ($user->type == 1)
+                                    @if ($user->type == 1)
                                         Administrator
                                     @elseif ($user->type == 2)
                                         Associate editor
@@ -33,26 +37,34 @@
                                     @endif
                                 </div>
                             @endauth
-                        </div>
-                        <div class="info-tags">
-                            <div class="info-box">
-                                <small>Articles</small>
-                                <div class="info-num">{{$user->posts->count()}}</div>
+
+                            <div class="about">
+                                <small class="about-heading">About me</small>
+                                <p class="about-text">{{$user->about}}</p>
                             </div>
-                            <div class="info-box">
-                                <small>Followers</small>
-                                <div class="info-num">{{$user->followers->count()}}</div>
-                            </div>
-                            <div class="info-box">
-                                <small>Likes</small>
-                                <div class="info-num">
-                                   {{$user->postLikes->count()}}
+
+                            <div class="info-tags">
+                                <div class="info-box">
+                                    <small>Articles</small>
+                                    <div class="info-num">{{$user->posts->count()}}</div>
+                                </div>
+                                <div class="info-box">
+                                    <small>Followers</small>
+                                    <div class="info-num">{{$user->followers->count()}}</div>
+                                </div>
+                                <div class="info-box">
+                                    <small>Likes</small>
+                                    <div class="info-num">
+                                        {{$user->postLikes->count()}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            
         </div>
     </div>
 </div>

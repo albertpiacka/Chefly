@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Post;
 use App\Comment;
+use App\Message;
+use App\Conversation;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -80,8 +82,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $this->authorize('delete', $user);
-
-        $user->comments()->forceDelete();
+        // uvidime co s postami
+        $user->conversations()->forceDelete();
         $user->posts()->forceDelete();
         $user->forceDelete();
 

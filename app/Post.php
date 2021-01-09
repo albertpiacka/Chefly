@@ -13,6 +13,7 @@ class Post extends Model
         'title',
         'text',
         'slug',
+        'image',
         'user_id'
     ];
 
@@ -33,7 +34,7 @@ class Post extends Model
     }
 
     /**
-     * Get author of blog post
+     * Get comments of this post
      */
     public function comments()
     {
@@ -46,6 +47,22 @@ class Post extends Model
     public function likes()
     {
         return $this->hasMany('App\Like')->latest();
+    }
+
+    /**
+     * Get number of bookmarks on this post
+     */
+    public function bookmarks()
+    {
+        return $this->hasMany('App\Bookmark')->latest();
+    }
+
+    /**
+     * Post has many tags
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
     }
 
 }

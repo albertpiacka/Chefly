@@ -38,8 +38,6 @@ class CommentController extends Controller
             'message' => 'Comment successfully added',
             'comment' => $comment
         ], 201);
-
-        // return redirect('/posts/' . $comment->post->slug)->with('flash', 'Comment sucessfully added');
     }
 
     /**

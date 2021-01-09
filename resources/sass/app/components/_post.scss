@@ -1,13 +1,27 @@
 %postStyles {
-    padding: 1em;
     border-radius: 1em;
-    border: 10px solid var(--bg-article);
     position: relative;
     transform-style: preserve-3d;
     top: 1em;
     background: var(--bg-article);
-    box-shadow: 5em 2em 10em 5em var(--color-shadow);
+    box-shadow: 5em 2em 130em 0em var(--color-shadow);
     transition: 1s transform ease;
+
+    .post-header {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 1em 1em 0 0;
+        img {
+            width: 100%;
+            border-radius: 1em 1em 0 0;
+        }
+    }
+
+    .post-wrrapper {  
+        border: 10px solid var(--bg-article);
+        border-radius: 1em;
+        padding: 1em;
+    }
 
     .post-body {
         h2 {
@@ -20,12 +34,17 @@
             }
         }
 
+        svg {
+            position: absolute;
+            right: .5em;
+            top: .5em;
+        }
+
         .content {
             padding: 1em;
             margin: 1em auto;
             color: $color-article-muted;
         }
-
     }
 
     .author-info {
@@ -45,10 +64,10 @@
     }
 }
 
-.post {
-    @extend %postStyles;
+.unliked {
+    color: var(--color-article);
 }
 
-.unliked {
+.unbookmarked {
     color: var(--color-article);
 }

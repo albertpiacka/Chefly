@@ -7,7 +7,7 @@
         <div class="content">
             <div class="posts" data-aos="fade-up">
                 @foreach ($posts as $post)
-                    @include('posts.post')
+                    @include('posts.postThumbnail')
                 @endforeach
             </div>
         </div>

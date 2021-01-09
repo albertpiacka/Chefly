@@ -10,7 +10,8 @@
     <!-- User type -->
     @auth
         <meta name="api-token" content="{{Auth::user()->api_token}}">
-        <meta name="user-name" content="{{Auth::user()->name}}">
+        {{-- <meta name="user-name" content="{{Auth::user()->name}}"> --}}
+        <meta name="user-info" content="{{Auth::user()}}">
     @endauth
     
     <title>{{ config('app.name', 'Laravel') }}</title>
@@ -23,7 +24,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
@@ -31,7 +31,7 @@
     
     @auth
         @if (Auth::user()->type == 2 || Auth::user()->type == 1)
-            <div id="admin"></div>
+            <div id="admin" :info="{{Auth::user()}}"></div>
         @else
             Seems like you are lost!
             <a href="/">Go back</a>

@@ -1,5 +1,6 @@
 <template>
     <div class="single-post">
+        <div class="img-input"></div>
         <form>
             <div class="form-group">
                 <label for="title-input">Title</label>
@@ -36,6 +37,11 @@
                 </b-form-invalid-feedback>
             </div>
 
+            <input name="file" type="file"
+                ref="imgFile"
+                @change="setFile"
+            >
+
             <div class="form-group">
                 <input 
                     id="x" 
@@ -56,19 +62,24 @@
 
 <script>
     import trix from 'trix'
+    import tableMixin from '../../mixins/tableMixin'
 
     export default {
+        mixins: [tableMixin],
         props: ['errors', 'post'],
         data(){
             return {
                 title: '',
                 slug: '',
                 text: '',
-                post_id: ''
+                imgFile: '',
+                post_id: '',
+                user: null,
             }
         },
 
         mounted() {
+            this.returnUser()
             document.addEventListener('trix-change', () => {
                 this.text = document.getElementById('x').value
             })
@@ -95,10 +106,20 @@
                     slug: this.slug,
                     text: this.text,
                     id: this.post_id,
-                    user_id: userId
+                    file: this.imgFile,
+                    user_id: this.user.id
                 }
 
                 this.$emit('post-form-submitted', data)
+            },
+
+            setFile(e){
+                let fileReader = new FileReader()
+                fileReader.readAsDataURL(e.target.files[0])
+
+                fileReader.onload = (e) => {
+                    this.imgFile = e.target.result
+                }
             }
         },
 
@@ -135,7 +156,6 @@
 
     .single-post {
         background: #262525;
-        padding: 2em;
         border-radius: 2em;
         width: 80%;
         margin: 1em auto;
@@ -149,12 +169,24 @@
             }
         }
 
+        form {
+             padding: 2em;
+        }
+
+        .img-input {
+            height: 10em;
+            width: 100%;
+            border-radius: 2em 2em 0 0;
+            background: #fff;
+        }
+
         .new-post-input {
             border-radius: 1em;
             overflow: auto;
         }
 
         .new-post-controls {
+            padding: 1em;
             .new-post-btn {
                 border-radius: .7em;
             }

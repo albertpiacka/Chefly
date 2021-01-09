@@ -19,13 +19,14 @@
         data() {
             return {
                 errors: [],
-            }
+            } 
         },
 
         methods: {
             sendForm(data) {
                 axios.post('/api/posts', data)
                      .then(response => {
+                        console.log(response)
                         this.$router.push(`/admin/posts/${response.data.post.slug}`)
                      })
                      .catch(err => {
