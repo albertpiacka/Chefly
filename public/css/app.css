@@ -14319,6 +14319,8 @@ html {
   --color-button-switch: #fff;
   --bg-panel: rgb(63, 63, 63);
   --color-panel: #fff;
+  --bg-write-post: #fff;
+  --color-write-post: rgb(63, 63, 63);
 }
 
 html[data-theme=dark] {
@@ -14335,6 +14337,8 @@ html[data-theme=dark] {
   --color-button-switch: #000;
   --bg-panel: #fff;
   --color-panel: #000;
+  --bg-write-post: rgb(63, 63, 63);
+  --color-write-post: #fff;
 }
 
 .headings-primary-dark {
@@ -14425,7 +14429,7 @@ button:focus {
 }
 
 .toggle-container {
-  z-index: 100000000000;
+  z-index: 10;
   display: block;
   width: 100%;
   position: fixed;
@@ -14639,8 +14643,13 @@ html.transition *:after {
   border-radius: 1em;
 }
 
+.navbar .search-item .search-bar:focus {
+  border: 1px solid rgba(230, 149, 0, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(230, 149, 0, 0.25);
+}
+
 .title-primary h1 {
-  padding: 1em 0;
+  padding: 2em 0;
 }
 
 .results {
@@ -14692,7 +14701,7 @@ html.transition *:after {
 }
 
 .blurred {
-  filter: blur(2px);
+  filter: blur(4px);
 }
 
 ::-webkit-scrollbar {
@@ -14719,16 +14728,23 @@ html.transition *:after {
 }
 
 .panel-wrapper .panel-content {
-  background: var(--bg-panel);
-  color: var(--color-panel);
+  background: var(--bg-write-post);
+  color: var(--color-write-post);
   border-radius: 1em;
   padding: 1em;
   position: fixed;
-  bottom: 2em;
-  left: 4em;
+  bottom: 7em;
+  left: 15%;
   z-index: 1000000;
   overflow: auto;
   overflow-x: hidden;
+  box-shadow: 0 0 0 0.2rem rgba(230, 149, 0, 0.8);
+}
+
+@media (max-width: 500px) {
+  .panel-wrapper .panel-content {
+    left: 2.5%;
+  }
 }
 
 .panel-wrapper .panel-bookmarked {
@@ -14739,8 +14755,81 @@ html.transition *:after {
 
 .panel-wrapper .panel-newPost {
   width: 70%;
-  min-width: 250px;
-  height: 70%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 500px) {
+  .panel-wrapper .panel-newPost {
+    width: 95%;
+  }
+}
+
+.panel-wrapper .form-control {
+  margin: 1em auto;
+  border: none;
+  background: var(--bg-write-post);
+  overflow-y: scroll;
+  max-height: 5em;
+}
+
+.panel-wrapper .b-form-tags.focus {
+  box-shadow: none;
+}
+
+.panel-wrapper trix-editor {
+  height: 60%;
+  overflow-y: scroll;
+  border-radius: 1em;
+}
+
+.panel-wrapper .trix-button-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 500px) {
+  .panel-wrapper .trix-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+  }
+}
+
+.panel-wrapper .trix-button-group {
+  border: none;
+}
+
+.panel-wrapper .trix-button-group-spacer {
+  display: none;
+}
+
+.panel-wrapper .trix-button:not(:disabled) {
+  cursor: pointer;
+  border-radius: 1em;
+  border: 1px solid;
+  font-size: 1em;
+}
+
+.panel-wrapper .trix-button:disabled {
+  color: rgba(0, 0, 0, 0.125);
+  border-radius: 1em;
+  border: 1px solid;
+}
+
+.panel-wrapper .trix-button-group--file-tools {
+  display: none;
+}
+
+.panel-wrapper .trix-button-group--history-tools {
+  margin-left: 0;
+}
+
+.panel-wrapper .trix-active {
+  background: #e69500 !important;
+  color: var(--color-write-post) !important;
 }
 
 .my-form {

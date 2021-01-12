@@ -138,7 +138,7 @@
 
         @auth
             <user-panel 
-            :user="{{Auth::user()->load('bookmarks')}}" 
+            :user-data="{{Auth::user()->load('bookmarks')}}" 
             base-url="<?php echo url('/')?>"
             :tags="{{$tags}}"
             ></user-panel>

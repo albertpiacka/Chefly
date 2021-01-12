@@ -20,6 +20,9 @@ html {
 
     --bg-panel: rgb(63, 63, 63);
     --color-panel: #fff;
+
+    --bg-write-post: #fff;
+    --color-write-post: rgb(63, 63, 63);
 }
 
 html[data-theme='dark'] {
@@ -40,10 +43,15 @@ html[data-theme='dark'] {
 
     --bg-panel: #fff;
     --color-panel: #000;
+
+    --bg-write-post: rgb(63, 63, 63);
+    --color-write-post: #fff;
 }
 
 $color-article-muted: rgb(216, 214, 214);
 $color-hover:  rgba(230, 149, 0, 1);
+$color-outline-primary:  rgba(230, 149, 0, 0.25);
+$color-outline-secondary:  rgba(230, 149, 0, 0.8);
 
 //Use this classes to distinguish color of headings and text. You might want some text light in dark mode and vice versa
 

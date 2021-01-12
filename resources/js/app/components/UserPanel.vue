@@ -33,24 +33,75 @@
 
         <transition name="fade">
             <div class="panel-content panel-newPost" v-show="newPost">
-                <h1>Write a post</h1>
+                <div class="form-group">
+                    <b-form-input
+                    v-model="title"
+                    aria-describedby="input-live-feedback"
+                    placeholder="Title"
+                    trim
+                    class="new-post-input"
+                    ></b-form-input>
+                </div>
+
+                <div class="form-group">
+                    <b-form-input
+                    v-model="slug"
+                    aria-describedby="input-live-feedback"
+                    placeholder="Slug"
+                    trim
+                    class="new-post-input"
+                    ></b-form-input>
+                </div>
+
+                <input name="file" type="file"
+                    ref="imgFile"
+                >
+
+                <b-form-tags
+                input-id="tags-pills"
+                v-model="tags"
+                tag-variant="primary"
+                tag-pills
+                size="lg"
+                separator=" "
+                ></b-form-tags>
+                <input 
+                    id="x" 
+                    :value="text" 
+                    type="hidden" 
+                    name="text"
+                >
+                <trix-editor input="x" class="my-3 new-post-input"
+                    ref="postText"
+                    @input="returnText"
+                ></trix-editor>
             </div>
         </transition>
     </div>
 </template>
 
 <script>
+    import trix from 'trix'
+
     export default {
-       props: ['user', 'baseUrl'],
+       props: ['userData', 'baseUrl'],
        data() {
            return {
-               bookmarked: false,
-               newPost: false,
-               bookmarks: this.user.bookmarks,
+            bookmarked: false,
+            newPost: false,
+            bookmarks: this.userData.bookmarks,
+            tags: ['burgers', 'pizza', 'pasta'],
+            title: '',
+            slug: '',
+            text: '',
+            imgFile: '',
+            post_id: '',
+            user: null,
            }
        },
 
        mounted () {
+           this.user = this.userData
            this.$root.$on('bookmark-delete', data => {
                 this.bookmarks = this.bookmarks.filter(n => n.id != data[0].id)
            })
@@ -60,7 +111,7 @@
            })
        },
 
-       methods: {
+        methods: {
            toggleBookmarked() {
                if(this.bookmarked == false){
                    this.bookmarked = true
@@ -71,18 +122,40 @@
            },
 
            togglePost() {
+               let main = document.querySelector('main')
                if(this.newPost == false){
                    this.newPost = true
                    this.bookmarked = false
+                   main.classList.add('blurred')
                } else if(this.newPost == true){
                    this.newPost = false
+                   main.classList.remove('blurred')
                }
+           },
+
+           returnText(){
+               console.log(this.$refs.postText.value)
            }
        },
+
+       watch: {
+            title(value) {
+                this.slug = 
+                        _.trim(
+                        _.deburr(value.toLowerCase()) // diacritics
+                            .replace(/[^\w\s]/gi, '') // special characters
+                            .replace(/ {2,}/g, ' ') // repeating spaces
+                            .replace(/ /g, '-'), // space to -
+                        '-' // trailing -
+                    )
+            },
+        },
     }
 </script>
 
 <style lang="scss" scoped>
+    @import '~trix/dist/trix.css';
+    
     .fade-enter-active, .fade-leave-active {
         transition: opacity .2s;
         transform: scale(1);

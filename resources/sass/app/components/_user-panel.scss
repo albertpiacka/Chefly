@@ -16,16 +16,20 @@
     }
 
     .panel-content {
-        background: var(--bg-panel);
-        color: var(--color-panel);
+        background: var(--bg-write-post);
+        color: var(--color-write-post);
         border-radius: 1em;
         padding: 1em;
         position: fixed;
-        bottom: 2em;
-        left: 4em;
+        bottom: 7em;
+        left: 15%;
         z-index: 1000000;
         overflow: auto;
         overflow-x: hidden;
+        box-shadow: 0 0 0 0.2rem $color-outline-secondary;
+        @media (max-width: 500px){
+            left: 2.5%;
+        }
     }
 
     .panel-bookmarked {
@@ -36,7 +40,74 @@
 
     .panel-newPost {
         width: 70%;
-        min-width: 250px;
-        height: 70%;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        @media (max-width: 500px){
+            width: 95%;
+        }
+    }
+
+    .form-control {
+        margin: 1em auto;
+        border: none;
+        background: var(--bg-write-post);
+        overflow-y: scroll;
+        max-height: 5em;
+    }
+
+    .b-form-tags.focus {
+        box-shadow: none;
+    }
+
+    trix-editor {
+        height: 60%;
+        overflow-y: scroll;
+        border-radius: 1em;
+    }
+
+    .trix-button-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        @media (max-width: 500px){
+            display: flex;
+            flex-wrap: wrap;
+            justify-items: center;
+        }
+    }
+
+    .trix-button-group {
+        border: none;
+    }
+
+    .trix-button-group-spacer {
+        display: none;
+    }
+
+    .trix-button:not(:disabled) {
+        cursor: pointer;
+        border-radius: 1em;
+        border: 1px solid;
+        font-size: 1em;
+    }
+
+    .trix-button:disabled {
+        color: rgba(0, 0, 0, 0.125);
+        border-radius: 1em;
+        border: 1px solid;
+    }
+
+    .trix-button-group--file-tools {
+        display: none;
+    }
+
+    .trix-button-group--history-tools {
+        margin-left: 0;
+    }
+
+    .trix-active {
+        background: $color-hover !important;
+        color: var(--color-write-post) !important;
     }
 }

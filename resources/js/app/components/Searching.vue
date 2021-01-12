@@ -12,8 +12,6 @@
 </template>
 
 <script>
-    let main = document.querySelector('main')
-
     export default {
         data() {
             return {

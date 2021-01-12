@@ -47,13 +47,17 @@
 
         .search-bar {
             border-radius: 1em;
+            &:focus {
+                border: 1px solid $color-outline-primary;
+                box-shadow: 0 0 0 0.2rem $color-outline-primary;
+            }
         }
     }
 }
 
 .title-primary {
     h1 {
-        padding: 1em 0;
+        padding: 2em 0;
     }
 }
 
