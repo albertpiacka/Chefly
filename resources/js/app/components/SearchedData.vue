@@ -10,6 +10,12 @@
                     v-on:enter="enter"
                     v-on:leave="leave"
                 >
+                    <div v-if="this.filteredData" key="no-result" v-show="this.filteredData.length == 0">
+                        <div class="no-result" v-if="this.filteredData.length == 0">
+                            Nothing was found 
+                        </div>
+                    </div>
+
                     <div v-for="search in this.filteredData" :key="search.id" class="searched-item">
                         <div class="searched-items-wrapper">
                             <div v-if="search.name">

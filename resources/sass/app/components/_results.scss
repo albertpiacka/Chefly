@@ -1,11 +1,14 @@
 .results {
-    width: 80%;
+    width: 90%;
     max-height: 200px;
     margin: auto;
     overflow-y: scroll;
     background: var(--bg-panel);
     color: var(--color-panel);
     z-index: 1000000000000000;
+    padding: 1em;
+    border-radius: 1em;
+    border: 2px solid $color-outline-primary;
 
     @media (max-width: 500px){
         width: 100%;

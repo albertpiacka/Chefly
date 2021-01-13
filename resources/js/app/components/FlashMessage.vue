@@ -14,6 +14,7 @@
             makeToast(message) {
                 this.$bvToast.toast(message, {
                     autoHideDelay: 5000,
+                    variant: 'warning',
                 })
             }
         }

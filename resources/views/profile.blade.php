@@ -26,6 +26,21 @@
                                         ref="userImgFile"
                                         v-show="editing"
                                     >
+                                @else
+                                    <img 
+                                        src="<?php echo url('/')?>/user-default.png"
+                                        class="img-fluid" 
+                                        ref="userImg"
+                                        alt="#"
+                                    >
+                                    <input 
+                                        @change="setImg"
+                                        type="file" 
+                                        name="user-img-file" 
+                                        id="user-img-file" 
+                                        ref="userImgFile"
+                                        v-show="editing"
+                                    >
                                 @endif
                             </div>
 

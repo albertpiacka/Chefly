@@ -310,18 +310,18 @@
         }
 
         @media (max-width: 500px){
-            width: 90%;
-            right: 5%;
+            width: 98%;
+            left: 1%;
             bottom: 4em;
+            height: 80%;
         }
     }
 
     .messages {
         overflow: auto;
-        height: 300px;
-        @media (max-width: 500px){
-            max-height: 200px;
-        }
+        position: absolute;
+        height: 70%;
+        width: 90%;
     }
 
     .chat-form {

@@ -22,13 +22,14 @@
         padding: 1em;
         position: fixed;
         bottom: 7em;
-        left: 15%;
+        left: 5%;
         z-index: 1000000;
         overflow: auto;
         overflow-x: hidden;
         box-shadow: 0 0 0 0.2rem $color-outline-secondary;
         @media (max-width: 500px){
             left: 2.5%;
+            bottom: 1em;
         }
     }
 
@@ -39,17 +40,28 @@
     }
 
     .panel-newPost {
-        width: 70%;
-        height: 500px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
+        width: 90%;
+        max-height: 70%;
+        padding: 3em;
         @media (max-width: 500px){
             width: 95%;
+            padding: 1em;
+        }
+
+        .btn-primary {
+            border-radius: 1em !important;
         }
     }
 
-    .form-control {
+    .custom-file-label {
+        border-radius: 1em !important;
+    }
+
+    .new-post-input {
+        border-radius: 1em !important;
+    }
+
+    .b-form-tags {
         margin: 1em auto;
         border: none;
         background: var(--bg-write-post);
@@ -62,9 +74,8 @@
     }
 
     trix-editor {
-        height: 60%;
-        overflow-y: scroll;
         border-radius: 1em;
+        outline: none;
     }
 
     .trix-button-row {

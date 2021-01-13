@@ -32,7 +32,9 @@
         </transition>
 
         <transition name="fade">
-            <div class="panel-content panel-newPost" v-show="newPost">
+            <div class="panel-content panel-newPost" v-show="newPost"
+            @keydown.esc="togglePost"
+            >
                 <div class="form-group">
                     <b-form-input
                     v-model="title"
@@ -53,9 +55,11 @@
                     ></b-form-input>
                 </div>
 
-                <input name="file" type="file"
-                    ref="imgFile"
-                >
+                <b-form-file
+                @change="setFile"
+                placeholder="Choose a file or drop it here..."
+                drop-placeholder="Drop file here..."
+                ></b-form-file>
 
                 <b-form-tags
                 input-id="tags-pills"
@@ -73,8 +77,9 @@
                 >
                 <trix-editor input="x" class="my-3 new-post-input"
                     ref="postText"
-                    @input="returnText"
                 ></trix-editor>
+
+                <b-button variant="primary" @click="submitForm">Publish</b-button>
             </div>
         </transition>
     </div>
@@ -90,7 +95,7 @@
             bookmarked: false,
             newPost: false,
             bookmarks: this.userData.bookmarks,
-            tags: ['burgers', 'pizza', 'pasta'],
+            tags: [],
             title: '',
             slug: '',
             text: '',
@@ -109,15 +114,32 @@
            this.$root.$on('bookmark-create', data => {
                 this.bookmarks.unshift(data)
            })
+
+           document.addEventListener('trix-change', () => {
+                this.text = document.getElementById('x').value
+           })
+
+           let tagsInput = document.getElementById('tags-pills')
+
+           tagsInput.addEventListener('keydown', (e) => {
+               if(e.key == "Enter"){
+                   if(tagsInput.value !== ''){
+                       console.log(this.tags[this.tags.length - 1])
+                   }
+               } 
+           })
        },
 
         methods: {
            toggleBookmarked() {
+               let main = document.querySelector('main')
                if(this.bookmarked == false){
                    this.bookmarked = true
                    this.newPost = false
+                   main.classList.remove('blurred')
                } else if(this.bookmarked == true){
                    this.bookmarked = false
+                   main.classList.remove('blurred')
                }
            },
 
@@ -133,9 +155,40 @@
                }
            },
 
-           returnText(){
-               console.log(this.$refs.postText.value)
-           }
+           setFile(e){
+                let fileReader = new FileReader()
+                fileReader.readAsDataURL(e.target.files[0])
+
+                fileReader.onload = (e) => {
+                    this.imgFile = e.target.result
+                }
+            },
+
+            submitForm() {
+                let main = document.querySelector('main')
+
+                let data = {
+                    title: this.title,
+                    slug: this.slug,
+                    text: this.text,
+                    file: this.imgFile,
+                    user_id: this.user.id
+                }
+
+                axios.post('/api/posts', data)
+                     .then(response => {
+                        this.$root.$emit('flash', response.data.message)
+                        this.title = ''
+                        this.slug = ''
+                        this.text = ''
+                        this.imgFile = ''
+                        this.newPost = false
+                        main.classList.remove('blurred')
+                     })
+                     .catch(err => {
+                        console.log(err.response.data.errors) 
+                     })
+            },
        },
 
        watch: {

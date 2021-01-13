@@ -2,6 +2,10 @@
     <div class="searching">
         <div>
             <b-nav-form>
+                <b-button variant="warning" class="mr-2"
+                @click="reset"
+                >Reset</b-button>
+
                 <b-form-input size="sm" class="mr-sm-2 search-bar" placeholder="Search" 
                 v-model="query" 
                 @input="sendData"
@@ -27,6 +31,11 @@
             stopSearching(){
                 let main = document.querySelector('main')
                 main.classList.remove('blurred')
+            },
+
+            reset(){
+                this.query = ''
+                this.$root.$emit('searching', this.query)
             }
         },
 
@@ -41,6 +50,10 @@
 </script>
 
 <style lang="scss" scoped>
+
+    .btn-warning {
+        border-radius: 1em !important;
+    }
 
     .fade-enter-active, .fade-leave-active {
         transition: all .2s;

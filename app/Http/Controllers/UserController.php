@@ -61,11 +61,13 @@ class UserController extends Controller
             } else {
                 return view('users.show', [
                     'user' => $user,
+                    'tags' => Tag::latest()->get(),
                 ]);
             }
         } else {
             return view('users.show', [
                 'user' => $user,
+                'tags' => Tag::latest()->get(),
             ]);
         }
     }

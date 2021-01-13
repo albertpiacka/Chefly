@@ -21,8 +21,17 @@
         }
     }
 
+    .dropdown {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+    }
+
     .header-toggle-item {
         color: var(--color-panel);
+        &::after {
+            font-size: 2em !important;
+        }
     }
 
     .header-menu {
@@ -47,6 +56,7 @@
 
         .search-bar {
             border-radius: 1em;
+            margin: .5em 0;
             &:focus {
                 border: 1px solid $color-outline-primary;
                 box-shadow: 0 0 0 0.2rem $color-outline-primary;

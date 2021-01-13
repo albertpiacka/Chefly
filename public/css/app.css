@@ -14613,8 +14613,18 @@ html.transition *:after {
   color: #e69500;
 }
 
+.navbar .dropdown {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .navbar .header-toggle-item {
   color: var(--color-panel);
+}
+
+.navbar .header-toggle-item::after {
+  font-size: 2em !important;
 }
 
 .navbar .header-menu {
@@ -14641,6 +14651,7 @@ html.transition *:after {
 
 .navbar .search-item .search-bar {
   border-radius: 1em;
+  margin: 0.5em 0;
 }
 
 .navbar .search-item .search-bar:focus {
@@ -14653,13 +14664,16 @@ html.transition *:after {
 }
 
 .results {
-  width: 80%;
+  width: 90%;
   max-height: 200px;
   margin: auto;
   overflow-y: scroll;
   background: var(--bg-panel);
   color: var(--color-panel);
   z-index: 1000000000000000;
+  padding: 1em;
+  border-radius: 1em;
+  border: 2px solid rgba(230, 149, 0, 0.25);
 }
 
 @media (max-width: 500px) {
@@ -14734,7 +14748,7 @@ html.transition *:after {
   padding: 1em;
   position: fixed;
   bottom: 7em;
-  left: 15%;
+  left: 5%;
   z-index: 1000000;
   overflow: auto;
   overflow-x: hidden;
@@ -14744,6 +14758,7 @@ html.transition *:after {
 @media (max-width: 500px) {
   .panel-wrapper .panel-content {
     left: 2.5%;
+    bottom: 1em;
   }
 }
 
@@ -14754,20 +14769,31 @@ html.transition *:after {
 }
 
 .panel-wrapper .panel-newPost {
-  width: 70%;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  width: 90%;
+  max-height: 70%;
+  padding: 3em;
 }
 
 @media (max-width: 500px) {
   .panel-wrapper .panel-newPost {
     width: 95%;
+    padding: 1em;
   }
 }
 
-.panel-wrapper .form-control {
+.panel-wrapper .panel-newPost .btn-primary {
+  border-radius: 1em !important;
+}
+
+.panel-wrapper .custom-file-label {
+  border-radius: 1em !important;
+}
+
+.panel-wrapper .new-post-input {
+  border-radius: 1em !important;
+}
+
+.panel-wrapper .b-form-tags {
   margin: 1em auto;
   border: none;
   background: var(--bg-write-post);
@@ -14780,9 +14806,8 @@ html.transition *:after {
 }
 
 .panel-wrapper trix-editor {
-  height: 60%;
-  overflow-y: scroll;
   border-radius: 1em;
+  outline: none;
 }
 
 .panel-wrapper .trix-button-row {
