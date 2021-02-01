@@ -28,27 +28,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\User  $user
@@ -71,17 +50,6 @@ class UserController extends Controller
                 'tags' => Tag::latest()->get(),
             ]);
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        // 
     }
 
     /**
@@ -112,9 +80,9 @@ class UserController extends Controller
             ]);
 
             $destinationPath = public_path();
-            File::delete($destinationPath."/$request->oldImg");
+            File::delete($destinationPath."/users-images/$request->oldImg");
 
-            $filepath = public_path().'/'.$filename;
+            $filepath = public_path().'/users-images/'.$filename;
 
             file_put_contents($filepath, $decoded);
 

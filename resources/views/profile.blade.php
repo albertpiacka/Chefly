@@ -13,7 +13,7 @@
                             <div class="user-avatar">
                                 @if (Auth::user()->image)
                                     <img 
-                                        src="<?php echo url('/')?>/{{Auth::user()->image}}"
+                                        src="<?php echo url('/users-images/')?>/{{Auth::user()->image}}"
                                         class="img-fluid" 
                                         ref="userImg"
                                         alt="#"

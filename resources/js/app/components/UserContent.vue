@@ -20,7 +20,7 @@
                         <div v-for="follower in this.followers" :key="follower.id" class="follower">
                             <div class="left-wrapper">
                                 <a :href="`/users/${follower.follower.id}`" class="profile-link header-link" ref="profile-link" v-if="follower.follower.image">
-                                    <b-avatar class="user-avatar" :src="url + '/' + follower.follower.image"></b-avatar>
+                                    <b-avatar class="user-avatar" :src="url + '/users-images/' + follower.follower.image"></b-avatar>
                                 </a>
 
                                 <a :href="`/users/${follower.follower.id}`" class="profile-link header-link" ref="profile-link" v-if="!follower.follower.image">
@@ -89,7 +89,7 @@
                 <template>
                     <div class="user-info">
                         <a :href="`/users/${this.openedPost.user.id}`" class="profile-link header-link" ref="profile-link" v-if="this.openedPost.user.image">
-                            <b-avatar class="user-avatar" :src="url + '/' + this.openedPost.user.image"></b-avatar>
+                            <b-avatar class="user-avatar" :src="url + '/users-images/' + this.openedPost.user.image"></b-avatar>
                         </a>
 
                         <a :href="`/users/${this.openedPost.user.id}`" class="profile-link header-link" ref="profile-link" v-if="!this.openedPost.user.image">

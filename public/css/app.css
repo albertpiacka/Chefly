@@ -14840,9 +14840,10 @@ html.transition *:after {
 }
 
 .panel-wrapper .tags-form .form {
-  display: grid;
-  grid-template-columns: 15fr 2fr;
+  display: flex;
+  flex-wrap: wrap;
   margin: 1em auto;
+  align-items: center;
   grid-gap: 1em;
 }
 
@@ -14854,8 +14855,8 @@ html.transition *:after {
   margin: 1em auto;
   display: flex;
   flex-direction: row;
-  -moz-column-gap: 0.5em;
-       column-gap: 0.5em;
+  flex-wrap: wrap;
+  grid-gap: 0.5em;
 }
 
 .panel-wrapper .b-form-tags.focus {

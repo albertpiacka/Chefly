@@ -20,7 +20,7 @@
                         <div class="searched-items-wrapper">
                             <div v-if="search.name">
                                 <a :href="'/users/' + search.id" class="profile-link header-link" ref="profile-link" v-if="search.image">
-                                    <b-avatar class="user-avatar" :src="baseUrl + '/' + search.image"></b-avatar>
+                                    <b-avatar class="user-avatar" :src="baseUrl + '/users-images/' + search.image"></b-avatar>
                                 </a>
 
                                 <a :href="'/users/' + search.id" class="profile-link header-link" ref="profile-link" v-if="!search.image">
@@ -30,7 +30,7 @@
 
                             <div v-if="search.title">
                                 <a :href="'/users/' + search.user.id" class="profile-link header-link" ref="profile-link" v-if="search.user.image">
-                                    <b-avatar class="user-avatar" :src="baseUrl + '/' + search.user.image"></b-avatar>
+                                    <b-avatar class="user-avatar" :src="baseUrl + '/users-images/' + search.user.image"></b-avatar>
                                 </a>
 
                                 <a :href="'/users/' + search.user.id" class="profile-link header-link" ref="profile-link" v-if="!search.user.image">

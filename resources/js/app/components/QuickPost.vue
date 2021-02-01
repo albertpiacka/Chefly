@@ -46,7 +46,7 @@
             <template>
                 <div class="user-info">
                     <a :href="`/users/${this.openedPost.user.id}`" class="profile-link header-link" ref="profile-link" v-if="this.openedPost.user.image">
-                        <b-avatar class="user-avatar" :src="url + '/' + this.openedPost.user.image"></b-avatar>
+                        <b-avatar class="user-avatar" :src="url + '/users-images/' + this.openedPost.user.image"></b-avatar>
                     </a>
 
                     <a :href="`/users/${this.openedPost.user.id}`" class="profile-link header-link" ref="profile-link" v-if="!this.openedPost.user.image">

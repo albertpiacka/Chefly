@@ -26,7 +26,7 @@
                     <div v-for="bookmark in bookmarks" :key="bookmark.id" class="bookmark-post">
                         <a :href="'/posts/' + bookmark.post.slug">
                             <div class="post-img" v-if="bookmark.post.image">
-                                <img :src="baseUrl + '/' + bookmark.post.image" class="img-fluid" alt="#">
+                                <img :src="baseUrl + '/posts-images/' + bookmark.post.image" class="img-fluid" alt="#">
                             </div>
                             <div class="post-title">
                                 {{ bookmark.post.title }}
@@ -39,38 +39,42 @@
 
         <transition name="fade">
             <div class="panel-content panel-newPost" v-show="newPost || editPost">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-x-circle my-2 float-right" viewBox="0 0 16 16"
+                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-x-circle my-2" viewBox="0 0 16 16"
                 @click="togglePost"
                 >
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
 
-                <div class="form-group">
-                    <b-form-input
-                    v-model="title"
-                    aria-describedby="input-live-feedback"
-                    placeholder="Title"
-                    trim
-                    class="new-post-input"
-                    ></b-form-input>
-                </div>
+                <section>
+                    <div class="wrapper">
+                        <div class="form-group">
+                            <b-form-input
+                            v-model="title"
+                            aria-describedby="input-live-feedback"
+                            placeholder="Title"
+                            trim
+                            class="new-post-input"
+                            ></b-form-input>
+                        </div>
 
-                <div class="form-group">
-                    <b-form-input
-                    v-model="slug"
-                    aria-describedby="input-live-feedback"
-                    placeholder="Slug"
-                    trim
-                    class="new-post-input"
-                    ></b-form-input>
-                </div>
+                        <div class="form-group">
+                            <b-form-input
+                            v-model="slug"
+                            aria-describedby="input-live-feedback"
+                            placeholder="Slug"
+                            trim
+                            class="new-post-input"
+                            ></b-form-input>
+                        </div>
+                    </div>
 
-                <b-form-file
-                @change="setFile"
-                placeholder="Choose a file or drop it here..."
-                drop-placeholder="Drop file here..."
-                ></b-form-file>
+                    <b-form-file
+                    @change="setFile"
+                    placeholder="Choose a file or drop it here..."
+                    drop-placeholder="Drop file here..."
+                    ></b-form-file>
+                </section>
 
                 <div class="tags-form">
                     <div class="form">
@@ -324,6 +328,15 @@
             top: 1em;
             left: .3em;
             color: #fff;
+        }
+    }
+
+    section {
+        display: grid;
+        grid-gap: 1em;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
     }
 </style>

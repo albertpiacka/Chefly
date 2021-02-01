@@ -2,13 +2,13 @@
     <div class="following-posts">
         <div v-for="post in this.filtered" :key="post.id" class="following-post" :class="{withImage: post.image}"> 
             <div class="img-box">
-                <img :src="baseUrl + '/' + post.image" alt="#" class="img-fluid" v-if="post.image">
+                <img :src="baseUrl + '/posts-images/' + post.image" alt="#" class="img-fluid" v-if="post.image">
             </div>
             <div class="content-box">
                 <div class="content-header">
                     <div class="author-avatar">
                         <a :href="'/users/' + post.user.id" class="profile-link header-link" ref="profile-link" v-if="post.user.image">
-                            <b-avatar class="user-avatar" :src="baseUrl + '/' + post.user.image"></b-avatar>
+                            <b-avatar class="user-avatar" :src="baseUrl + '/users-images/' + post.user.image"></b-avatar>
                         </a>
 
                         <a :href="'/users/' + post.user.id" class="profile-link header-link" ref="profile-link" v-if="!post.user.image">
@@ -40,7 +40,7 @@
 
                 <div class="quickpost-content">
                     <div class="img-box">
-                        <img :src="baseUrl + '/' + post.file" alt="#" class="img-fluid" v-if="post.file">
+                        <img :src="baseUrl + '/quickposts-images/' + post.file" alt="#" class="img-fluid" v-if="post.file">
                     </div>
                 </div>
 
