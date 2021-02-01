@@ -1,0 +1,44 @@
+%quickpost {
+    border: 1px solid #7b767642;
+    padding: 1em;
+    margin: 1em auto;
+    width: 100%;
+    border-radius: 1em;
+
+    .quickpost-header {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+
+        div:nth-of-type(1){
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: .2em;
+            .user-name {
+                align-self: center;
+            }
+        }
+
+        .quickpost-date {
+            align-self: center;
+            text-align: right;
+        }
+    }
+
+    .quickpost-body {
+        margin: 1em 0;
+    }
+
+    .quickpost-img {
+        @media screen and (max-width: 500px){
+            text-align: center;
+        }
+        img {
+            max-width: 200px;
+            border-radius: 1em;
+            cursor: pointer;
+            @media screen and (max-width: 500px){
+                max-width: 100%;
+            }
+        }
+    }
+}

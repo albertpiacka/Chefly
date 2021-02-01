@@ -3,49 +3,51 @@
 // -----------------------------------------------------------------------------
 
 html {
-    --bg: #fff;
-    --bg-article: #4d4949;
+    --bg: rgb(255, 255, 255);
+    --bg-article: rgb(77, 73, 73);
 
-    --bg-user: #fff;
+    --bg-user: rgb(255, 255, 255);
     --bg-user-quickpost: rgb(231, 231, 231);
-    --bg-follow-btn: #5374FF;
+    --bg-follow-btn: rgb(83, 116, 255);
+    --bg-follow-btn-outline: rgb(106, 133, 240);
 
     --color-article: rgb(255, 255, 255);
     --color-headings: rgb(29, 28, 28);
     --color-text: rgb(29, 28, 28);
-    --color-shadow: #b8b8b8;
+    --color-shadow: rgb(184, 184, 184);
 
-    --color-button-bg: #000;
-    --color-button-switch: #fff;
+    --color-button-bg: rgb(0, 0, 0);
+    --color-button-switch: rgb(255, 255, 255);
 
     --bg-panel: rgb(63, 63, 63);
-    --color-panel: #fff;
+    --color-panel: rgb(255, 255, 255);
 
-    --bg-write-post: #fff;
+    --bg-write-post: rgb(255, 255, 255);
     --color-write-post: rgb(63, 63, 63);
 }
 
 html[data-theme='dark'] {
-    --bg: #333333;
-    --bg-article: #3d3b3b;
+    --bg: rgb(51, 51, 51);
+    --bg-article: rgb(61, 59, 59);
 
-    --bg-user: #262525;
-    --bg-user-quickpost:  #262525;
-    --bg-follow-btn: #3857d1;
+    --bg-user: rgb(38, 37, 37);
+    --bg-user-quickpost:  rgb(38, 37, 37);
+    --bg-follow-btn: rgb(56, 87, 209);
+    --bg-follow-btn-outline: rgb(84, 110, 212);
 
     --color-article: rgb(255, 255, 255);
-    --color-headings: #fff;
-    --color-text: #fff;
-    --color-shadow: #000;
+    --color-headings: rgb(255, 255, 255);
+    --color-text: rgb(255, 255, 255);
+    --color-shadow: rgb(0, 0, 0);
 
-    --color-button-bg: #fff;
-    --color-button-switch: #000;
+    --color-button-bg: rgb(255, 255, 255);
+    --color-button-switch: rgb(0, 0, 0);
 
-    --bg-panel: #fff;
-    --color-panel: #000;
+    --bg-panel: rgb(255, 255, 255);
+    --color-panel: rgb(0, 0, 0);
 
     --bg-write-post: rgb(63, 63, 63);
-    --color-write-post: #fff;
+    --color-write-post: rgb(255, 255, 255);
 }
 
 $color-article-muted: rgb(216, 214, 214);

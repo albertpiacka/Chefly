@@ -1,7 +1,7 @@
 <div class="post">
     @if ($post->image)
         <div class="post-header">
-            <img src="<?php echo url('/')?>/{{$post->image}}" class="img-fluid" alt="#">
+            <img src="<?php echo url('/posts-images/')?>/{{$post->image}}" class="img-fluid" alt="#">
         </div>
     @endif
     
@@ -25,6 +25,14 @@
         <div class="author-info">
             <h3><small>Author | </small><a href="/users/{{$post->user->id}}">{{$post->user->name}}</a></h3>
             <span class="time"><small>Posted | </small>{{$post->created_at->format('d/m/Y')}}</span>
+        </div>
+
+        <div class="tags">
+            @foreach ($post->tags as $tag)
+                <b-button pill variant="primary">
+                    {{$tag->tag}}
+                </b-button>
+            @endforeach
         </div>
 
         @auth

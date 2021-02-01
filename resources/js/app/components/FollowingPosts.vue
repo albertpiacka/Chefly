@@ -1,19 +1,11 @@
 <template>
     <div class="following-posts">
-        <div v-for="post in this.poll" :key="post.id" class="following-post" :class="{withImage: post.image}"> 
+        <div v-for="post in this.filtered" :key="post.id" class="following-post" :class="{withImage: post.image}"> 
             <div class="img-box">
                 <img :src="baseUrl + '/' + post.image" alt="#" class="img-fluid" v-if="post.image">
             </div>
             <div class="content-box">
                 <div class="content-header">
-                    <div>
-                        {{post.likes.length}}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                        </svg>
-                    </div>
-                </div>
-                <div class="content-body">
                     <div class="author-avatar">
                         <a :href="'/users/' + post.user.id" class="profile-link header-link" ref="profile-link" v-if="post.user.image">
                             <b-avatar class="user-avatar" :src="baseUrl + '/' + post.user.image"></b-avatar>
@@ -23,12 +15,36 @@
                             <b-avatar class="user-avatar" variant="warning" :text="getInitials(post)"></b-avatar>
                         </a>
                     </div>
-                    <a :href="'/posts/' + post.slug">{{post.title}} </a>
-                </div>
-                <div class="content-footer">
-                    <div>
+
+                    <div class="user-name">
                         {{post.user.name}} 
                     </div>
+
+                    <div v-if="post.likes" class="post-likes">
+                        <div>{{post.likes.length}}</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="content-body">
+                    <div class="title">
+                        <a :href="'/posts/' + post.slug">{{post.title}} </a>
+                    </div>
+                    <div class="text"
+                        v-html="truncate(post.text)"
+                    >
+                    </div>
+                </div>
+
+                <div class="quickpost-content">
+                    <div class="img-box">
+                        <img :src="baseUrl + '/' + post.file" alt="#" class="img-fluid" v-if="post.file">
+                    </div>
+                </div>
+
+                <div class="content-footer">
                     <div>
                         {{prettyDate(post.created_at)}} 
                     </div>
@@ -40,11 +56,12 @@
 
 <script>
     export default {
-        props: ['user', 'following', 'base-url'],
+        props: ['user', 'following', 'base-url', 'myPosts', 'myQuickposts'],
         data() {
             return {
                 initials: '',
                 poll: [],
+                filtered: [],
             }
         },
 
@@ -53,9 +70,27 @@
                 follower.user.posts.forEach(post => {
                     this.poll.push(post)
                 })
+
+                follower.user.quickposts.forEach(post => {
+                    this.poll.push(post)
+                })
             })
 
-            this.poll.sort(function(a, b) {
+            this.myPosts.forEach(post => {
+                this.poll.push(post)
+            })
+
+            this.myQuickposts.forEach(post => {
+                this.poll.push(post)
+            })
+
+            this.poll.forEach(val => {
+                if(val.created_at >= momentJs(new Date(new Date().setDate(new Date().getDate()-5))).format()){
+                    this.filtered.unshift(val)
+                }
+            })
+
+            this.filtered.sort(function(a, b) {
                 a = new Date(a.created_at);
                 b = new Date(b.created_at);
                 var results = a > b ? -1 : a < b ? 1 : 0;
@@ -71,8 +106,15 @@
             getInitials(post) {
                 return post.user.name.charAt(0).toUpperCase()
             },
-        },
 
+            truncate(text){
+                return _.truncate( 
+                    text, { 
+                        'length': 50, 
+                    } 
+                )
+            }
+        },
     }
 </script>
 

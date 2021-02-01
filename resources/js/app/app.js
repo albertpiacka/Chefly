@@ -1,10 +1,5 @@
 require('../bootstrap');
 
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-
-Vue.use(BootstrapVue)
-Vue.use(IconsPlugin)
-
 Vue.component('flash-message', require('./components/FlashMessage.vue').default);
 
 Vue.component('quick-post', require('./components/QuickPost.vue').default);
@@ -22,6 +17,8 @@ Vue.component('like-post', require('./components/LikePost.vue').default);
 Vue.component('bookmark-post', require('./components/BookmarkPost.vue').default);
 
 Vue.component('user-panel', require('./components/UserPanel.vue').default);
+Vue.component('profile-content', require('./components/ProfileContent.vue').default);
+Vue.component('user-content', require('./components/UserContent.vue').default);
 Vue.component('user-avatar', require('./components/UserAvatar.vue').default);
 Vue.component('follow-user', require('./components/FollowUser.vue').default);
 Vue.component('following-posts', require('./components/FollowingPosts.vue').default);

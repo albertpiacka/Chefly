@@ -28,11 +28,11 @@
                             @auth
                                 <div class="user-buttons">
                                     @if ($user->id == Auth::user()->id)
-                                        <a href="/profile"> <button>My profile</button></a>
+                                        <a href="/profile"><b-button pill>My profile</b-button></a>
                                     @else
                                         <open-chat :user-data="{{$user}}" :user-conversations="{{$user->conversations}}"></open-chat>
                                         <follow-user :user-data="{{$user}}" :follower-data="{{Auth::user()}}" :followers="{{$user->followers}}" inline-template>
-                                            <button @click="toggleFollow" class="follow-button">@{{followText}}</button>
+                                            <b-button pill @click="toggleFollow" variant="outline-primary">@{{followText}}</b-button>
                                         </follow-user>   
                                     @endif
                                 </div>
@@ -64,7 +64,15 @@
                 </div>
             </div>
 
-            
+            <user-content
+            :user-data="{{$user}}"
+            :auth-data="{{Auth::user()}}"
+            :user-posts="{{$user->quickposts}}"
+            :users-following="{{$user->following}}"
+            url="<?php echo url('/')?>"
+            >
+            </user-content>
+
         </div>
     </div>
 </div>

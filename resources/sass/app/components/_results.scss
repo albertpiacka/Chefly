@@ -1,6 +1,6 @@
 .results {
     width: 90%;
-    max-height: 200px;
+    max-height: 300px;
     margin: auto;
     overflow-y: scroll;
     background: var(--bg-panel);
@@ -12,7 +12,6 @@
 
     @media (max-width: 500px){
         width: 100%;
-        max-height: 100px;
     }
 
     ul {
@@ -33,6 +32,7 @@
         .searched-items-wrapper {
             display: grid;
             grid-template-columns: 1fr 7fr;
+            grid-gap: .2em;
             * {
                 display: flex;
                 flex-direction: column;

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="openChat">Send message</button>
+        <b-button @click="openChat" pill variant="outline-secondary">Send message</b-button>
     </div>
 </template>
 

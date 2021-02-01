@@ -29,6 +29,16 @@ Route::get('/', 'PagesController@home');
 Route::resource('posts', 'PostController');
 
 /**
+ * Routes for tags
+ */
+Route::resource('tags', 'TagController');
+
+/**
+ * Routes for quick-posts
+ */
+Route::resource('quickposts', 'QuickpostController');
+
+/**
  * Routes for users
  */
 Route::resource('users', 'UserController');

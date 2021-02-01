@@ -3,6 +3,11 @@ window.Vue = require('vue');
 window.axios = require('axios');
 window.momentJs = require('moment');
 
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
+
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');

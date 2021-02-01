@@ -72,6 +72,13 @@
                 let main = document.querySelector('main')
                 main.classList.add('blurred')
             })
+
+            this.$root.$on('stop-searching', query => {
+                this.query = query
+                this.searching = false
+                let main = document.querySelector('main')
+                main.classList.remove('blurred')
+            })
         },
 
         methods: {

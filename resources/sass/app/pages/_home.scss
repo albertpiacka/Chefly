@@ -44,6 +44,11 @@
             .img-box {
                 border-radius: 1em;
                 overflow: hidden;
+
+                img {
+                    border-radius: 1em;
+                    overflow: hidden;
+                }
             }
 
             .content-box {
@@ -52,7 +57,18 @@
                 border-radius: 1em;
 
                 .content-header {
-                    text-align: right;
+                    display: grid;
+                    grid-template-columns: 1fr 2fr 5fr;
+                    grid-gap: 1em;
+
+                    .user-name {
+                        align-self: center;
+                    }
+
+                    .post-likes {
+                        text-align: right;
+                    }
+
                     svg {
                         color: var(--color-headings);
                     }
@@ -60,10 +76,19 @@
     
                 .content-body {
                     font-size: 1.2em;
-                    font-weight: 500;
-                    a {
-                        color: var(--color-headings);
+                    padding: 1em 0;
+                    .title {
+                        margin: 1em auto;
+                        font-weight: 500;
+                        a {
+                            color: $color-hover;
+                            font-size: 1.5em;
+                        }
                     }
+                }
+
+                .quickpost-content {
+                    padding: 1em 0;
                 }
     
                 .content-footer {

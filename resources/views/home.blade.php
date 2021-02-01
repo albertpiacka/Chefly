@@ -11,13 +11,11 @@
         Hello, {{Auth::user()->name}}
     </div>
 
-    {{-- <div class="quickpost" data-aos="fade-up" data-aos-delay="300">
-        <quick-post :user="{{Auth::user()}}"></quick-post>
-    </div> --}}
-
     <following-posts 
     :user="{{Auth::user()}}" 
-    :following="{{Auth::user()->following}}"
+    :following="{{$following}}"
+    :my-posts="{{Auth::user()->posts}}"
+    :my-Quickposts="{{Auth::user()->quickposts}}"
     base-url="<?php echo url('/')?>"
     ></following-posts>
 </div>

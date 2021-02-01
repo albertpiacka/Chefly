@@ -16,6 +16,12 @@
         
         <transition name="fade">
             <div class="panel-content panel-bookmarked" v-show="bookmarked">
+                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-x-circle my-2 float-right" viewBox="0 0 16 16"
+                @click="toggleBookmarked"
+                >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
                 <transition-group name="fade">
                     <div v-for="bookmark in bookmarks" :key="bookmark.id" class="bookmark-post">
                         <a :href="'/posts/' + bookmark.post.slug">
@@ -32,9 +38,14 @@
         </transition>
 
         <transition name="fade">
-            <div class="panel-content panel-newPost" v-show="newPost"
-            @keydown.esc="togglePost"
-            >
+            <div class="panel-content panel-newPost" v-show="newPost || editPost">
+                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-x-circle my-2 float-right" viewBox="0 0 16 16"
+                @click="togglePost"
+                >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+
                 <div class="form-group">
                     <b-form-input
                     v-model="title"
@@ -61,14 +72,22 @@
                 drop-placeholder="Drop file here..."
                 ></b-form-file>
 
-                <b-form-tags
-                input-id="tags-pills"
-                v-model="tags"
-                tag-variant="primary"
-                tag-pills
-                size="lg"
-                separator=" "
-                ></b-form-tags>
+                <div class="tags-form">
+                    <div class="form">
+                        <b-form-input id="input-default" placeholder="New tag" @keydown.enter="addTag" v-model="tag"></b-form-input>
+                        <b-button pill @click="addTag">Add tag</b-button>
+                    </div>
+
+                    <div class="tags">
+                        <div v-for="tag in this.tags" :key="tag.id">
+                            <b-button pill variant="primary">
+                                {{ tag.tag }}
+                                <span @click="removeTag(tag)"><b-icon icon="x-circle"></b-icon></span>
+                            </b-button>
+                        </div>
+                    </div>
+                </div>
+
                 <input 
                     id="x" 
                     :value="text" 
@@ -94,13 +113,21 @@
            return {
             bookmarked: false,
             newPost: false,
+            editPost: false,
             bookmarks: this.userData.bookmarks,
+
             tags: [],
+            detached: [],
+            tag: '',
+
             title: '',
             slug: '',
             text: '',
+            oldImg: '',
             imgFile: '',
             post_id: '',
+            post: '',
+
             user: null,
            }
        },
@@ -115,18 +142,17 @@
                 this.bookmarks.unshift(data)
            })
 
-           document.addEventListener('trix-change', () => {
-                this.text = document.getElementById('x').value
+           this.$root.$on('edit-post', post => {
+               this.post = post
+
+               let element = document.querySelector("trix-editor")
+               element.editor.insertHTML(post.text)
+               
+               this.editPost = true
            })
 
-           let tagsInput = document.getElementById('tags-pills')
-
-           tagsInput.addEventListener('keydown', (e) => {
-               if(e.key == "Enter"){
-                   if(tagsInput.value !== ''){
-                       console.log(this.tags[this.tags.length - 1])
-                   }
-               } 
+           document.addEventListener('trix-change', () => {
+                this.text = document.getElementById('x').value
            })
        },
 
@@ -145,12 +171,22 @@
 
            togglePost() {
                let main = document.querySelector('main')
-               if(this.newPost == false){
+               if(this.editPost == true){
+                   this.editPost = false
+                   this.post = ''
+
+                   let element = document.querySelector("trix-editor")
+                   element.innerText = ''
+
+                   main.classList.remove('blurred')
+               } else if(this.newPost == false){
                    this.newPost = true
                    this.bookmarked = false
+                   this.tags = []
                    main.classList.add('blurred')
                } else if(this.newPost == true){
                    this.newPost = false
+                   this.editPost = false
                    main.classList.remove('blurred')
                }
            },
@@ -164,36 +200,67 @@
                 }
             },
 
+            addTag(){
+                if(this.tag !== ''){
+                    let tag = {
+                        id: null,
+                        tag: this.tag,
+                    }
+
+                    this.tags.push(tag)
+
+                    this.tag = ''
+                }
+            },
+
+            removeTag(tag){
+                this.tags = this.tags.filter(val => val.tag !== tag.tag)
+                if(tag.id !== null){
+                    this.detached.push(tag)
+                }
+            },
+
             submitForm() {
                 let main = document.querySelector('main')
 
                 let data = {
                     title: this.title,
                     slug: this.slug,
+                    tags: this.tags,
                     text: this.text,
                     file: this.imgFile,
                     user_id: this.user.id
                 }
-
-                axios.post('/api/posts', data)
+                
+                if(this.newPost){
+                    axios.post('/api/posts', data)
                      .then(response => {
                         this.$root.$emit('flash', response.data.message)
-                        this.title = ''
-                        this.slug = ''
-                        this.text = ''
-                        this.imgFile = ''
+                        this.$root.$emit('new-post', response.data.post)
+                        this.post = ''
                         this.newPost = false
                         main.classList.remove('blurred')
                      })
                      .catch(err => {
                         console.log(err.response.data.errors) 
                      })
+                } else if(this.editPost){
+                    data['old_img'] = this.oldImg
+                    data['detached'] = this.detached
+                    
+                    axios.patch(`/api/posts/${this.post_id}`, data)
+                         .then(response => {
+                            this.$root.$emit('flash', response.data.message)
+                            this.$root.$emit('edited-post', response.data.post)
+                         })
+                }
             },
        },
 
        watch: {
             title(value) {
-                this.slug = 
+                if(this.title){
+                    this.slug = 
                         _.trim(
                         _.deburr(value.toLowerCase()) // diacritics
                             .replace(/[^\w\s]/gi, '') // special characters
@@ -201,6 +268,16 @@
                             .replace(/ /g, '-'), // space to -
                         '-' // trailing -
                     )
+                }
+            },
+
+            post(post){
+                this.title = post.title
+                this.slug = post.slug
+                this.text = post.text
+                this.oldImg = post.image
+                this.post_id = post.id
+                this.tags = post.tags
             },
         },
     }

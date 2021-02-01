@@ -14,7 +14,7 @@ class AddDescriptionToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->mediumText('about');
+            $table->mediumText('about')->default('null');
         });
     }
 

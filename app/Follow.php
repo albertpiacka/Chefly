@@ -20,4 +20,12 @@ class Follow extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * Get follower
+     */
+    public function follower()
+    {
+        return $this->belongsTo('App\User', 'follower_id');
+    }
 }

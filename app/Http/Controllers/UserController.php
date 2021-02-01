@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Tag;
 use App\Post;
+use App\Quickpost;
 use App\Comment;
 use File;
 use Illuminate\Http\Request;
@@ -92,8 +93,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // return $request;
-
         if($request->file !== null){
             $exploded = explode(',', $request->file);
 
@@ -121,15 +120,8 @@ class UserController extends Controller
 
             return $filename;
         } else {
-            $user->update([
-                'name' => $request->name,
-                'about' => $request->about,
-            ]);
+            $user->update($request->all());
         }
-
-        
-
-        
     }
 
     /**

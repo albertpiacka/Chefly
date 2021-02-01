@@ -61,12 +61,24 @@
         border-radius: 1em !important;
     }
 
-    .b-form-tags {
-        margin: 1em auto;
-        border: none;
-        background: var(--bg-write-post);
-        overflow-y: scroll;
-        max-height: 5em;
+    .tags-form {
+        .form {
+            display: grid;
+            grid-template-columns: 15fr 2fr;
+            margin: 1em auto;
+            grid-gap: 1em;
+
+            .form-control {
+                border-radius: 1em;
+            }
+        }
+
+        .tags {
+            margin: 1em auto;
+            display: flex;
+            flex-direction: row;
+            column-gap: .5em;
+        }
     }
 
     .b-form-tags.focus {

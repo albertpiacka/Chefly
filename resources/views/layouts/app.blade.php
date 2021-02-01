@@ -75,28 +75,20 @@
                                 <searching/>
                             </li>
 
-                            <li class="nav-item">
-                                <user-avatar 
-                                    :user="{{Auth::user()}}" 
-                                    base-url="<?php echo url('/')?>"
-                                >
-                                </user-avatar>
-                            </li>
-
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="dropdown-toggle header-toggle-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
-                                style="text-decoration: none"
+                                <a href="#" ref="profile-link"
+                                id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                 >
-                                    {{-- {{ Auth::user()->name }} --}}
+                                    @if (Auth::user()->image)
+                                        <b-avatar class="user-avatar" src="<?php echo url('/')?>/{{Auth::user()->image}}"></b-avatar>
+                                    @else
+                                        <b-avatar class="user-avatar" variant="primary" 
+                                            text="<?php echo substr(Auth::user()->name, 0, 1)?>">
+                                        </b-avatar>
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right header-menu" aria-labelledby="navbarDropdown">
-                                    <a class="header-menu-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
                                     <a href="{{route('login')}}" class="header-menu-item">
                                         Profile
                                     </a>
@@ -106,6 +98,13 @@
                                             Dashboard
                                         </a>
                                     @endif
+
+                                    <b-button variant="outline-primary" pill
+                                        href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </b-button>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -123,7 +122,7 @@
         </nav>
 
         <div class="container p-2">
-            <div class="title-primary">
+            <div class="title-primary" data-aos="fade-up">
                 @if ($title ?? '')
                     <h1 class="headings-primary-dark display-3 font-weight-bold">{{$title}}</h1>
                 @endif
@@ -140,7 +139,6 @@
             <user-panel 
             :user-data="{{Auth::user()->load('bookmarks')}}" 
             base-url="<?php echo url('/')?>"
-            :tags="{{$tags}}"
             ></user-panel>
         @endauth
         

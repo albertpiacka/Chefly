@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'type', 'about', 'image',
+        'name', 'email', 'password', 'type', 'about', 'image', 'permision',
     ];
 
     /**
@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'api_token',
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
      */
     public function posts()
     {
-        return $this->hasMany('App\Post')->with('user', 'likes', 'comments');
+        return $this->hasMany('App\Post')->with('user', 'likes', 'comments', 'tags');
     }
 
     /**
@@ -91,7 +91,7 @@ class User extends Authenticatable
      */
     public function quickposts()
     {
-        return $this->hasMany('App\Quickpost')->with('user', 'likes', 'comments');
+        return $this->hasMany('App\Quickpost')->with('user');
     }
 
     /**
@@ -107,7 +107,7 @@ class User extends Authenticatable
      */
     public function followers()
     {
-        return $this->hasMany('App\Follow');
+        return $this->hasMany('App\Follow')->with('follower');
     }
 
     /**

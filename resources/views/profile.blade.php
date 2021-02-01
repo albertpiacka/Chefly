@@ -18,14 +18,13 @@
                                         ref="userImg"
                                         alt="#"
                                     >
-                                    <input 
-                                        @change="setImg"
-                                        type="file" 
-                                        name="user-img-file" 
+
+                                    <b-form-file id="file-default"
                                         id="user-img-file" 
                                         ref="userImgFile"
                                         v-show="editing"
-                                    >
+                                        @change="setImg"
+                                    ></b-form-file>
                                 @else
                                     <img 
                                         src="<?php echo url('/')?>/user-default.png"
@@ -33,14 +32,13 @@
                                         ref="userImg"
                                         alt="#"
                                     >
-                                    <input 
-                                        @change="setImg"
-                                        type="file" 
-                                        name="user-img-file" 
+                                    
+                                    <b-form-file id="file-default"
                                         id="user-img-file" 
                                         ref="userImgFile"
                                         v-show="editing"
-                                    >
+                                        @change="setImg"
+                                    ></b-form-file>
                                 @endif
                             </div>
 
@@ -65,10 +63,8 @@
                                         </small>
                                     </div>
 
-                                    <div class="user-buttons">
-                                        <button class="edit-button">
-                                            <a @click.prevent="toggleEditing">@{{text}}</a>
-                                        </button>
+                                    <div class="profile-buttons">
+                                        <b-button @click="toggleEditing" pill variant="primary">@{{text}}</b-button>
                                     </div>
                                 </div>
 
@@ -105,8 +101,19 @@
                 </div>
             </div>
 
+            <profile-content 
+            :user="{{Auth::user()}}" 
+            :quick-posts="{{Auth::user()->quickposts}}"
+            :users-following="{{Auth::user()->following}}"
+            url="<?php echo url('/')?>"
+            data-aos="fade-up" 
+            data-aos-delay="250"
+            ></profile-content>
+
             <div class="quickpost" data-aos="fade-up" data-aos-delay="300">
-                <quick-post :user="{{Auth::user()}}"></quick-post>
+                <quick-post :user="{{Auth::user()}}" url="<?php echo url('/')?>"
+                    :quickp="{{Auth::user()->quickposts}}"    
+                ></quick-post>
             </div>
         </div>
     </div>

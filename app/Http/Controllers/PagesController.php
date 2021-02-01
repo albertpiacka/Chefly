@@ -19,6 +19,7 @@ class PagesController extends Controller
             return view('home', [
                 'date' => Carbon::now()->format('j F Y'),
                 'tags' => Tag::latest()->get(),
+                'following' => Auth::user()->following->load('user', 'user.posts', 'user.quickposts'),
             ]);
         } else {
             return view('index', [

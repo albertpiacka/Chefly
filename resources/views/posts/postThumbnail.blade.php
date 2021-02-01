@@ -1,7 +1,7 @@
 <div class="post">
     @if ($post->image)
         <div class="post-header">
-            <img src="<?php echo url('/')?>/{{$post->image}}" class="img-fluid" alt="#">
+            <img src="<?php echo url('/uploaded/posts')?>/{{$post->image}}" class="img-fluid" alt="#">
         </div>
     @endif
     

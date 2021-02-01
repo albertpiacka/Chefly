@@ -43,7 +43,12 @@ class FollowController extends Controller
             'follower_id' => $request->follower_id,
         ]);
 
-        return $follow;
+        $following = User::findOrFail($request->follower_id);
+
+        return response()->json([
+            'message' => 'Following '.$following->name,
+            'follow' => $follow,
+        ], 200);
     }
 
     /**
@@ -89,5 +94,9 @@ class FollowController extends Controller
     public function destroy(Follow $follow)
     {
         $follow->delete();
+
+        return response()->json([
+            'message' => 'Unfollowed',
+        ], 200);
     }
 }

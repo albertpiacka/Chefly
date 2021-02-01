@@ -35,7 +35,7 @@
 
             reset(){
                 this.query = ''
-                this.$root.$emit('searching', this.query)
+                this.$root.$emit('stop-searching', this.query)
             }
         },
 

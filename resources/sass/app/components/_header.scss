@@ -37,11 +37,17 @@
     .header-menu {
         border-radius: 1em;
         background: var(--bg-user);
+        text-align: center;
         .header-menu-item {
             display: block;
             text-align: center;
-            padding: .2em;
+            margin: .8em 0;
             color: var(--color-text);
+            border-radius: 1em;
+        }
+
+        .btn-outline-primary {
+            width: 90%;
         }
     }
 

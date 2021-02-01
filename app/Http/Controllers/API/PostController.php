@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\User;
+use App\Tag;
 use File;
 use Illuminate\Http\Request;
 
@@ -38,33 +39,63 @@ class PostController extends Controller
                 'user_id' => 'required|integer|exists:users,id'
             ]);
 
-            $exploded = explode(',', $request->file);
+            if($request->file == null){
+                $post = Post::create([
+                    'title' => $request->title,
+                    'slug' => $request->slug,
+                    'text' => $request->text,
+                    'user_id' => $request->user_id,
+                ]);
+    
+                foreach ($request->tags as $tag) {
+                    $new_tag = Tag::firstOrCreate([
+                        'tag' => $tag['tag'],
+                    ]);
+    
+                    $post->tags()->save($new_tag);
+                }
 
-            $decoded = base64_decode($exploded[1]);
+                return response()->json([
+                    'message' => 'Post created',
+                    'post' => $post,
+                ], 201);
+            } else {
+                $exploded = explode(',', $request->file);
 
-            if(str_contains($exploded[0], 'jpeg'))
-                $extension = 'jpg';
-            else 
-                $extension = 'png';
+                $decoded = base64_decode($exploded[1]);
 
-            $filename = str_random().'.'.$extension;
+                if(str_contains($exploded[0], 'jpeg'))
+                    $extension = 'jpg';
+                else 
+                    $extension = 'png';
 
-            $post = Post::create([
-                'title' => $request->title,
-                'slug' => $request->slug,
-                'text' => $request->text,
-                'user_id' => $request->user_id,
-                'image' => $filename,
-            ]);
+                $filename = str_random().'.'.$extension;
 
-            $filepath = public_path().'/'.$filename;
+                $post = Post::create([
+                    'title' => $request->title,
+                    'slug' => $request->slug,
+                    'text' => $request->text,
+                    'user_id' => $request->user_id,
+                    'image' => $filename,
+                ]);
 
-            file_put_contents($filepath, $decoded);
-      
-            return response()->json([
-                'message' => 'Post created',
-                'post' => $post,
-            ], 201);
+                foreach ($request->tags as $tag) {
+                    $new_tag = Tag::firstOrCreate([
+                        'tag' => $tag['tag'],
+                    ]);
+
+                    $post->tags()->save($new_tag);
+                }
+
+                $filepath = public_path().'/posts-images/'.$filename;
+
+                file_put_contents($filepath, $decoded);
+
+                return response()->json([
+                    'message' => 'Post created',
+                    'post' => $post,
+                ], 201);
+            }
         }
     }
 
@@ -101,15 +132,58 @@ class PostController extends Controller
             'title' => 'required'
         ]);
 
-        $post->update([
-            'title' => $request->title,
-            'slug' => $request->slug,
-            'text' => $request->text
-        ]);
+        if ($request->file == null) {
+            $post->update([
+                'title' => $request->title,
+                'slug' => $request->slug,
+                'text' => $request->text
+            ]);
+        } else {
+            $exploded = explode(',', $request->file);
+
+            $decoded = base64_decode($exploded[1]);
+
+            if(str_contains($exploded[0], 'jpeg'))
+                $extension = 'jpg';
+            else 
+                $extension = 'png';
+
+            $filename = str_random().'.'.$extension;
+
+            $post->update([
+                'title' => $request->title,
+                'slug' => $request->slug,
+                'text' => $request->text,
+                'image' => $filename,
+            ]);
+
+            $filepath = public_path().'/posts-images/'.$filename;
+
+            file_put_contents($filepath, $decoded);
+
+            $destinationPath = public_path().'/posts-images/';
+            File::delete($destinationPath."$request->old_img");
+        }
+
+        foreach ($request->tags as $tag) {
+
+            if($tag['id'] == null){
+                $new_tag = Tag::firstOrCreate([
+                    'tag' => $tag['tag'],
+                ]);
+    
+                $post->tags()->save($new_tag);
+            }
+
+        }
+
+        foreach ($request->detached as $tag) {
+            $post->tags()->detach($tag);
+        }
 
         return response()->json([
             'message' => 'Post updated',
-            'post' => $post,
+            'post' => $post->load('tags'),
         ], 200);
     }
 
@@ -123,8 +197,8 @@ class PostController extends Controller
     {
         $this->authorize('delete', $post);
 
-        $destinationPath = public_path();
-        File::delete($destinationPath."/$post->image");
+        $destinationPath = public_path().'/posts-images/';
+        File::delete($destinationPath."$post->image");
 
         $post->comments()->forceDelete();
         $post->forceDelete();
@@ -134,17 +208,4 @@ class PostController extends Controller
             'post' => $post,
         ], 200);
     }
-
-    // private function uploadFiles($post, $file){
-    //     $filepath = storage_path('posts/', $post->id);
-    //     $extension = $file->getClientOriginalExtension();
-
-    //     $filename = str_replace(
-    //         ".$extension",
-    //         "-". rand(11111, 99999) .".$extension",
-    //         $file->getOriginalClientName()
-    //     );
-
-    //     $file->move($filepath, $filename);
-    // }
 }

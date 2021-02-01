@@ -5,8 +5,8 @@
 <script>
     export default {
         mounted () {
-            this.$root.$on('flash', data => {
-                this.makeToast(data)
+            this.$root.$on('flash', message => {
+                this.makeToast(message)
             })
         },
 

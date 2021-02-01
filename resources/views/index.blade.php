@@ -4,50 +4,6 @@
 <div class="container py-5">
     <div class="flex-center position-ref full-height">
         <div class="content">
-            
-            <div class="title-secondary title text-center pb-5">
-                <h2 class="headings-primary-dark display-2">Don't miss out!</h2>
-            </div>
-            
-            <div class="posts" data-aos="fade-up">
-                <div class="post">
-                    @if ($posts[0]->image)
-                        <div class="post-header">
-                            <img src="<?php echo url('/')?>/{{$posts[0]->image}}" alt="#">
-                        </div>
-                    @endif
-                    <div class="post-wrapper">
-                        <div class="post-body">
-                            <h2><a href="/posts/{{$posts[0]->slug}}">{{$posts[0]->title}}</a></h2>
-                            <div class="content">
-                                {!! nl2br($posts[0]->text) !!}
-                            </div>
-                        </div>
-                        <div class="author-info">
-                            <h3><a href="/users/{{$posts[0]->user->id}}">{{$posts[0]->user->name}}</a></h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="post">
-                    @if ($posts[1]->image)
-                        <div class="post-header">
-                            <img src="<?php echo url('/')?>/{{$posts[1]->image}}" alt="#">
-                        </div>
-                    @endif
-                    <div class="post-wrapper">
-                        <div class="post-body">
-                            <h2><a href="/posts/{{$posts[1]->slug}}">{{$posts[1]->title}}</a></h2>
-                            <div class="content">
-                                {!! nl2br($posts[1]->text) !!}
-                            </div>
-                        </div>
-                        <div class="author-info">
-                            <h3><a href="/users/{{$posts[1]->user->id}}">{{$posts[1]->user->name}}</a></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="about-wrapper">
 

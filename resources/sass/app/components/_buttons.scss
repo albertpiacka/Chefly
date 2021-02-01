@@ -23,23 +23,3 @@
 .button-primary {
     background: var(--color-headings);
 }
-
-.message-button{
-    border: 1px solid $color-article-muted;
-    background: transparent;
-    color: var(--color-headings);
-    &:focus {
-        border: 1px solid $color-article-muted;
-    }
-}
-
-.follow-button{
-    background: var(--bg-follow-btn);
-    color: var(--color-article);
-}
-
-.edit-button {
-    a {
-        color: var(--bg-article);
-    }
-}
