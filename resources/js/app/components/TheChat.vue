@@ -4,6 +4,10 @@
             <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
         </svg>
 
+        <div class="counter" v-if="counter >= 1">
+            {{counter}}
+        </div>
+
         <transition name="fade">
             <div class="chat-box" v-show="visible">
                 <div class="chat-wrapper">
@@ -30,6 +34,9 @@
                                 <small :key="usersConversation.id" v-show="!userOpened" class="conv-date">
                                     {{prettyDate(usersConversation.updated_at)}}
                                 </small>
+                                <div class="conv-counter text-dark" v-if="usersConversation.counter >= 0" :key="usersConversation.id + 1">
+                                    {{usersConversation.counter}}
+                                </div>
                             </transition-group>
 
                             <div :class="{ messages: userOpened }">
@@ -68,6 +75,7 @@
         props: ['user', 'conversations'],
         data() {
             return {
+                counter: 0,
                 visible: false,
                 userOpened: false,
                 usersConversations: [],
@@ -82,6 +90,11 @@
         mounted () {
             this.usersConversations = this.conversations
             this.authUser = this.user
+
+            this.usersConversations.forEach(conv => {
+                conv['counter'] = 0
+            })
+
             this.$root.$on('open-chat', data => {
                 if(this.currentUser == data[0]){
                     this.visible = true
@@ -131,12 +144,25 @@
                 this.usersConversations.forEach(conv => {
                     if(conv.id == data[0].conversation_id){
                         conv.messages.push(data[0])
+
                         setTimeout(() => {
                             var container = this.$el.querySelector(".messages")
-                            let conChild = container.children
-                            let lastMsg = conChild[0].children
-                            lastMsg[lastMsg.length - 1].scrollIntoView({behavior: 'smooth'})
+                            if(container){
+                                let conChild = container.children
+                                let lastMsg = conChild[0].children
+                                lastMsg[lastMsg.length - 1].scrollIntoView({behavior: 'smooth'})
+                            }
                         }, 100);
+
+                        if(data[0].receiver_id == this.authUser.id){
+                            this.counter++
+                            this.$root.$emit('flash', 'You have a new message!')
+
+                            let found = this.usersConversations.filter(c => c.id == conv.id)
+
+                            found[0].counter++
+                            
+                        } else this.$root.$emit('flash', 'Message sent!')
                     }
                 }) 
             });
@@ -163,6 +189,12 @@
                 this.userOpened = true
                 this.currentConversation = [usersConversation]
                 this.usersConversations = [usersConversation]
+
+                let found = this.usersConversations.filter(c => c.id == usersConversation.id)
+
+                found[0].counter = 0
+
+                this.counter--
                 setTimeout(() => {
                     var container = this.$el.querySelector(".messages");
                     container.scrollTop = container.scrollHeight;
@@ -223,6 +255,13 @@
         position: fixed;
         right: 2em;
         bottom: 2em;
+        z-index: 10;
+    }
+
+    .counter {
+        position: fixed;
+        right: 2em;
+        bottom: 4em;
         z-index: 10;
     }
 
