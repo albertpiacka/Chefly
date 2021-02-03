@@ -167,8 +167,8 @@
                 }, 500);
 
                 axios.post('/follows', {
-                        user_id: this.user.id, 
-                        follower_id: follower.follower_id
+                        user_id: follower.follower_id, 
+                        follower_id: this.user.id
                      })
                      .then(response => {
                          this.$root.$emit('flash', response.data.message)
