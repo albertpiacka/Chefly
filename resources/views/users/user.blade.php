@@ -68,7 +68,7 @@
 
             <user-content
             :user-data="{{$user}}"
-            :auth-data="{{Auth::user()}}"
+            :auth-data="{{Auth::user() || 'none'}}"
             :user-posts="{{$user->quickposts}}"
             :users-following="{{$user->following}}"
             url="<?php echo url('/')?>"
