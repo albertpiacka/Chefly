@@ -26,14 +26,16 @@
                                 </small>
                             </div>
                             @auth
-                                <div class="user-buttons">
+                                <div class="container">
                                     @if ($user->id == Auth::user()->id)
                                         <a href="/profile"><b-button pill>My profile</b-button></a>
                                     @else
-                                        <open-chat :user-data="{{$user}}" :user-conversations="{{$user->conversations}}"></open-chat>
-                                        <follow-user :user-data="{{$user}}" :follower-data="{{Auth::user()}}" :followers="{{$user->followers}}" inline-template>
-                                            <b-button pill @click="toggleFollow" variant="outline-primary">@{{followText}}</b-button>
-                                        </follow-user>   
+                                        <div class="row">
+                                            <open-chat class="m-2" :user-data="{{$user}}" :user-conversations="{{$user->conversations}}"></open-chat>
+                                            <follow-user :user-data="{{$user}}" :follower-data="{{Auth::user()}}" :followers="{{$user->followers}}" inline-template>
+                                                <b-button pill @click="toggleFollow" variant="outline-primary" class="m-2">@{{followText}}</b-button>
+                                            </follow-user>  
+                                        </div> 
                                     @endif
                                 </div>
                             @endauth
