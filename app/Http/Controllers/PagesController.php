@@ -23,7 +23,6 @@ class PagesController extends Controller
             ]);
         } else {
             return view('index', [
-                'title' => 'Chefly',
                 'posts' => Post::with('comments', 'user')->latest()->get(),
             ]);   
         }
