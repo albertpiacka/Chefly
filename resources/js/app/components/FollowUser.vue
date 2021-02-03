@@ -36,6 +36,7 @@
                         this.following = false
                         this.followText = 'Follow'
                         this.follows = this.follows.filter(item => item.follower_id !== this.followerData.id)
+                        this.$root.$emit('flash', response.data.message)
                      })
 
                 } else if(this.following == false){
@@ -47,6 +48,7 @@
                         this.following = true
                         this.followText = 'Unfollow'
                         this.follows.push(response.data.follow)
+                        this.$root.$emit('flash', response.data.message)
                     })
                 }
             }
