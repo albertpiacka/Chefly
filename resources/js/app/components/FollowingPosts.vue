@@ -1,12 +1,18 @@
 <template>
     <div class="following-posts">
-        <div v-for="post in this.filtered" :key="post.id" class="following-post" :class="{withImage: post.image}"> 
+        <div 
+        v-for="post in this.filtered" 
+        :key="post.id" class="following-post" 
+        :class="{withImage: post.image}"
+        data-aos="fade-up"
+        :data-aos-delay="`${post.id}00`"
+        > 
             <div class="img-box">
                 <img :src="baseUrl + '/posts-images/' + post.image" alt="#" class="img-fluid" v-if="post.image">
             </div>
             <div class="content-box">
                 <div class="content-header">
-                    <div class="author-avatar">
+                    <div class="author-avatar" :id="`follower-popover-${post.user.id}`">
                         <a :href="'/users/' + post.user.id" class="profile-link header-link" ref="profile-link" v-if="post.user.image">
                             <b-avatar class="user-avatar" :src="baseUrl + '/users-images/' + post.user.image"></b-avatar>
                         </a>
@@ -15,6 +21,13 @@
                             <b-avatar class="user-avatar" variant="warning" :text="getInitials(post)"></b-avatar>
                         </a>
                     </div>
+
+                    <b-popover :target="`follower-popover-${post.user.id}`" title="" triggers="hover" v-if="post.user.id !== user.id">
+                        <a :href="`/users/${post.user.id}`">{{ post.user.name }}</a>
+                        <p>
+                            {{post.user.about}}
+                        </p>
+                    </b-popover>
 
                     <div class="user-name">
                         {{post.user.name}} 
