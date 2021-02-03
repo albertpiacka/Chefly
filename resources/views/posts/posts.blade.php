@@ -5,7 +5,9 @@
 <div class="container py-5">
     <div class="flex-center position-ref full-height">
         <div class="content">
-            <div class="posts" data-aos="fade-up">
+            <all-tags :tags="{{$tags}}"></all-tags>
+
+            <div class="posts">
                 @foreach ($posts as $post)
                     @include('posts.postThumbnail')
                 @endforeach
