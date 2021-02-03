@@ -34,7 +34,10 @@
                                 <small :key="usersConversation.id" v-show="!userOpened" class="conv-date">
                                     {{prettyDate(usersConversation.updated_at)}}
                                 </small>
-                                <div class="conv-counter text-dark" v-if="usersConversation.counter >= 0" :key="usersConversation.id + 1">
+                                <div class="conv-counter text-dark" 
+                                    v-if="usersConversation.counter >= 1 && !userOpened" 
+                                    :key="usersConversation.id + 1"
+                                >
                                     {{usersConversation.counter}}
                                 </div>
                             </transition-group>
