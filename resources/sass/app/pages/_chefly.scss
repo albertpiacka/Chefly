@@ -3,60 +3,44 @@
 // -----------------------------------------------------------------------------
 
 .Chefly {
-    .posts {
-        margin: 2em auto;
-       .post {
-            @extend %postStyles;
-            height: auto;
-            max-height: 500px;
-            overflow: hidden;
-            .post-wrapper {
+
+    .wrapper {
+        background: url('/intro-cat.png') no-repeat right;
+        background-attachment: fixed;
+        position: relative;
+        top: 0;
+        height: 100vh;
+
+        .intro {
+            position: relative;
+            top: 5em;
+            padding: 2em;
+            width: 90%;
+            margin: 1em auto;
+
+            @media screen and (max-width: 500px){
                 padding: 1em;
             }
-            &:nth-of-type(2){
-                top: 0;
-                left: -2em;
-                box-shadow: 5em 2em 10em 5em var(--color-shadow);
-            }
-            &:hover {
-                transform: scale(1.1);
-                z-index: 2;
-            }
-            
-        }
-        @media (max-width: 800px){
-            grid-template-columns: 1fr;
-            grid-row-gap: 1em;
-            .post {
-                top: 0;
-                margin-top: 1em;
-                &:nth-of-type(2){
-                    left: 0;
+    
+            header {
+                h1 {
+                    font-size: 5em;
+                    max-width: 60%;
+                    color: var(--color-headings);
+                    text-shadow: 3px 3px var(--color-shadow);
+                    @media screen and (max-width: 500px){
+                        max-width: 100%;
+                        font-size: 4em;
+                    }
                 }
             }
-        }
-    }
     
-    .about-wrapper {
-        text-align: center;
-    
-        h2 {
-            font-size: 5em;
-            padding: 2em 0;
-        }
-    
-        blockquote {
-            margin: 6em auto;
-            padding: 12em 0;
-            h2 {
-                font-size: 3em;
-                padding: 0;
-            }
-            h3 {
-                font-size: 2em;
-            }
-            footer {
-                font-weight: 100;
+            main {
+                margin: 2em 0;
+                p {
+                    color: var(--color-text);
+                    text-shadow: 1px 1px var(--color-shadow);
+                }
             }
         }
     }
