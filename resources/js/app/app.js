@@ -3,6 +3,7 @@ require('../bootstrap');
 Vue.component('flash-message', require('./components/FlashMessage.vue').default);
 
 Vue.component('quick-post', require('./components/QuickPost.vue').default);
+Vue.component('quick-post-form', require('./components/QuickPostForm.vue').default);
 
 Vue.component('searching', require('./components/Searching.vue').default);
 Vue.component('searched-data', require('./components/SearchedData.vue').default);

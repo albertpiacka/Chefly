@@ -14627,6 +14627,48 @@ html.transition *:after {
   }
 }
 
+.Home .welcome-wrapper .quickPostForm textarea,
+.user-profile .quickpost textarea {
+  width: 100%;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  border-radius: 1em;
+  border: none;
+}
+
+.Home .welcome-wrapper .quickPostForm textarea:focus,
+.user-profile .quickpost textarea:focus {
+  outline: none;
+}
+
+.Home .welcome-wrapper .quickPostForm .controls-wrap,
+.user-profile .quickpost .controls-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 30%;
+  grid-gap: 1em;
+}
+
+.Home .welcome-wrapper .quickPostForm .controls-wrap button,
+.user-profile .quickpost .controls-wrap button {
+  min-width: 5em;
+}
+
+.Home .welcome-wrapper .quickPostForm .bi-image-fill,
+.user-profile .quickpost .bi-image-fill {
+  font-size: 2em;
+  color: var(--color-text);
+  align-self: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Home .welcome-wrapper .quickPostForm .bi-image-fill:hover,
+.user-profile .quickpost .bi-image-fill:hover {
+  transform: scale(1.1);
+  opacity: 0.3;
+}
+
 .navbar {
   margin: 2em 1em 0em 1em;
   border-radius: 2em;
@@ -15067,14 +15109,6 @@ html.transition *:after {
   align-self: center;
 }
 
-.user-profile .user-general-box .user-info .user-controls-wrapper .user-buttons {
-  display: flex;
-  grid-gap: 0.5em;
-  justify-content: stretch;
-  margin: 1em 0;
-  flex-wrap: wrap;
-}
-
 .user-profile .user-general-box .user-info .user-controls-wrapper .profile-buttons {
   text-align: right;
 }
@@ -15228,6 +15262,7 @@ html.transition *:after {
   border-radius: 2em;
   width: 80%;
   margin: auto;
+  margin-bottom: 10em;
   padding: 2em;
   position: relative;
   top: 8em;
@@ -15238,42 +15273,6 @@ html.transition *:after {
   .user-profile .quickpost {
     width: 100%;
   }
-}
-
-.user-profile .quickpost textarea {
-  width: 100%;
-  padding: 0.5em;
-  margin-top: 0.5em;
-  border-radius: 1em;
-  border: none;
-}
-
-.user-profile .quickpost textarea:focus {
-  outline: none;
-}
-
-.user-profile .quickpost .controls-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 30%;
-  grid-gap: 1em;
-}
-
-.user-profile .quickpost .controls-wrap button {
-  min-width: 5em;
-}
-
-.user-profile .quickpost .bi-image-fill {
-  font-size: 2em;
-  color: var(--color-text);
-  align-self: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.user-profile .quickpost .bi-image-fill:hover {
-  transform: scale(1.1);
-  opacity: 0.3;
 }
 
 .modal-dialog {
@@ -15462,6 +15461,17 @@ html.transition *:after {
 @media (max-width: 500px) {
   .Home .welcome-wrapper .hello-user {
     font-size: 2em;
+  }
+}
+
+.Home .welcome-wrapper .quickPostForm {
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-width: 500px) {
+  .Home .welcome-wrapper .quickPostForm {
+    width: 95%;
   }
 }
 
