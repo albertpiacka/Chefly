@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post shadow-lg" data-aos="fade-up" data-aos-delay="{{$post->id}}00">
     @if ($post->image)
         <div class="post-header">
             <img src="<?php echo url('/uploaded/posts')?>/{{$post->image}}" class="img-fluid" alt="#">
