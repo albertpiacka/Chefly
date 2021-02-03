@@ -1,11 +1,14 @@
 @extends('layouts.app', ['class' => 'Register'])
 
 @section('content')
-<div class="container">
+<div class="form-wrapper">
+    <div class="title" data-aos="fade-right" data-aos-delay="300">
+        Register for free
+    </div>
+
     <div class="row justify-content-center">
 
-        <div class="my-form">
-            <div class="form-header">{{ __('Register') }}</div>
+        <div class="my-form" data-aos="fade-up">
 
             <div class="form-body">
                 <form method="POST" action="{{ route('register') }}">
@@ -58,10 +61,24 @@
                     </div>
 
                     <div class="form-group row mb-0">
-                        <div class="mx-auto">
-                            <button type="submit" class="btn">
+                        <div class="p-3">
+                            <b-button 
+                            pill 
+                            variant="primary"
+                            type="submit"
+                            >
                                 {{ __('Register') }}
-                            </button>
+                            </b-button>
+
+                            or 
+
+                            <b-button 
+                            pill 
+                            variant="outline-primary"
+                            href="{{ route('login') }}"
+                            >
+                                {{ __('Login') }}
+                            </b-button>
                         </div>
                     </div>
                 </form>

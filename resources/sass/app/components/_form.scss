@@ -1,19 +1,40 @@
-.my-form {
-    width: 70%;
-    margin: 1em auto;
-    transform: translateY(5em);
-    background: var(--bg-article);
-    color: var(--color-article);
+.form-wrapper {
     padding: 1em;
-    border-radius: 1em;
-    .form-header {
-        padding: 1em 0;
+    position: relative;
+    top: 6em;
+
+    .title {
+        font-size: 3em;
+        width: 50%;
+        margin: auto;
+
+        @media screen and (max-width: 500px){
+            width:  90%;
+        }
     }
-    button[type="submit"]{
+    
+    .my-form {
+        width: 50%;
+        margin: 1em auto;
+        background: transparent;
         color: var(--color-article);
-        background: var(--color-hover);
-    }
-    .form-link {
-        color: var(--color-article);
-    }
+        padding: 1em;
+        border-radius: 1em;
+    
+        @media screen and (max-width: 500px){
+            width:  90%;
+        }
+    
+        input {
+            background: transparent !important;
+            border: none !important;
+            border-bottom: 1px solid #fff !important;
+            outline: none !important;
+            border-radius: 1em 1em 0 0 !important;
+    
+            &:focus {
+                box-shadow: none !important;
+            }
+        }
+    }    
 }
