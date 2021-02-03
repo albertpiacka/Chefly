@@ -1,4 +1,3 @@
-
 .user-profile {
     .top-box {
         width: 100%;
@@ -169,20 +168,10 @@
     
         .followers {
             .follower {
-                display: grid;
-                grid-template-columns: 1fr 4fr;
                 margin: 1em 0;
-                @media screen and (max-width: 500px){
-                    grid-template-columns: 1fr 1fr;
-                }
-                .left-wrapper {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                }
-    
-                .user-name {
-                    align-self: center;
-                }
+                display: flex;
+                grid-gap: 1em;
+                margin: 1em 0;
             }
         }
     
