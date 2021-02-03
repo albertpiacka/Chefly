@@ -21,6 +21,7 @@
         data() {
             return {
                 initials: '',
+                counter: 0,
             }
         },
 
