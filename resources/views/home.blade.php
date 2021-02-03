@@ -11,6 +11,10 @@
         Hello, {{Auth::user()->name}}
     </div>
 
+    <div class="quickPostForm">
+        <quick-post-form :user="{{Auth::user()}}"></quick-post-form>   
+    </div>
+
     <following-posts 
     :user="{{Auth::user()}}" 
     :following="{{$following}}"

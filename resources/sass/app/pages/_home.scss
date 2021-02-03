@@ -21,6 +21,15 @@
             }
         }
 
+        .quickPostForm {
+            width: 80%;
+            margin: 1em auto;
+            @media screen and (max-width: 500px){
+                width: 95%;
+            }
+            @extend %quickPostForm;
+        }
+
         .following-posts {
             position: relative;
             top: 7em;
