@@ -19,16 +19,22 @@
                     <div class="followers">
                         <div v-for="follower in this.followers" :key="follower.id" class="follower">
                             <div class="left-wrapper">
-                                <a :href="`/users/${follower.follower.id}`" class="profile-link header-link" ref="profile-link" v-if="follower.follower.image">
-                                    <b-avatar class="user-avatar" :src="url + '/users-images/' + follower.follower.image"></b-avatar>
-                                </a>
+                                <div :id="`follower-popover-${follower.follower.id}`">
+                                    <a :href="`/users/${follower.follower.id}`" class="profile-link header-link" ref="profile-link" v-if="follower.follower.image">
+                                        <b-avatar class="user-avatar" :src="url + '/users-images/' + follower.follower.image"></b-avatar>
+                                    </a>
 
-                                <a :href="`/users/${follower.follower.id}`" class="profile-link header-link" ref="profile-link" v-if="!follower.follower.image">
-                                    <b-avatar class="user-avatar" variant="primary" :text="getInitials(follower.follower.name)"></b-avatar>
-                                </a>
-                                <div class="user-name">
-                                    {{ follower.follower.name }}
+                                    <a :href="`/users/${follower.follower.id}`" class="profile-link header-link" ref="profile-link" v-if="!follower.follower.image">
+                                        <b-avatar class="user-avatar" variant="primary" :text="getInitials(follower.follower.name)"></b-avatar>
+                                    </a>
                                 </div>
+
+                                <b-popover :target="`follower-popover-${follower.follower.id}`" title="" triggers="hover">
+                                    <a :href="`/users/${follower.follower.id}`">{{ follower.follower.name }}</a>
+                                    <p>
+                                        {{follower.follower.about}}
+                                    </p>
+                                </b-popover>
                             </div>
                         </div>
                     </div>
