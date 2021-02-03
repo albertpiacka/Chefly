@@ -2,7 +2,7 @@
     <div class="searching">
         <div>
             <b-nav-form>
-                <b-button variant="warning" class="mr-2"
+                <b-button variant="warning" class="mr-2 text-white"
                 @click="reset"
                 >Reset</b-button>
 
