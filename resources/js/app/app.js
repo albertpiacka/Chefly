@@ -1,6 +1,7 @@
 require('../bootstrap');
 
 Vue.component('flash-message', require('./components/FlashMessage.vue').default);
+Vue.component('all-tags', require('./components/Tags.vue').default);
 
 Vue.component('quick-post', require('./components/QuickPost.vue').default);
 Vue.component('quick-post-form', require('./components/QuickPostForm.vue').default);

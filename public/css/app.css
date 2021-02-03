@@ -14315,7 +14315,7 @@ html {
   --color-article: rgb(255, 255, 255);
   --color-headings: rgb(29, 28, 28);
   --color-text: rgb(29, 28, 28);
-  --color-shadow: rgb(184, 184, 184);
+  --color-shadow: rgb(214, 212, 212);
   --color-button-bg: rgb(0, 0, 0);
   --color-button-switch: rgb(255, 255, 255);
   --bg-panel: rgb(63, 63, 63);
@@ -14471,19 +14471,18 @@ html.transition *:after {
 }
 
 .Posts .posts .post,
-.Chefly .posts .post,
+.Tag .posts .post,
 .Post .animation-container .post {
   border-radius: 1em;
   position: relative;
   transform-style: preserve-3d;
   top: 1em;
   background: var(--bg-article);
-  box-shadow: 5em 2em 130em 0em var(--color-shadow);
   transition: 1s transform ease;
 }
 
 .Posts .posts .post .post-header,
-.Chefly .posts .post .post-header,
+.Tag .posts .post .post-header,
 .Post .animation-container .post .post-header {
   width: 100%;
   overflow: hidden;
@@ -14491,14 +14490,14 @@ html.transition *:after {
 }
 
 .Posts .posts .post .post-header img,
-.Chefly .posts .post .post-header img,
+.Tag .posts .post .post-header img,
 .Post .animation-container .post .post-header img {
   width: 100%;
   border-radius: 1em 1em 0 0;
 }
 
 .Posts .posts .post .post-wrrapper,
-.Chefly .posts .post .post-wrrapper,
+.Tag .posts .post .post-wrrapper,
 .Post .animation-container .post .post-wrrapper {
   border: 10px solid var(--bg-article);
   border-radius: 1em;
@@ -14506,27 +14505,27 @@ html.transition *:after {
 }
 
 .Posts .posts .post .post-body h2,
-.Chefly .posts .post .post-body h2,
+.Tag .posts .post .post-body h2,
 .Post .animation-container .post .post-body h2 {
   font-size: 3em;
 }
 
 .Posts .posts .post .post-body h2 a,
-.Chefly .posts .post .post-body h2 a,
+.Tag .posts .post .post-body h2 a,
 .Post .animation-container .post .post-body h2 a {
   color: #d8d6d6;
 }
 
 @media (max-width: 500px) {
   .Posts .posts .post .post-body h2,
-  .Chefly .posts .post .post-body h2,
+  .Tag .posts .post .post-body h2,
   .Post .animation-container .post .post-body h2 {
     font-size: 2em;
   }
 }
 
 .Posts .posts .post .post-body svg,
-.Chefly .posts .post .post-body svg,
+.Tag .posts .post .post-body svg,
 .Post .animation-container .post .post-body svg {
   position: absolute;
   right: 0.5em;
@@ -14534,7 +14533,7 @@ html.transition *:after {
 }
 
 .Posts .posts .post .post-body .content,
-.Chefly .posts .post .post-body .content,
+.Tag .posts .post .post-body .content,
 .Post .animation-container .post .post-body .content {
   padding: 1em;
   margin: 1em auto;
@@ -14542,7 +14541,7 @@ html.transition *:after {
 }
 
 .Posts .posts .post .author-info,
-.Chefly .posts .post .author-info,
+.Tag .posts .post .author-info,
 .Post .animation-container .post .author-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -14551,20 +14550,20 @@ html.transition *:after {
 }
 
 .Posts .posts .post .author-info .time,
-.Chefly .posts .post .author-info .time,
+.Tag .posts .post .author-info .time,
 .Post .animation-container .post .author-info .time {
   text-align: right;
   align-self: center;
 }
 
 .Posts .posts .post .author-info h3 a,
-.Chefly .posts .post .author-info h3 a,
+.Tag .posts .post .author-info h3 a,
 .Post .animation-container .post .author-info h3 a {
   color: #d8d6d6;
 }
 
 .Posts .posts .post .tags,
-.Chefly .posts .post .tags,
+.Tag .posts .post .tags,
 .Post .animation-container .post .tags {
   margin: 1em auto;
 }
@@ -14748,7 +14747,22 @@ html.transition *:after {
 }
 
 .title-primary h1 {
-  padding: 2em 0;
+  padding: 2em 0 0;
+}
+
+.popover .popover-body {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.popover .popover-body a {
+  color: #e69500 !important;
+  -webkit-text-decoration: dotted !important;
+          text-decoration: dotted !important;
+}
+
+.popover .popover-body p {
+  align-self: center;
 }
 
 .results {
@@ -14957,27 +14971,49 @@ html.transition *:after {
   color: var(--color-write-post) !important;
 }
 
-.my-form {
-  width: 70%;
+.form-wrapper {
+  padding: 1em;
+  position: relative;
+  top: 6em;
+}
+
+.form-wrapper .title {
+  font-size: 3em;
+  width: 50%;
+  margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .form-wrapper .title {
+    width: 90%;
+  }
+}
+
+.form-wrapper .my-form {
+  width: 50%;
   margin: 1em auto;
-  transform: translateY(5em);
-  background: var(--bg-article);
+  background: transparent;
   color: var(--color-article);
   padding: 1em;
   border-radius: 1em;
 }
 
-.my-form .form-header {
-  padding: 1em 0;
+@media screen and (max-width: 500px) {
+  .form-wrapper .my-form {
+    width: 90%;
+  }
 }
 
-.my-form button[type=submit] {
-  color: var(--color-article);
-  background: var(--color-hover);
+.form-wrapper .my-form input {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #fff !important;
+  outline: none !important;
+  border-radius: 1em 1em 0 0 !important;
 }
 
-.my-form .form-link {
-  color: var(--color-article);
+.form-wrapper .my-form input:focus {
+  box-shadow: none !important;
 }
 
 .Post .animation-container {
@@ -15214,24 +15250,10 @@ html.transition *:after {
 }
 
 .user-profile .tabs .followers .follower {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
   margin: 1em 0;
-}
-
-@media screen and (max-width: 500px) {
-  .user-profile .tabs .followers .follower {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.user-profile .tabs .followers .follower .left-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.user-profile .tabs .followers .follower .user-name {
-  align-self: center;
+  display: flex;
+  grid-gap: 1em;
+  margin: 1em 0;
 }
 
 .user-profile .tabs .gallery {
@@ -15369,72 +15391,49 @@ html.transition *:after {
   z-index: 10000;
 }
 
-.Chefly .posts {
-  margin: 2em auto;
-}
-
-.Chefly .posts .post {
-  height: auto;
-  max-height: 500px;
-  overflow: hidden;
-}
-
-.Chefly .posts .post .post-wrapper {
-  padding: 1em;
-}
-
-.Chefly .posts .post:nth-of-type(2) {
+.Chefly .wrapper {
+  background: url("/intro-cat.png") no-repeat right;
+  background-attachment: fixed;
+  position: relative;
   top: 0;
-  left: -2em;
-  box-shadow: 5em 2em 10em 5em var(--color-shadow);
+  height: 100vh;
 }
 
-.Chefly .posts .post:hover {
-  transform: scale(1.1);
-  z-index: 2;
+.Chefly .wrapper .intro {
+  position: relative;
+  top: 5em;
+  padding: 2em;
+  width: 90%;
+  margin: 1em auto;
 }
 
-@media (max-width: 800px) {
-  .Chefly .posts {
-    grid-template-columns: 1fr;
-    grid-row-gap: 1em;
-  }
-
-  .Chefly .posts .post {
-    top: 0;
-    margin-top: 1em;
-  }
-
-  .Chefly .posts .post:nth-of-type(2) {
-    left: 0;
+@media screen and (max-width: 500px) {
+  .Chefly .wrapper .intro {
+    padding: 1em;
   }
 }
 
-.Chefly .about-wrapper {
-  text-align: center;
-}
-
-.Chefly .about-wrapper h2 {
+.Chefly .wrapper .intro header h1 {
   font-size: 5em;
-  padding: 2em 0;
+  max-width: 60%;
+  color: var(--color-headings);
+  text-shadow: 3px 3px var(--color-shadow);
 }
 
-.Chefly .about-wrapper blockquote {
-  margin: 6em auto;
-  padding: 12em 0;
+@media screen and (max-width: 500px) {
+  .Chefly .wrapper .intro header h1 {
+    max-width: 100%;
+    font-size: 4em;
+  }
 }
 
-.Chefly .about-wrapper blockquote h2 {
-  font-size: 3em;
-  padding: 0;
+.Chefly .wrapper .intro main {
+  margin: 2em 0;
 }
 
-.Chefly .about-wrapper blockquote h3 {
-  font-size: 2em;
-}
-
-.Chefly .about-wrapper blockquote footer {
-  font-weight: 100;
+.Chefly .wrapper .intro main p {
+  color: var(--color-text);
+  text-shadow: 1px 1px var(--color-shadow);
 }
 
 .Home .welcome-wrapper {
@@ -15563,6 +15562,23 @@ html.transition *:after {
 
 .Home .welcome-wrapper .following-post .content-box .content-footer div:nth-of-type(2) {
   text-align: right;
+}
+
+.Tag .posts {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2em;
+  margin: 1em auto;
+  padding-bottom: 3em;
+  position: relative;
+  top: 5em;
+  width: 60%;
+}
+
+@media screen and (max-width: 500px) {
+  .Tag .posts {
+    width: 90%;
+  }
 }
 
 .Posts .posts {
