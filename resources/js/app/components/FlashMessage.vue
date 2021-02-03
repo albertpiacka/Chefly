@@ -8,6 +8,8 @@
             this.$root.$on('flash', message => {
                 this.makeToast(message)
             })
+
+            this.getFollow('hey')
         },
 
         methods: {
@@ -16,6 +18,10 @@
                     autoHideDelay: 5000,
                     variant: 'warning',
                 })
+            },
+
+            async getFollow(val){
+                
             }
         }
     }
