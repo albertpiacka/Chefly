@@ -96,6 +96,10 @@
                 var results = a > b ? -1 : a < b ? 1 : 0;
                 return results
             });
+
+            this.$root.$on('new-quickpost', quickpost => {
+                this.filtered.unshift(quickpost)
+            })
         },
 
         methods: {
