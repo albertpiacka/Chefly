@@ -50,7 +50,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li>
-                            <a class="menu-link" href="/posts">Explore</a>
+                            <a class="menu-link" href="/posts">Posts</a>
                         </li>
 
                         <li>
@@ -62,14 +62,19 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
+                            <b-button pill variant="outline-primary"
+                            href="{{ route('register') }}"
+                            >
+                            Join for free
+                            </b-button>
+                            {{-- <li class="nav-item">
                                 <a class="menu-link login-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="menu-link register-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                            @endif
+                            @endif --}}
                         @else
                             <li class="nav-item search-item">
                                 <searching/>
