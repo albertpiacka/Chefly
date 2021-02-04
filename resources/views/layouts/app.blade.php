@@ -67,18 +67,12 @@
                             >
                             Join for free
                             </b-button>
-                            {{-- <li class="nav-item">
-                                <a class="menu-link login-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="menu-link register-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif --}}
                         @else
-                            <li class="nav-item search-item">
-                                <searching/>
-                            </li>
+                            @auth
+                                <li class="nav-item search-item">
+                                    <searching/>
+                                </li>
+                            @endauth
 
                             <li class="nav-item dropdown">
                                 <a href="#" ref="profile-link"
@@ -121,9 +115,11 @@
                 </div>
             </div>
 
-            <div>
-                <searched-data base-url="<?php echo url('/')?>"></searched-data>
-            </div>
+            @auth
+                <div>
+                    <searched-data base-url="<?php echo url('/')?>"></searched-data>
+                </div>    
+            @endauth
         </nav>
 
         <div class="container p-2">
