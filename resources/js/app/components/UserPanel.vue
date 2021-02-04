@@ -245,9 +245,6 @@
                         this.newPost = false
                         main.classList.remove('blurred')
                      })
-                     .catch(err => {
-                        console.log(err.response.data.errors) 
-                     })
                 } else if(this.editPost){
                     data['old_img'] = this.oldImg
                     data['detached'] = this.detached
