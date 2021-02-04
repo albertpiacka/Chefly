@@ -1,6 +1,5 @@
 <template>
     <div class="single-post">
-        <div class="img-input"></div>
         <form>
             <div class="form-group">
                 <label for="title-input">Title</label>
@@ -37,10 +36,29 @@
                 </b-form-invalid-feedback>
             </div>
 
-            <input name="file" type="file"
-                ref="imgFile"
-                @change="setFile"
-            >
+            <div class="tags-form">
+                <label for="tag-input">Tags</label>
+                <div class="form">
+                    <b-form-input id="input-default" placeholder="New tag" @keydown.enter="addTag" v-model="tag"></b-form-input>
+                    <b-button pill @click="addTag">Add tag</b-button>
+                </div>
+
+                <div class="tags">
+                    <div v-for="tag in this.tags" :key="tag.id">
+                        <b-button pill variant="primary">
+                            {{ tag.tag }}
+                            <span @click="removeTag(tag)"><b-icon icon="x-circle"></b-icon></span>
+                        </b-button>
+                    </div>
+                </div>
+            </div>
+
+            <b-form-file
+            @change="setFile"
+            ref="imgFile"
+            placeholder="Choose a file or drop it here..."
+            drop-placeholder="Drop file here..."
+            ></b-form-file>
 
             <div class="form-group">
                 <input 
@@ -66,15 +84,20 @@
 
     export default {
         mixins: [tableMixin],
-        props: ['errors', 'post'],
+        props: ['errors', 'post', 'meta'],
         data(){
             return {
                 title: '',
                 slug: '',
                 text: '',
+                oldImg: '',
                 imgFile: '',
                 post_id: '',
                 user: null,
+
+                tags: [],
+                detached: [],
+                tag: '',
             }
         },
 
@@ -105,12 +128,39 @@
                     title: this.title,
                     slug: this.slug,
                     text: this.text,
-                    id: this.post_id,
+                    tags: this.tags,
                     file: this.imgFile,
                     user_id: this.user.id
                 }
 
-                this.$emit('post-form-submitted', data)
+                if(this.meta == 'new'){
+                    this.$emit('post-form-submitted', data)
+                } else if (this.meta == 'edit'){
+                    data['old_img'] = this.oldImg
+                    data['detached'] = this.detached
+                    data['id'] = this.post_id
+                    this.$emit('post-form-submitted', data)
+                }
+            },
+
+            addTag(){
+                if(this.tag !== ''){
+                    let tag = {
+                        id: null,
+                        tag: this.tag,
+                    }
+
+                    this.tags.push(tag)
+
+                    this.tag = ''
+                }
+            },
+
+            removeTag(tag){
+                this.tags = this.tags.filter(val => val.tag !== tag.tag)
+                if(tag.id !== null){
+                    this.detached.push(tag)
+                }
             },
 
             setFile(e){
@@ -138,11 +188,13 @@
             post(post){
                 this.title = post.title,
                 this.slug = post.slug,
-                this.post_id = post.id
+                this.post_id = post.id,
+                this.oldImg = post.image,
+                this.tags = post.tags
 
                 let element = document.querySelector("trix-editor")
                 element.editor.insertHTML(post.text)
-            }
+            },
         },
     }
 </script>
@@ -169,20 +221,49 @@
             }
         }
 
+        .tags-form {
+            .form {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 1em auto;
+                margin-top: 0;
+                align-items: center;
+                grid-gap: 1em;
+
+                .form-control {
+                    border-radius: 1em;
+                }
+            }
+
+            .tags {
+                margin: 1em auto;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                grid-gap: 0.5em;
+            }
+        }
+
+        .b-form-file {
+            margin: 1em auto;
+            label {
+                border-radius: 1em !important;
+            }
+        }
+
         form {
              padding: 2em;
         }
 
-        .img-input {
-            height: 10em;
-            width: 100%;
-            border-radius: 2em 2em 0 0;
-            background: #fff;
+        .new-post-input {
+            border-radius: 1em !important;
+            overflow: auto;
         }
 
-        .new-post-input {
+        img {
+            margin: 1em auto;
+            display: block;
             border-radius: 1em;
-            overflow: auto;
         }
 
         .new-post-controls {

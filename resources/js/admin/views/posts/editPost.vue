@@ -4,6 +4,7 @@
         <new-post-form 
         :errors="errors"
         :post="post"
+        meta="edit"
         @post-form-submitted="sendForm"
         />
     </div>
@@ -20,7 +21,7 @@
         data() {
             return {
                 errors: {},
-                post: {}
+                post: {},
             }
         },
 

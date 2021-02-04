@@ -3,6 +3,7 @@
         <h1 class="py-2">New post</h1>
         <new-post-form 
         :errors="errors"
+        meta="new"
         @post-form-submitted="sendForm"
         />
     </div>
@@ -26,7 +27,6 @@
             sendForm(data) {
                 axios.post('/api/posts', data)
                      .then(response => {
-                        console.log(response)
                         this.$router.push(`/admin/posts/${response.data.post.slug}`)
                      })
                      .catch(err => {
