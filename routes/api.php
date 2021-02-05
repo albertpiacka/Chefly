@@ -22,6 +22,7 @@ Route::middleware('auth:api')->group(function () {
   
     Route::apiResources([
         'posts' => 'API\PostController',
+        'quickposts' => 'API\QuickpostController',
         'users' => 'API\UserController',
         'comments' => 'API\CommentController'
     ]);
