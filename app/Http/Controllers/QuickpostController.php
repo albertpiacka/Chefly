@@ -10,26 +10,6 @@ use Illuminate\Http\Request;
 class QuickpostController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,7 +18,7 @@ class QuickpostController extends Controller
     public function store(Request $request)
     {
         $id = $request->user_id;
-        if(User::find($id)->type == 1 || User::find($id)->type == 2)
+        if(User::find($id))
         {
             $request->validate([
                 'user_id' => 'required|integer|exists:users,id'
@@ -80,28 +60,6 @@ class QuickpostController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Quickpost  $quickpost
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Quickpost $quickpost)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Quickpost  $quickpost
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Quickpost $quickpost)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -110,6 +68,8 @@ class QuickpostController extends Controller
      */
     public function update(Request $request, Quickpost $quickpost)
     {
+        $this->authorize('update', $quickpost);
+
         $quickpost->update([
             'file' => null,
         ]);
@@ -126,6 +86,16 @@ class QuickpostController extends Controller
      */
     public function destroy(Quickpost $quickpost)
     {
-        //
+        $this->authorize('delete', $quickpost);
+
+        $destinationPath = public_path().'/quickposts-images/';
+        File::delete($destinationPath."$quickpost->image");
+
+        $quickpost->forceDelete();
+
+        return response()->json([
+            'message' => 'Quickpost deleted',
+            'quickpost' => $quickpost,
+        ], 200);
     }
 }
