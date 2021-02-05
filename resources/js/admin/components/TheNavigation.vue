@@ -21,6 +21,12 @@
                     </b-list-group-item>
                 </router-link>  
 
+                <router-link class="my-link" to="/admin/quickposts">
+                    <b-list-group-item class="nav-button">
+                        Quickposts
+                    </b-list-group-item>
+                </router-link>  
+
                 <router-link class="my-link" to="/admin/comments">
                     <b-list-group-item class="nav-button">
                         Comments
