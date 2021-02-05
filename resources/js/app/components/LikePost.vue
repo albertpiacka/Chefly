@@ -41,23 +41,23 @@
             toggleLike(){
                 if(this.liked == true){
                     let removeLike = this.likes.filter(item => item.user_id == this.userData.id)
+                    this.$el.classList.remove('liked')
+                    this.$el.classList.add('unliked')
 
                     axios.delete(`/likes/${removeLike[0].id}`)
                      .then(response => {
-                         this.$el.classList.remove('liked')
-                         this.$el.classList.add('unliked')
                          this.liked = false
                          this.likes = this.likes.filter(item => item.user_id !== this.userData.id)
                          this.postLikes--
                      })
                 } else if(this.liked == false){
+                    this.$el.classList.remove('unliked')
+                    this.$el.classList.add('liked')
                     axios.post('/likes', {
                         post_id: this.postData.id,
                         user_id: this.userData.id
                     })
                     .then(response => {
-                        this.$el.classList.remove('unliked')
-                        this.$el.classList.add('liked')
                         this.liked = true
                         this.likes.push(response.data.like)
                         this.postLikes++
@@ -70,40 +70,7 @@
 
 <style lang="scss" scoped>
     .liked {
-        animation: .3s like ease forwards;
         color:crimson;
-    }
-
-    @keyframes like{
-        0% {
-            transform: scale(1);
-        }
-
-        50% {
-            transform: scale(1.1);
-        }
-
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    .unliked {
-        animation: .3s unlike ease forwards;
-    }
-
-    @keyframes unlike{
-        0% {
-            transform: scale(1);
-        }
-
-        50% {
-            transform: scale(1.1);
-        }
-
-        100% {
-            transform: scale(1);
-        }
     }
 
     .likes-wrapper {
