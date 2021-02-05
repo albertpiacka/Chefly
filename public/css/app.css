@@ -15024,10 +15024,6 @@ html.transition *:after {
   font-size: 3em;
 }
 
-.Post .animation-container .post * {
-  transition: all 0.1s ease-in-out;
-}
-
 .Post .comment-section {
   margin: 2em auto;
   padding: 1em;
