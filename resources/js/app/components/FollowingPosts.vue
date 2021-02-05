@@ -5,11 +5,12 @@
         :key="post.id" class="following-post" 
         :class="{withImage: post.image}"
         data-aos="fade-up"
-        :data-aos-delay="`${post.id}00`"
+        data-aos-delay="100"
         > 
             <div class="img-box">
                 <img :src="baseUrl + '/posts-images/' + post.image" alt="#" class="img-fluid" v-if="post.image">
             </div>
+            
             <div class="content-box">
                 <div class="content-header">
                     <div class="author-avatar" :id="`follower-popover-${post.user.id}`">
