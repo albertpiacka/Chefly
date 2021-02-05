@@ -20,6 +20,12 @@ import singlePost from './views/posts/singlePost.vue'
 import editPost from './views/posts/editPost.vue'
 import newPost from './views/posts/newPost.vue'
 
+//Quickposts
+import Quickposts from './views/Quickposts/Quickposts.vue'
+import singleQuickpost from './views/Quickposts/singleQuickpost.vue'
+import editQuickpost from './views/Quickposts/editQuickpost.vue'
+import newQuickpost from './views/Quickposts/newQuickpost.vue'
+
 //Users
 import Users from './views/users/Users.vue'
 import singleUser from './views/users/singleUser.vue'
@@ -38,6 +44,27 @@ export default new Router({
         { 
             path: '/admin/', 
             component: Dashboard 
+        },
+
+        //Quickposts
+        {
+            path: '/admin/quickposts',
+            component: Quickposts
+        },
+
+        { 
+            path: '/admin/quickposts/:id', 
+            component: singleQuickpost 
+        },
+
+        { 
+            path: '/admin/quickposts/:id/edit', 
+            component: editQuickpost 
+        },
+
+        { 
+            path: '/admin/new-quickpost', 
+            component: newQuickpost 
         },
 
         //Posts
