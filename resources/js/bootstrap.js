@@ -3,6 +3,9 @@ window.Vue = require('vue');
 window.axios = require('axios');
 window.momentJs = require('moment');
 
+import AOS from 'aos'
+AOS.init();
+
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
