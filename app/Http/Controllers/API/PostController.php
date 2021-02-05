@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::with('user')->latest()->get();
+        return Post::with('likes', 'user')->latest()->get();
     }
 
     /**
@@ -30,7 +30,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $id = $request->user_id;
-        if(User::find($id)->type == 1 || User::find($id)->type == 2)
+        if(User::find($id))
         {
             $request->validate([
                 'title' => 'required',
