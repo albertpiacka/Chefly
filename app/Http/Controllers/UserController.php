@@ -61,41 +61,35 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update([
-            'type' => 1,
-        ]);
+        if($request->file !== null){
+            $exploded = explode(',', $request->file);
 
-        return $user;
-        
-        // if($request->file !== null){
-        //     $exploded = explode(',', $request->file);
+            $decoded = base64_decode($exploded[1]);
 
-        //     $decoded = base64_decode($exploded[1]);
+            if(str_contains($exploded[0], 'jpeg'))
+                $extension = 'jpg';
+            else 
+                $extension = 'png';
 
-        //     if(str_contains($exploded[0], 'jpeg'))
-        //         $extension = 'jpg';
-        //     else 
-        //         $extension = 'png';
+            $filename = str_random().'.'.$extension;
 
-        //     $filename = str_random().'.'.$extension;
+            $user->update([
+                'name' => $request->name,
+                'about' => $request->about,
+                'image' => $filename,
+            ]);
 
-        //     $user->update([
-        //         'name' => $request->name,
-        //         'about' => $request->about,
-        //         'image' => $filename,
-        //     ]);
+            $destinationPath = public_path();
+            File::delete($destinationPath."/users-images/$request->oldImg");
 
-        //     $destinationPath = public_path();
-        //     File::delete($destinationPath."/users-images/$request->oldImg");
+            $filepath = public_path().'/users-images/'.$filename;
 
-        //     $filepath = public_path().'/users-images/'.$filename;
+            file_put_contents($filepath, $decoded);
 
-        //     file_put_contents($filepath, $decoded);
-
-        //     return $filename;
-        // } else {
-        //     $user->update($request->all());
-        // }
+            return $filename;
+        } else {
+            $user->update($request->all());
+        }
     }
 
     /**

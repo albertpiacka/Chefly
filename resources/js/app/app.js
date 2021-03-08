@@ -1,7 +1,5 @@
 require('../bootstrap');
 
-Vue.component('make-admin', require('./components/MakeAdmin.vue').default);
-
 Vue.component('flash-message', require('./components/FlashMessage.vue').default);
 Vue.component('all-tags', require('./components/Tags.vue').default);
 

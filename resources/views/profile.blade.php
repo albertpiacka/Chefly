@@ -80,8 +80,6 @@
                                     @endif
                                 </div>
 
-                                <make-admin :user="{{Auth::user()}}"></make-admin>
-
                                 <div class="info-tags">
                                     <div class="info-box">
                                         <small>Articles</small>
