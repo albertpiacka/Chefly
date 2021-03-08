@@ -70,13 +70,17 @@
 
                                 <div class="about">
                                     <small class="about-heading">About me</small>
-                                    <p class="about-text"
-                                    :contenteditable="editing"
-                                    :class="{editing: editing}"
-                                    @input="returnAbout"
-                                    ref="aboutMe"
-                                    >@{{about}}</p>
+                                    @if (Auth::user()->about !== 'null')
+                                        <p class="about-text"
+                                        :contenteditable="editing"
+                                        :class="{editing: editing}"
+                                        @input="returnAbout"
+                                        ref="aboutMe"
+                                        >@{{about}}</p>
+                                    @endif
                                 </div>
+
+                                <make-admin :user="{{Auth::user()}}"></make-admin>
 
                                 <div class="info-tags">
                                     <div class="info-box">
