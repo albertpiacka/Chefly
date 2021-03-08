@@ -19,7 +19,6 @@ class CreateQuickpostsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->text('text')->nullable();
             $table->text('file')->default('null');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
