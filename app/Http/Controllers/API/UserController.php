@@ -81,10 +81,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        // $this->authorize('delete', $user);
-        // $user->conversations()->forceDelete();
-        // $user->posts()->forceDelete();
-        // $user->quickposts()->forceDelete();
+        $this->authorize('delete', $user);
+        $user->conversations()->forceDelete();
+        $user->posts()->forceDelete();
+        $user->quickposts()->forceDelete();
         $user->forceDelete();
 
         return response()->json([
