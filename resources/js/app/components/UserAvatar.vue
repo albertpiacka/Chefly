@@ -2,7 +2,7 @@
     <div class="user-wrapper">
         <div class="mb-2">
             <a href="/login" class="profile-link header-link" ref="profile-link" v-if="this.user.image">
-                <b-avatar class="user-avatar" :src="baseUrl + '/users-images/' + this.user.image"></b-avatar>
+                <b-avatar class="user-avatar" :src="baseUrl + '/storage/users-images/' + this.user.image"></b-avatar>
             </a>
 
             <a href="/login" class="profile-link header-link" ref="profile-link" v-if="!this.user.image">

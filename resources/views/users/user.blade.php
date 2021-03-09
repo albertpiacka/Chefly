@@ -8,7 +8,7 @@
                     <div class="edit-wrapper">
                         <div class="user-avatar">
                             @if ($user->image)
-                                <img src="<?php echo url('/users-images/')?>/{{$user->image}}" class="img-fluid" alt="#">
+                                <img src="<?php echo url('/storage/users-images/')?>/{{$user->image}}" class="img-fluid" alt="#">
                             @else
                                 <img src="<?php echo url('/')?>/user-default.png" class="img-fluid" alt="#">
                             @endif

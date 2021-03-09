@@ -28,7 +28,7 @@
                     </div>
 
                     <div v-if="quickpost.file" class="quickpost-img" :id="quickpost.id + 1">
-                        <img @click="showModal(), openPost(quickpost)" :src="url + '/quickposts-images/' + quickpost.file" alt="#" class="img-fluid">
+                        <img @click="showModal(), openPost(quickpost)" :src="url + '/storage/quickposts-images/' + quickpost.file" alt="#" class="img-fluid">
                     </div>
                 </div>
             </transition-group>
@@ -38,7 +38,7 @@
             <template>
                 <div class="user-info">
                     <a :href="`/users/${this.openedPost.user.id}`" class="profile-link header-link" ref="profile-link" v-if="this.openedPost.user.image">
-                        <b-avatar class="user-avatar" :src="url + '/users-images/' + this.openedPost.user.image"></b-avatar>
+                        <b-avatar class="user-avatar" :src="url + '/storage/users-images/' + this.openedPost.user.image"></b-avatar>
                     </a>
 
                     <a :href="`/users/${this.openedPost.user.id}`" class="profile-link header-link" ref="profile-link" v-if="!this.openedPost.user.image">
@@ -52,7 +52,7 @@
             </template>
 
             <template>
-                <img :src="url + '/quickposts-images/' + this.openedPost.file" alt="#" class="img-fluid" ref="fullImage">
+                <img :src="url + '/storage/quickposts-images/' + this.openedPost.file" alt="#" class="img-fluid" ref="fullImage">
             </template>
 
             <template #modal-footer="{cancel}">

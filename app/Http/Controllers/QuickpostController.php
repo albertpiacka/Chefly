@@ -42,7 +42,7 @@ class QuickpostController extends Controller
                     'file' => $filename,
                 ]);
 
-                $filepath = public_path().'/quickposts-images/'.$filename;
+                $filepath = public_path().'/storage/quickposts-images/'.$filename;
 
                 file_put_contents($filepath, $decoded);
             } else {
@@ -74,7 +74,7 @@ class QuickpostController extends Controller
             'file' => null,
         ]);
 
-        $destinationPath = public_path().'/quickposts-images/';
+        $destinationPath = public_path().'/storage/quickposts-images/';
         File::delete($destinationPath."$quickpost->file");
     }
 
@@ -88,7 +88,7 @@ class QuickpostController extends Controller
     {
         $this->authorize('delete', $quickpost);
 
-        $destinationPath = public_path().'/quickposts-images/';
+        $destinationPath = public_path().'/storage/quickposts-images/';
         File::delete($destinationPath."$quickpost->image");
 
         $quickpost->forceDelete();

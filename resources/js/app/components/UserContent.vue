@@ -21,7 +21,7 @@
                             <div class="left-wrapper">
                                 <div :id="`follower-popover-${follower.follower.id}`">
                                     <a :href="`/users/${follower.follower.id}`" class="profile-link header-link" ref="profile-link" v-if="follower.follower.image">
-                                        <b-avatar class="user-avatar" :src="url + '/users-images/' + follower.follower.image"></b-avatar>
+                                        <b-avatar class="user-avatar" :src="url + '/storage/users-images/' + follower.follower.image"></b-avatar>
                                     </a>
 
                                     <a :href="`/users/${follower.follower.id}`" class="profile-link header-link" ref="profile-link" v-if="!follower.follower.image">

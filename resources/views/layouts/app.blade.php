@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -79,7 +80,7 @@
                                 id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                 >
                                     @if (Auth::user()->image)
-                                        <b-avatar class="user-avatar" src="<?php echo url('/')?>/{{Auth::user()->image}}"></b-avatar>
+                                        <b-avatar class="user-avatar" src="<?php echo url('/storage/users-images')?>/{{Auth::user()->image}}"></b-avatar>
                                     @else
                                         <b-avatar class="user-avatar" variant="primary" 
                                             text="<?php echo substr(Auth::user()->name, 0, 1)?>">

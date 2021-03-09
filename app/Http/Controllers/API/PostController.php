@@ -87,7 +87,7 @@ class PostController extends Controller
                     $post->tags()->save($new_tag);
                 }
 
-                $filepath = public_path().'/posts-images/'.$filename;
+                $filepath = public_path().'/storage/posts-images/'.$filename;
 
                 file_put_contents($filepath, $decoded);
 
@@ -157,11 +157,11 @@ class PostController extends Controller
                 'image' => $filename,
             ]);
 
-            $filepath = public_path().'/posts-images/'.$filename;
+            $filepath = public_path().'/storage/posts-images/'.$filename;
 
             file_put_contents($filepath, $decoded);
 
-            $destinationPath = public_path().'/posts-images/';
+            $destinationPath = public_path().'/storage/posts-images/';
             File::delete($destinationPath."$request->old_img");
         }
 
@@ -197,7 +197,7 @@ class PostController extends Controller
     {
         $this->authorize('delete', $post);
 
-        $destinationPath = public_path().'/posts-images/';
+        $destinationPath = public_path().'/storage/posts-images/';
         File::delete($destinationPath."$post->image");
 
         $post->comments()->forceDelete();

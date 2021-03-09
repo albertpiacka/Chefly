@@ -26,7 +26,7 @@
                             <div class="left-wrapper">
                                 <div :id="`follower-popover-${follower.follower.id}`">
                                     <a :href="`/users/${follower.follower.id}`" class="profile-link header-link" ref="profile-link" v-if="follower.follower.image">
-                                        <b-avatar class="user-avatar" :src="url + '/users-images/' + follower.follower.image"></b-avatar>
+                                        <b-avatar class="user-avatar" :src="url + '/storage/users-images/' + follower.follower.image"></b-avatar>
                                     </a>
 
                                     <a :href="`/users/${follower.follower.id}`" class="profile-link header-link" ref="profile-link" v-if="!follower.follower.image">
@@ -61,7 +61,7 @@
                 <div class="gallery">
                     <div v-for="quickpost in filteredImages" :key="quickpost.id">
                         <div class="img" :id="quickpost.id">
-                            <b-img thumbnail fluid :src="url + '/quickposts-images/' + quickpost.file" alt="#"></b-img>
+                            <b-img thumbnail fluid :src="url + '/storage/quickposts-images/' + quickpost.file" alt="#"></b-img>
                             <b-icon icon="x-circle" @click="deleteImg(quickpost)"></b-icon>
                         </div>
                     </div>
