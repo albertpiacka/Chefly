@@ -81,7 +81,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        return $user;
+        $found = User::find($user->id);
+
+        return $found;
         // $this->authorize('delete', $user);
         // $user->conversations()->forceDelete();
         // $user->posts()->forceDelete();
