@@ -53,7 +53,7 @@ class QuickpostPolicy
      */
     public function update(User $user, Quickpost $quickpost)
     {
-        if($quickpost->user_id == $user->id || $user->id == 1){
+        if($quickpost->user_id == $user->id || $user->type == 1){
             return true;
         }
     }
@@ -67,7 +67,7 @@ class QuickpostPolicy
      */
     public function admin_update(User $user, Quickpost $quickpost)
     {
-        if($user->id == 52){
+        if($user->type == 1){
             return true;
         }
     }
@@ -81,7 +81,7 @@ class QuickpostPolicy
      */
     public function delete(User $user, Quickpost $quickpost)
     {
-        if($quickpost->user_id == $user->id || $user->id == 52){
+        if($quickpost->user_id == $user->id || $user->type == 1){
             return true;
         }
     }
@@ -95,7 +95,7 @@ class QuickpostPolicy
      */
     public function admin_delete(User $user, Quickpost $quickpost)
     {
-        if($user->id == 1){
+        if($user->type == 1){
             return true;
         }
     }

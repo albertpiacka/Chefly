@@ -53,7 +53,7 @@ class PostPolicy
      */
     public function update(User $user, post $post)
     {
-        if($post->user_id == $user->id || $user->id == 1){
+        if($post->user_id == $user->id || $user->type == 1){
             return true;
         }
     }
@@ -67,7 +67,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        if($post->user_id == $user->id || $user->id == 1){
+        if($post->user_id == $user->id || $user->type == 1){
             return true;
         }
     }
