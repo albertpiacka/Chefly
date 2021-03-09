@@ -19,7 +19,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
-        if($comment->user_id == $user->id || $user->id == 52){
+        if($comment->user_id == $user->id || $user->id == 1){
             return true;
         }
     }
@@ -33,7 +33,7 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        if($comment->user_id == $user->id || $user->id == 52){
+        if($comment->user_id == $user->id || $user->id == 1){
             return true;
         }
     }
