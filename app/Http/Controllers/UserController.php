@@ -80,9 +80,9 @@ class UserController extends Controller
             ]);
 
             $destinationPath = public_path();
-            File::delete($destinationPath."/users-images/$request->oldImg");
+            File::delete($destinationPath."/storage/users-images/$request->oldImg");
 
-            $filepath = public_path().'/users-images/'.$filename;
+            $filepath = public_path().'/storage/users-images/'.$filename;
 
             file_put_contents($filepath, $decoded);
 
@@ -90,16 +90,5 @@ class UserController extends Controller
         } else {
             $user->update($request->all());
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
     }
 }
