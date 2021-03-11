@@ -90,7 +90,7 @@ class UserController extends Controller
         $user->forceDelete();
 
         return response()->json([
-            'message' => 'User deleted',
+            'message' => 'User successfully deleted',
         ]);
     }
 }
